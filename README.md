@@ -1,4 +1,4 @@
-# oc25_elouan
+# oc25-elouan
 
 OC informatique :
 
