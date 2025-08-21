@@ -6,4 +6,8 @@ OC informatique :
 * apprendre de nouveau langage
 * comprendre les secrets de l'informatique
 
-  GitHub markdown
+```
+for i in range(3):
+    print("Bienvenu")
+
+```
