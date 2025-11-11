@@ -31,7 +31,7 @@ h2 {
 
 }
 
-strong {
+.important {
     text-decoration: underline;
     font-style: italic;
 }
