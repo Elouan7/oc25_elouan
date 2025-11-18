@@ -35,3 +35,19 @@ h2 {
     text-decoration: underline;
     font-style: italic;
 }
+
+.guerrier {
+    color: red;
+    font-weight: bold;
+}
+
+.mage {
+    color: blue;
+    font-weight: bold;
+}
+
+.archer {
+    color: green;
+    font-weight: bold;
+}
+
