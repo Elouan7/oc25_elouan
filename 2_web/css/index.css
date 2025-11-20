@@ -7,7 +7,7 @@
 */
 
 body {
-    background-color: #F5F7E8; 
+    background-color: #c5dcfb; 
     color: #111; 
   }
 
@@ -15,7 +15,7 @@ body {
 
 
 h1 {
-    color: rgba(188, 203, 217, 0.739);
+    color: rgba(139, 191, 239, 0.739);
     background-color: rgba(26, 103, 118, 0.795);
     border-radius: 100px;
     text-align: center;
@@ -53,8 +53,47 @@ p {
 
 }
 
-image {
-    border: #111 5px solid;
-    border-radius: 20px;
-  }
+nav {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    gap: 40px;
+    font-size: 20px;
+    border: rgb(26, 103, 118) 5px solid;
+    margin: 10px 10px 10px 10px;
+    padding: 5px;
+    border-radius: 15px;
+    line-height: 25px;
+    border: rgb(26, 103, 118) 5px solid;
+    background-color: rgba(188, 203, 217, 0.739);
+    
+}
+
+nav a {
+    color: #85b5da;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: rgb(55, 173, 184);
+    transform: translateY(-2px);
+    font-size: 25px;
+}
+
+img {
+    border-radius: 12px;
+}
+
+.aerodromes {
+    color: #111;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+
+
 
