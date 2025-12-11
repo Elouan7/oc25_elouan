@@ -10,3 +10,10 @@ canvas {
 body {
     background-color: #f0f0f0;
 }
+
+canvas {
+    border: 1px solid #000; /* optionnel, juste pour voir le canvas */
+    display: block;
+    margin: 0 auto;
+    background: #87CEEB; /* ciel bleu clair */
+  }
