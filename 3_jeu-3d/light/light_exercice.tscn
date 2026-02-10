@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://gd2h6vwhvuin"]
+
+[sub_resource type="Environment" id="Environment_e33fo"]
+background_mode = 2
+background_energy_multiplier = 1.84
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajun1"]
+albedo_color = Color(0.5465629, 0.74215347, 0.39009055, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hynn0"]
+material = SubResource("StandardMaterial3D_ajun1")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kibh7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mcx4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6lm0d"]
+material = SubResource("StandardMaterial3D_1mcx4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_6w5t8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enila"]
+metallic = 1.0
+roughness = 0.16
+
+[sub_resource type="SphereMesh" id="SphereMesh_2jfw4"]
+lightmap_size_hint = Vector2i(17, 9)
+material = SubResource("StandardMaterial3D_enila")
+uv2_padding = 1.42
+
+[node name="Node3D" type="Node3D" unique_id=674534314]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1784262676]
+environment = SubResource("Environment_e33fo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=225546481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_hynn0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=151659318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_kibh7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1873743693]
+transform = Transform3D(0.9945073, 0, 0.10466732, 0, 1, 0, -0.10466732, 0, 0.9945073, 0.22131968, 3.12238, 2.4323559)
+light_color = Color(1.4955546, 0, 0.720367, 1)
+light_energy = 1.317
+light_indirect_energy = 3.139
+light_volumetric_fog_energy = 1.95
+light_specular = 2.163
+shadow_enabled = true
+omni_range = 5.874
+omni_attenuation = 0.537
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=567065533]
+transform = Transform3D(0.9945073, 0, 0.10466732, 0, 1, 0, -0.10466732, 0, 0.9945073, -2.6343794, 1.9409809, 0.88770354)
+light_color = Color(1.4955546, 0, 0.720367, 1)
+light_energy = 1.317
+light_indirect_energy = 3.139
+light_volumetric_fog_energy = 1.95
+light_specular = 2.163
+shadow_enabled = true
+omni_range = 6.897
+omni_attenuation = 0.537
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=507302594]
+transform = Transform3D(0.9945073, 0, 0.10466732, 0, 1, 0, -0.10466732, 0, 0.9945073, 0.18803973, 1.9409809, -2.1523957)
+light_color = Color(1.4955546, 0, 0.720367, 1)
+light_energy = 1.317
+light_indirect_energy = 3.139
+light_volumetric_fog_energy = 1.95
+light_specular = 2.163
+shadow_enabled = true
+omni_range = 3.584
+omni_attenuation = 0.537
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="." unique_id=631925086]
+transform = Transform3D(0.9945073, 0, 0.10466732, 0, 1, 0, -0.10466732, 0, 0.9945073, 2.0816529, 2.887552, 0.88770354)
+light_color = Color(1.4955546, 0, 0.720367, 1)
+light_energy = 2.077
+light_indirect_energy = 3.139
+light_volumetric_fog_energy = 1.95
+light_size = 0.084
+light_specular = 2.163
+shadow_enabled = true
+omni_range = 9.629
+omni_attenuation = 1.337
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1488285832]
+transform = Transform3D(0.9986121, -1.8626451e-09, 0.052667115, -0.030210875, 0.819122, 0.5728232, -0.04314079, -0.57361937, 0.8179851, 0, 2.1586382, 1.7253437)
+light_color = Color(0.9702622, 0.7339784, 0, 1)
+light_energy = 1.446
+light_volumetric_fog_energy = 1.475
+light_specular = 0.41
+spot_range = 6.401
+spot_attenuation = 0.11
+spot_angle = 46.54
+spot_angle_attenuation = 0.2030631
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1631708996]
+transform = Transform3D(1, 0, 0, 0, 0.80338943, 0.5954539, 0, -0.5954539, 0.80338943, 0, 3.1283817, 3.5958464)
+shadow_enabled = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=273712276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03321743, 2.4600608, 0.058811545)
+radius = 0.05078125
+height = 3.0844116
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1197951487]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=631837693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0449028, 4.2515125, 0)
+mesh = SubResource("SphereMesh_6lm0d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=213613354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06526899, 5.1338367, 0.013573647)
+mesh = SubResource("SphereMesh_6w5t8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D" unique_id=1837512469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.058655024, 5.9751034, 0)
+mesh = SubResource("SphereMesh_2jfw4")

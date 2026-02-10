@@ -1,109 +1,29 @@
-[gd_scene format=3 uid="uid://c2672n3lokcco"]
+[gd_scene load_steps=6 format=3 uid="uid://c2672n3lokcco"]
+
+[ext_resource type="PackedScene" uid="uid://b7mik7msnwh0y" path="res://table.tscn" id="1_0hhob"]
+[ext_resource type="PackedScene" uid="uid://dhl4ngpwe3scj" path="res://bed.tscn" id="2_t3bft"]
+[ext_resource type="PackedScene" uid="uid://bgybsw3e0fix" path="res://lamp.tscn" id="3_wwc7x"]
+[ext_resource type="PackedScene" uid="uid://ccr7t4bj0f8b6" path="res://bookshelf.tscn" id="4_ys4du"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h61uo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbo3s"]
-albedo_color = Color(0, 0.015686275, 1, 1)
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.33063)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wbnlm"]
-albedo_color = Color(0.015686275, 0.011764706, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hhob"]
-albedo_color = Color(0, 0.007843138, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3bft"]
-albedo_color = Color(2.4232578, 2.4232578, 0.33213425, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2hhy"]
-albedo_color = Color(0.039215688, 1, 1, 1)
-
-[node name="Node3D" type="Node3D" unique_id=1926077643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.021179)
-
-[node name="room" type="CSGBox3D" parent="." unique_id=500874783]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3689346, 1.818819, 0.6263962)
+[node name="room" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36893, 1.72946, 0.626396)
 flip_faces = true
 size = Vector3(10, 10, 10)
 material = SubResource("StandardMaterial3D_h61uo")
 
-[node name="table" type="CSGCombiner3D" parent="." unique_id=1905429070]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31951904, 1.0563354, -1.1222534)
+[node name="table" parent="." instance=ExtResource("1_0hhob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.319519, -2.73461, -2.65106)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="table" unique_id=185641203]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1618652, -2.751892, -1.2911377)
-size = Vector3(2, 0.2, 4)
+[node name="bed" parent="." instance=ExtResource("2_t3bft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03159, -3.32952, -2.04083)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="table/CSGBox3D2" unique_id=1015001822]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.64, -0.5751343, 1.541)
-size = Vector3(0.3, 1.5, 0.3)
+[node name="lamp" parent="." instance=ExtResource("3_wwc7x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563726, -0.623415, 5.72968)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="table/CSGBox3D2" unique_id=1701041490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.677, -0.5751343, -1.706)
-size = Vector3(0.3, 1.5, 0.3)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="table/CSGBox3D2" unique_id=584334368]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.648, -0.5751343, -1.652)
-size = Vector3(0.3, 1.5, 0.3)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="table/CSGBox3D2" unique_id=657488570]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.551, -0.5751343, 1.558)
-size = Vector3(0.3, 1.5, 0.3)
-
-[node name="bed" type="CSGCombiner3D" parent="." unique_id=1815182878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.88739014, -0.20666504, -2.0408325)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="bed" unique_id=1556511207]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2609253, -2.4747498, -0.13439941)
-size = Vector3(2, 0.9194336, 4)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="bed/CSGBox3D" unique_id=386609025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033081055, 0.18736577, -0.021606445)
-size = Vector3(1.6164551, 0.9316406, 3.3137207)
-
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="bed/CSGBox3D" unique_id=1074504527]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36218262, 0.6759217, -0.98291016)
-radius = 0.3
-radial_segments = 22
-material = SubResource("StandardMaterial3D_vbo3s")
-
-[node name="CSGSphere3D3" type="CSGSphere3D" parent="bed/CSGBox3D/CSGSphere3D2" unique_id=967144699]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67871094, 0, 0)
-radius = 0.35381928
-radial_segments = 22
-material = SubResource("StandardMaterial3D_wbnlm")
-
-[node name="CSGSphere3D4" type="CSGSphere3D" parent="bed/CSGBox3D/CSGSphere3D2/CSGSphere3D3" unique_id=431912889]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3157959, 0, 0)
-radius = 0.3
-radial_segments = 22
-material = SubResource("StandardMaterial3D_0hhob")
-
-[node name="lamp" type="CSGCombiner3D" parent="." unique_id=879092975]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.232935, 2.348053, 5.7296753)
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="lamp" unique_id=1044674414]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.251, -3.5726807, -9.244)
-polygon = PackedVector2Array(-0.003724575, 0.19328618, 0.0055527687, 1.161792, 0.791626, 1.0247192, 0.25738525, -0.010131836)
-mode = 1
-spin_degrees = 360.0
-spin_sides = 8
-smooth_faces = true
-material = SubResource("StandardMaterial3D_t3bft")
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="lamp/CSGPolygon3D" unique_id=319394272]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015380859, -0.41333008, 0)
-radius = 0.051757813
-height = 2.8266602
-
-[node name="bookshelf" type="CSGCombiner3D" parent="." unique_id=1812662961]
-transform = Transform3D(0.9978211, 0, -0.06597785, 0, 1, 0, 0.06597785, 0, 0.9978211, 29.070862, -2.1061096, 24.72351)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="bookshelf" unique_id=1900692037]
-transform = Transform3D(-0.9999891, 0, 0.003909759, 0, 1, 0, -0.003909759, 0, -0.9999891, -34.45992, 0.5624924, -25.879202)
-size = Vector3(2.751114, 3.386963, 1.7791748)
-material = SubResource("StandardMaterial3D_f2hhy")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="bookshelf/CSGBox3D" unique_id=207126777]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.0032798052, -0.08798218, -0.0033054352)
-operation = 2
-size = Vector3(2.4000897, 3, 2.022461)
+[node name="bookshelf" parent="." instance=ExtResource("4_ys4du")]
+transform = Transform3D(0.997821, 0, -0.0659778, 0, 1, 0, 0.0659778, 0, 0.997821, 27.3227, -2.05341, 27.5557)
