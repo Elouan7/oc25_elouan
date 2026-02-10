@@ -10,14 +10,6 @@ config_version=5
 
 [application]
 
-config/name="CSG"
+config/name="vfx"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
-
-[physics]
-
-3d/physics_engine="Jolt Physics"
-
-[rendering]
-
-rendering_device/driver.windows="d3d12"

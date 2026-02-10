@@ -1,0 +1,172 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1qsgksebmibs"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mb7ju"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 6.19
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+inherit_velocity_ratio = 0.19
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 98, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 3.7
+turbulence_noise_scale = 7.91
+turbulence_noise_speed_random = 1.77
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kqe62"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 17.97
+angle_min = 57.9
+angle_max = 57.9
+angular_velocity_min = -182.38
+angular_velocity_max = -115.92
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bkak3"]
+lifetime_randomness = 0.19
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 33.39
+angle_min = 57.9
+angle_max = 57.9
+gravity = Vector3(10, -50, 20)
+radial_accel_min = -100.0
+radial_accel_max = 70.11
+damping_min = 12.741
+damping_max = 54.279
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1g83g"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1g83g"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 33.39
+angle_min = 57.9
+angle_max = 57.9
+inherit_velocity_ratio = 1.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = -2.23517e-05
+gravity = Vector3(10, -50, 20)
+radial_accel_min = -100.0
+radial_accel_max = 70.11
+damping_min = 12.741
+damping_max = 54.279
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_26dmw"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 33.39
+angle_min = 57.9
+angle_max = 57.9
+inherit_velocity_ratio = 1.0
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(10, -50, 20)
+radial_accel_min = -100.0
+radial_accel_max = 70.11
+damping_min = 12.741
+damping_max = 54.279
+
+[node name="VFX2D" type="Node2D"]
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+position = Vector2(58, 0)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_mb7ju")
+
+[node name="Label" type="Label" parent="GPUParticles2D2"]
+offset_left = -18.0
+offset_top = -34.0
+offset_right = 90.0
+offset_bottom = 41.0
+scale = Vector2(0.354912, 0.357138)
+text = "spawn sphere
+1000 particles
+         1s"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 17
+process_material = SubResource("ParticleProcessMaterial_kqe62")
+
+[node name="Label" type="Label" parent="GPUParticles2D"]
+offset_left = -11.0
+offset_top = -29.0
+offset_right = 86.0
+offset_bottom = -6.0
+scale = Vector2(0.32726, 0.416218)
+text = "point source"
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+position = Vector2(-65, -5)
+amount = 1000
+interp_to_end = 0.22
+preprocess = 2.57
+speed_scale = 4.1
+explosiveness = 0.31
+randomness = 0.3
+fixed_fps = 100
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_bkak3")
+
+[node name="Label" type="Label" parent="GPUParticles2D3"]
+offset_left = -11.0
+offset_top = -29.0
+offset_right = 86.0
+offset_bottom = -6.0
+scale = Vector2(0.32726, 0.416218)
+text = "point source"
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="."]
+modulate = Color(0.121569, 0.439216, 0.537255, 1)
+self_modulate = Color(0.741176, 1, 0.490196, 1)
+material = SubResource("CanvasItemMaterial_1g83g")
+position = Vector2(164, 1)
+amount = 10000
+speed_scale = 13.0
+explosiveness = 0.22
+randomness = 0.26
+fixed_fps = 100
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_1g83g")
+
+[node name="Label" type="Label" parent="GPUParticles2D4"]
+offset_left = -11.0
+offset_top = -29.0
+offset_right = 86.0
+offset_bottom = -6.0
+scale = Vector2(0.32726, 0.416218)
+text = "point source"
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="."]
+modulate = Color(0.121569, 0.439216, 0.537255, 1)
+self_modulate = Color(0.741176, 1, 0.490196, 1)
+material = SubResource("CanvasItemMaterial_1g83g")
+position = Vector2(155, 82)
+amount = 10000
+speed_scale = 2.33
+explosiveness = 0.79
+fixed_fps = 100
+collision_base_size = 0.0
+process_material = SubResource("ParticleProcessMaterial_26dmw")
+
+[node name="Label" type="Label" parent="GPUParticles2D5"]
+offset_left = -11.0
+offset_top = -29.0
+offset_right = 86.0
+offset_bottom = -6.0
+scale = Vector2(0.32726, 0.416218)
+text = "point source"
+metadata/_edit_use_anchors_ = true
