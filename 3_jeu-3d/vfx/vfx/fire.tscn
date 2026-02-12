@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhu70q3qxja5b"]
+
+[ext_resource type="Texture2D" uid="uid://byp0tcnp746ei" path="res://istockphoto-1323529010-612x612.jpg" id="1_2pqqt"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_2pqqt"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ltu8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 1, 0)
+color = Color(1, 1, 1, 0)
+alpha_curve = SubResource("CurveTexture_2pqqt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6ecg"]
+transparency = 1
+albedo_texture = ExtResource("1_2pqqt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_icfi2"]
+material = SubResource("StandardMaterial3D_x6ecg")
+size = Vector2(1, 1)
+orientation = 0
+
+[node name="Fire" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_5ltu8")
+draw_pass_1 = SubResource("PlaneMesh_icfi2")
