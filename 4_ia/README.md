@@ -14,7 +14,17 @@ Rédige un article de news d’environ 200 mots destiné au site officiel d’un
 
 **Réponse de l’IA :**
 
-(→ Copier ici l’article final que tu choisis)
+Math 4 Fun 2026 : le Bugnon au sommet du raisonnement
+
+Ce mercredi, l’auditoire était suspendu aux derniers calculs. Quelques secondes de silence, puis l’annonce : une équipe du Gymnase du Bugnon remporte l’édition 2026 de la compétition Math 4 Fun.
+
+Formée de quatre élèves de 3e année — Camille Rey, Hugo Martins, Sofia Keller et Yanis Borel — l’équipe s’est démarquée par une approche stratégique et une excellente gestion du temps. La finale proposait des défis mêlant logique combinatoire, modélisation et résolution collaborative de problèmes inédits.
+
+« On ne cherchait pas seulement la bonne réponse, mais la meilleure méthode », explique Hugo Martins. Le groupe s’était préparé plusieurs semaines, testant différentes stratégies et simulant des conditions réelles de concours.
+
+Encadrés par leur enseignant de mathématiques, les élèves ont su transformer le stress en énergie collective. Leur victoire souligne l’importance de la collaboration et de l’audace intellectuelle.
+
+La direction du Gymnase du Bugnon félicite l’équipe pour cette performance remarquable, qui confirme la vitalité scientifique et l’esprit d’initiative de ses élèves.
 
 ---
 
