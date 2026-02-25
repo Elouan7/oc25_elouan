@@ -36,6 +36,7 @@ Photo réaliste de quatre élèves fictifs d’un gymnase suisse posant devant u
 
 **Image générée :**
 
+<img width="1024" height="1024" alt="freepik__photo-raliste-de-quatre-lves-fictifs-dun-gymnase-s__36798" src="https://github.com/user-attachments/assets/f343ffca-1a0a-4d2f-9985-3b8dc737fa8c" />
 
 
 
@@ -55,9 +56,21 @@ Photo réaliste de quatre élèves fictifs de 17-18 ans en pleine compétition d
 
 ## 2. Production finale
 
-(→ Copier ici l’article final choisi)
+Math 4 Fun 2026 : le Bugnon au sommet du raisonnement
 
-(→ Insérer les deux images sous le texte)
+Ce mercredi, l’auditoire était suspendu aux derniers calculs. Quelques secondes de silence, puis l’annonce : une équipe du Gymnase du Bugnon remporte l’édition 2026 de la compétition Math 4 Fun.
+
+Formée de quatre élèves de 3e année — Camille Rey, Hugo Martins, Sofia Keller et Yanis Borel — l’équipe s’est démarquée par une approche stratégique et une excellente gestion du temps. La finale proposait des défis mêlant logique combinatoire, modélisation et résolution collaborative de problèmes inédits.
+
+« On ne cherchait pas seulement la bonne réponse, mais la meilleure méthode », explique Hugo Martins. Le groupe s’était préparé plusieurs semaines, testant différentes stratégies et simulant des conditions réelles de concours.
+
+Encadrés par leur enseignant de mathématiques, les élèves ont su transformer le stress en énergie collective. Leur victoire souligne l’importance de la collaboration et de l’audace intellectuelle.
+
+La direction du Gymnase du Bugnon félicite l’équipe pour cette performance remarquable, qui confirme la vitalité scientifique et l’esprit d’initiative de ses élèves.
+
+<img width="1024" height="1024" alt="freepik__photo-raliste-de-quatre-lves-fictifs-dun-gymnase-s__36798" src="https://github.com/user-attachments/assets/f343ffca-1a0a-4d2f-9985-3b8dc737fa8c" />
+
+<img width="1024" height="1024" alt="freepik__ultra-realistic-reportagestyle-photo-of-two-girls-__36797" src="https://github.com/user-attachments/assets/f1e5a9d0-a3e9-4cd9-b065-3ec4d094e9d4" />
 
 ---
 
