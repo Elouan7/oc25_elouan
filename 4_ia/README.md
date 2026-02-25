@@ -36,7 +36,8 @@ Photo réaliste de quatre élèves fictifs d’un gymnase suisse posant devant u
 
 **Image générée :**
 
-(→ Insérer l’image ici)
+
+
 
 ---
 
@@ -48,7 +49,7 @@ Photo réaliste de quatre élèves fictifs de 17-18 ans en pleine compétition d
 
 **Image générée :**
 
-(→ Insérer l’image ici)
+<img width="1024" height="1024" alt="freepik__ultra-realistic-reportagestyle-photo-of-two-girls-__36797" src="https://github.com/user-attachments/assets/f1e5a9d0-a3e9-4cd9-b065-3ec4d094e9d4" />
 
 ---
 
