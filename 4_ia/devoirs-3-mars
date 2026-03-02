@@ -1,111 +1,161 @@
-TP1 – IA Génératives
-Lecture 1 : Rapport 2024 sur les nouveaux développements de l’IA
+# Module Intelligence Artificielle – TP1
+## IA Génératives et Lecture 1 (2024)
 
-Source : Sénat français
+**Établissement :** Gymnase du Bugnon  
+**Classe :** 3MOC Informatique  
+**Date :** 03.03.2026  
 
-IA utilisée
+---
 
-ChatGPT – OpenAI
+# 1. Lecture 1 – Rapport 2024 sur l’intelligence artificielle
 
-Traces de prompts et réponses
-Prompt 1
+**Source :** Rapport du Sénat français (2024) sur les nouveaux développements de l’IA
 
-Résume-moi les pages 35 à 136 du rapport du Sénat 2024 sur l’intelligence artificielle.
+---
 
-Réponse obtenue (résumé synthétique)
+## 1.1 IA utilisée pour l’analyse
 
-Le rapport explique que les IA génératives ont connu une forte accélération ces dernières années grâce à :
+ChatGPT (modèle GPT)
 
-L’augmentation de la puissance de calcul (GPU)
+---
 
-Le développement du deep learning
+## 1.2 Prompts et réponses
 
-L’architecture Transformer (2017)
+---
 
-L’accès à d’énormes quantités de données
+### Résumé global du rapport
 
-Il met également en avant plusieurs enjeux majeurs :
+**Prompt utilisé :**
 
-Enjeux économiques
+```
+Résume les pages 35 à 136 du rapport 2024 du Sénat français 
+sur les nouveaux développements de l’intelligence artificielle. 
+Fais un résumé structuré pour un élève de gymnase.
+```
 
-Enjeux éthiques
+**Réponse de l’IA :**
 
-Enjeux géopolitiques
+Le rapport met en évidence l’accélération rapide des technologies d’intelligence artificielle, en particulier des IA génératives.
 
-Enjeux liés à l’éducation et à la formation
+Les progrès reposent principalement sur :
 
-Prompt 2
+- L’architecture Transformer (2017)
+- Le développement du deep learning
+- L’augmentation de la puissance de calcul (GPU)
+- L’accès massif aux données numériques
 
-Fais-moi les points les plus importants à retenir du rapport.
+Le rapport insiste également sur :
 
-Réponse obtenue (points clés)
+- Les enjeux de souveraineté numérique
+- La régulation européenne
+- Les risques éthiques (biais, désinformation)
+- L’impact sur l’emploi et la formation
 
-L’IA générative transforme déjà de nombreux secteurs (éducation, santé, industrie).
+---
 
-L’Europe cherche à encadrer ces technologies avec des réglementations spécifiques.
+### Points essentiels à retenir
 
-Les risques incluent la désinformation, les biais algorithmiques et la dépendance aux grandes entreprises technologiques.
+**Prompt utilisé :**
 
-La formation et l’adaptation du marché du travail sont des enjeux essentiels.
+```
+Fais-moi uniquement les points les plus importants à retenir.
+```
 
-Prompt 3
+**Réponse de l’IA :**
 
-C’est quoi les développements technologiques récents qui ont permis l’apparition des IA génératives ?
+1. Les IA génératives représentent une rupture technologique majeure.
+2. L’Europe cherche à encadrer juridiquement ces technologies.
+3. Les risques incluent la manipulation de l’information et les biais algorithmiques.
+4. L’adaptation du système éducatif devient nécessaire.
 
-Réponse obtenue
+---
 
-Les principaux développements sont :
+### Pionniers de l’intelligence artificielle
 
-Architecture Transformer : permet une meilleure gestion du contexte dans le traitement du langage.
+**Prompt utilisé :**
 
-Deep Learning : réseaux de neurones profonds capables d’apprendre des structures complexes.
+```
+Cite deux personnes importantes dans la création de l’IA 
+et explique leurs contributions.
+```
 
-GPU haute performance : permettent l’entraînement de modèles comportant des milliards de paramètres.
+**Réponse de l’IA :**
 
-Accès massif aux données (Big Data) : disponibilité de grandes quantités de textes, images et vidéos.
+**Alan Turing**
+- Propose le test de Turing (1950).
+- Pose les bases théoriques de l’informatique moderne.
 
-Prompt 4
+**John McCarthy**
+- Introduit le terme « intelligence artificielle » en 1956.
+- Organise la conférence de Dartmouth.
 
-Cite deux personnes importantes dans la création de l’IA et explique ce qu’elles ont fait.
+---
 
-Réponse obtenue
-1. Alan Turing
+### Développements technologiques récents
 
-Propose le test de Turing en 1950.
+**Prompt utilisé :**
 
-Pose les bases théoriques de l’intelligence artificielle.
+```
+Quels développements technologiques récents ont permis 
+l’émergence des IA génératives ?
+```
 
-Contribue au développement de l’informatique moderne.
+**Réponse de l’IA :**
 
-2. John McCarthy
+| Technologie   | Rôle principal |
+|---------------|---------------|
+| Transformer   | Meilleure compréhension du contexte |
+| Deep Learning | Apprentissage de structures complexes |
+| GPU           | Entraînement rapide de modèles massifs |
+| Big Data      | Accès à de grandes quantités de données |
 
-Introduit le terme « intelligence artificielle » en 1956.
+---
 
-Organise la conférence de Dartmouth, considérée comme l’acte fondateur de l’IA.
+# 2. Réponses aux questions demandées
 
-Développe le langage de programmation LISP.
+## Deux personnes ayant marqué la création de l’IA
 
-Réponses aux questions demandées
-1. Deux pionniers de l’IA et leurs contributions
+- Alan Turing : bases théoriques et test de Turing.
+- John McCarthy : création du terme « intelligence artificielle » et conférence de Dartmouth.
 
-Alan Turing : bases théoriques de l’informatique et test de Turing.
+---
 
-John McCarthy : création du terme « intelligence artificielle » et structuration du domaine.
+## Développements récents ayant permis les IA génératives
 
-2. Développements récents ayant permis les IA génératives
+- Architecture Transformer
+- Deep Learning
+- GPU haute performance
+- Accès massif aux données
 
-Deep Learning
+---
 
-Architecture Transformer
+# 3. Quizz 2
 
-GPU puissants
+## 3.1 Trois techniques de prompt engineering
 
-Accès massif aux données
+- Rôle – Contexte – Objectif (RCO)
+- Chain of Thought (raisonnement étape par étape)
+- Prompt inversé (demander à l’IA de poser des questions)
 
-Ces éléments ont permis l’émergence de modèles de grande taille capables de générer du texte, des images ou du code.
+---
 
-Réflexion personnelle
+## 3.2 Quatre dimensions pour comparer des IA génératives
 
-Cette lecture montre que les IA génératives sont le résultat de plusieurs décennies de recherche. Elles ne sont pas apparues soudainement, mais grâce à une accumulation progressive d’innovations techniques.
+1. Qualité des réponses
+2. Capacité de raisonnement
+3. Créativité
+4. Fiabilité et gestion des erreurs
 
-Ce qui m’a particulièrement marqué est l’accélération des progrès depuis 2017 avec l’architecture Transformer. Les enjeux éthiques et économiques me semblent centraux pour les années à venir, notamment dans l’éducation et le monde du travail.
+---
+
+## 3.3 Qu’est-ce qu’une IA générative ?
+
+Une IA générative est un modèle capable de produire du contenu original (texte, image, audio, vidéo ou code) à partir d’un apprentissage sur de grandes quantités de données.
+
+---
+
+# 4. Analyse personnelle
+
+Ce travail montre que les IA génératives sont le résultat d’une évolution technologique progressive. Elles reposent sur des avancées en deep learning, en puissance de calcul et en traitement des données massives.
+
+L’architecture Transformer semble être un élément clé dans l’accélération récente du domaine. Les enjeux éthiques et économiques apparaissent centraux pour les années à venir, notamment dans l’éducation et le monde du travail.
