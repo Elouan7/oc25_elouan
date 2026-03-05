@@ -1,0 +1,161 @@
+# Module Intelligence Artificielle – TP1
+## IA Génératives et Lecture 1 (2024)
+
+**Établissement :** Gymnase du Bugnon  
+**Classe :** 3MOC Informatique  
+**Date :** 02.03.2026  
+
+---
+
+# 1. Lecture 1 – Rapport 2024 sur l'intelligence artificielle
+
+**Source :** Rapport du Sénat français (2024) sur les nouveaux développements de l'IA
+
+---
+
+## 1.1 IA utilisée pour l'analyse
+
+ChatGPT (modèle GPT)
+
+---
+
+## 1.2 Prompts et réponses
+
+---
+
+### Résumé global du rapport
+
+**Prompt utilisé :**
+
+```
+Résume les pages 35 à 136 du rapport 2024 du Sénat français 
+sur les nouveaux développements de l'intelligence artificielle. 
+Fais un résumé structuré pour un élève de gymnase.
+```
+
+**Réponse de l'IA :**
+
+Le rapport met en évidence l'accélération rapide des technologies d'intelligence artificielle, en particulier des IA génératives.
+
+Les progrès reposent principalement sur :
+
+- L'architecture Transformer (2017)
+- Le développement du deep learning
+- L'augmentation de la puissance de calcul (GPU)
+- L'accès massif aux données numériques
+
+Le rapport insiste également sur :
+
+- Les enjeux de souveraineté numérique
+- La régulation européenne
+- Les risques éthiques (biais, désinformation)
+- L'impact sur l'emploi et la formation
+
+---
+
+### Points essentiels à retenir
+
+**Prompt utilisé :**
+
+```
+Fais-moi uniquement les points les plus importants à retenir.
+```
+
+**Réponse de l'IA :**
+
+1. Les IA génératives représentent une rupture technologique majeure.
+2. L'Europe cherche à encadrer juridiquement ces technologies.
+3. Les risques incluent la manipulation de l'information et les biais algorithmiques.
+4. L'adaptation du système éducatif devient nécessaire.
+
+---
+
+### Pionniers de l'intelligence artificielle
+
+**Prompt utilisé :**
+
+```
+Cite deux personnes importantes dans la création de l'IA 
+et explique leurs contributions.
+```
+
+**Réponse de l'IA :**
+
+**Alan Turing**
+- Propose le test de Turing (1950).
+- Pose les bases théoriques de l'informatique moderne.
+
+**John McCarthy**
+- Introduit le terme « intelligence artificielle » en 1956.
+- Organise la conférence de Dartmouth.
+
+---
+
+### Développements technologiques récents
+
+**Prompt utilisé :**
+
+```
+Quels développements technologiques récents ont permis 
+l'émergence des IA génératives ?
+```
+
+**Réponse de l'IA :**
+
+| Technologie   | Rôle principal |
+|---------------|---------------|
+| Transformer   | Meilleure compréhension du contexte |
+| Deep Learning | Apprentissage de structures complexes |
+| GPU           | Entraînement rapide de modèles massifs |
+| Big Data      | Accès à de grandes quantités de données |
+
+---
+
+# 2. Réponses aux questions demandées
+
+## Deux personnes ayant marqué la création de l'IA
+
+- Alan Turing : bases théoriques et test de Turing.
+- John McCarthy : création du terme « intelligence artificielle » et conférence de Dartmouth.
+
+---
+
+## Développements récents ayant permis les IA génératives
+
+- Architecture Transformer
+- Deep Learning
+- GPU haute performance
+- Accès massif aux données
+
+---
+
+# 3. Quizz 2
+
+## 3.1 Trois techniques de prompt engineering
+
+- Rôle – Contexte – Objectif (RCO)
+- Chain of Thought (raisonnement étape par étape)
+- Prompt inversé (demander à l'IA de poser des questions)
+
+---
+
+## 3.2 Quatre dimensions pour comparer des IA génératives
+
+1. Qualité des réponses
+2. Capacité de raisonnement
+3. Créativité
+4. Fiabilité et gestion des erreurs
+
+---
+
+## 3.3 Qu'est-ce qu'une IA générative ?
+
+Une IA générative est un modèle capable de produire du contenu original (texte, image, audio, vidéo ou code) à partir d'un apprentissage sur de grandes quantités de données.
+
+---
+
+# 4. Analyse personnelle
+
+Ce travail montre que les IA génératives sont le résultat d'une évolution technologique progressive. Elles reposent sur des avancées en deep learning, en puissance de calcul et en traitement des données massives.
+
+L'architecture Transformer semble être un élément clé dans l'accélération récente du domaine. Les enjeux éthiques et économiques apparaissent centraux pour les années à venir, notamment dans l'éducation et le monde du travail.
