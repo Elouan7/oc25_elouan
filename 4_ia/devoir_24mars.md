@@ -1,9 +1,8 @@
 # Devoir : Analyse du "Artificial Intelligence Index Report 2025"
 
 **Cours :** Introduction à l'IA  
-**Étudiant :** [Ton Nom]  
-**Date :** 24 mars 2026  
-**Enseignant :** Denis Dreano  
+**Étudiant :** Elouan  
+**Date :** 24 mars 2026   
 
 ---
 
