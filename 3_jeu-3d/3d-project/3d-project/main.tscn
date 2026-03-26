@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bpkdoa0k7d11g"]
+
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/brackeys-proto-controller-main/proto_controller/proto_controller.tscn" id="1_a202f"]
+[ext_resource type="Texture2D" uid="uid://b4haqph50vcjw" path="res://assets/sky_background/autumn_field_puresky_4k.hdr" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dlfsykv4r04gq" path="res://skeleton.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://diugr7xqhym1t" path="res://chest.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ck3q276aimtv" path="res://barrel.tscn" id="4_lquwl"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7mycd"]
+panorama = ExtResource("1_lquwl")
+
+[sub_resource type="Sky" id="Sky_272bh"]
+sky_material = SubResource("PanoramaSkyMaterial_7mycd")
+
+[sub_resource type="Environment" id="Environment_5vw27"]
+background_mode = 2
+sky = SubResource("Sky_272bh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.17254902, 0.76862746, 0.24705882, 0.63529414)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xowi"]
+albedo_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[node name="main" type="Node3D" unique_id=655975041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039069176, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1111825032]
+environment = SubResource("Environment_5vw27")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=222432560]
+transform = Transform3D(-0.769496, -0.61415, -0.175202, -0.397336, 0.2456, 0.884197, -0.5, 0.75, -0.433013, 0, 40.3888, 0.0239677)
+light_energy = 0.925
+light_indirect_energy = 3.868
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=1410811565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.731903, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="floor" unique_id=391755743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.97016, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=788325782]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.022439, 1.59758, -16.0728)
+size = Vector3(1, 10, 30)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=2021995694]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5815, 1.59758, -0.634423)
+size = Vector3(1, 10, 30)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1149599602]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -15.5316, 1.59758, -0.552225)
+size = Vector3(1, 10, 30)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=229401764]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.022439, 1.59758, 14.8504)
+size = Vector3(1, 10, 30)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=120335742]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.47889, 0.364733, 14.3978)
+operation = 2
+size = Vector3(3.49512, 7.5343, 6.00494)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1329953132]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.3643, -1.52229, 19.5007)
+size = Vector3(0.267456, 3.76025, 9.11768)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1803687546]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.899273, -1.52229, 22.6449)
+size = Vector3(0.267456, 3.76025, 10.680916)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=457644920]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.052883, -1.52229, 22.6449)
+size = Vector3(0.267456, 3.76025, 13.849373)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1432212726]
+transform = Transform3D(1, 0, -5.56284e-07, 0, 1, 0, 5.56284e-07, 0, 1, -13.3372, -1.52229, 19.6621)
+size = Vector3(0.267456, 3.76025, 8.67188)
+material = SubResource("StandardMaterial3D_4xowi")
+
+[node name="ProtoController" parent="." unique_id=600568589 instance=ExtResource("1_a202f")]
+transform = Transform3D(1, 0, 0, 0, 0.950716, 0.310063, 0, -0.310063, 0.950716, -12.316287, 5.546143, 44.04099)
+
+[node name="skeleton1" parent="." unique_id=1691470883 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6479254, 0, 24.17441)
+
+[node name="skeleton2" parent="." unique_id=2070244009 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.445818, 0, 0)
+
+[node name="skeleton3" parent="." unique_id=85781093 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.330192, 0, 18.467203)
+
+[node name="chest" parent="." unique_id=1479080263 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.289178, 0, 0)
+
+[node name="barrel" parent="." unique_id=1144828901 instance=ExtResource("4_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.035095, 3.0680983, 27.95342)
