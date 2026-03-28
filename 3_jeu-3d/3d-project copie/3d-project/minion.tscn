@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://xaq5rhx8dew8"]
+
+[ext_resource type="PackedScene" uid="uid://yc2qnthofku" path="res://batminion.glb" id="1_a202f"]
+
+[node name="Node3D" type="Node3D" unique_id=1279007329]
+
+[node name="Sketchfab_Scene" parent="." unique_id=245281872 instance=ExtResource("1_a202f")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)

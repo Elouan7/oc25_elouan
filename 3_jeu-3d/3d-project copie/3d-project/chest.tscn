@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://diugr7xqhym1t"]
+
+[ext_resource type="PackedScene" uid="uid://cqomt5qa70xds" path="res://assets/import_examples/chest_gold/chest_gold.glb" id="1_twpm2"]
+
+[node name="chest" type="Node3D" unique_id=1479080263]
+
+[node name="chest_gold2" parent="." unique_id=523048355 instance=ExtResource("1_twpm2")]
+transform = Transform3D(0.18474114, 0, -1.9914494, 0, 2, 0, 1.9914494, 0, 0.18474114, 0, 0, 0)

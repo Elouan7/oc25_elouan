@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dlfsykv4r04gq"]
+
+[ext_resource type="PackedScene" uid="uid://cfjv06c2al740" path="res://assets/skeleton/skeleton_mage.glb" id="1_crlql"]
+
+[node name="Node3D" type="Node3D" unique_id=1691470883]
+
+[node name="skeleton_mage" parent="." unique_id=1972268361 instance=ExtResource("1_crlql")]
+transform = Transform3D(1.1614059, 0, -1.628231, 0, 2, 0, 1.628231, 0, 1.1614059, 0, 0, 0)
