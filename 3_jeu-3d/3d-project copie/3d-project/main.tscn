@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpkdoa0k7d11g"]
 
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/brackeys-proto-controller-main/proto_controller/proto_controller.tscn" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_a202f"]
 [ext_resource type="Texture2D" uid="uid://b4haqph50vcjw" path="res://assets/sky_background/autumn_field_puresky_4k.hdr" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://diugr7xqhym1t" path="res://chest.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ck3q276aimtv" path="res://barrel.tscn" id="4_lquwl"]
@@ -94,6 +94,7 @@ material = SubResource("StandardMaterial3D_4xowi")
 
 [node name="ProtoController" parent="." unique_id=600568589 instance=ExtResource("1_a202f")]
 transform = Transform3D(1, 0, 0, 0, 0.99857134, 0.05343446, 0, -0.05343446, 0.99857134, -12.316287, 0.54614305, 44.04099)
+floor_constant_speed = true
 
 [node name="chest" parent="." unique_id=1479080263 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.289178, 0, 0)

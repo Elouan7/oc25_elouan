@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dd33ixsoq2a5s"]
+
+[ext_resource type="PackedScene" uid="uid://bwjm2fr02ygjj" path="res://pigeon_headed_doctor_in_hallway.glb" id="1_5cv36"]
+
+[node name="Node3D" type="Node3D" unique_id=187874069]
+
+[node name="Sketchfab_Scene" parent="." unique_id=96754342 instance=ExtResource("1_5cv36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

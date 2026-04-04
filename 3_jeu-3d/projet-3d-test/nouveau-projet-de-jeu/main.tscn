@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://dhrjgdodtih1a"]
+
+[ext_resource type="PackedScene" uid="uid://b0b5g66jr7stt" path="res://spotlight.glb" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dd33ixsoq2a5s" path="res://docteur-pigeon.tscn" id="3_h2yge"]
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+ambient_light_color = Color(0.44097933, 0.44097927, 0.44097927, 1)
+ambient_light_energy = 2.18
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.056665882, 0.69156736, 0.36122704, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.53333336, 0.22352941, 0.23137255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+albedo_color = Color(0.46666667, 0.47058824, 0.47058824, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+albedo_color = Color(0.02745098, 0.5254902, 0.9607843, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+albedo_color = Color(0.8784314, 0.54509807, 0.14509805, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_color = Color(0.019607844, 0.6313726, 0.23529412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+albedo_color = Color(0.47058824, 0.33333334, 0.21176471, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_color = Color(0.33067203, 0.16002637, 0.033934392, 1)
+
+[node name="main" type="Node3D" unique_id=961247965]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=474543570]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 22.996708, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=984001087]
+environment = SubResource("Environment_0xm2m")
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=425408026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+gi_lightmap_texel_scale = 6.9813
+use_collision = true
+size = Vector3(200, 1, 200)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="floor" unique_id=1900863146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="mur_maison4" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=358673185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0, -29.75)
+size = Vector3(1, 4, 8.5)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="mur_maison3" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1999879009]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.75, 0, -34.5)
+size = Vector3(1, 4, 11.5)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="mur_maison2" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=2100992474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -29.75)
+size = Vector3(1, 4, 8.5)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="mur_maison" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1874136537]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.75, 0, -25)
+size = Vector3(1, 4, 11.5)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="mur_maison5" type="CSGBox3D" parent="floor/CSGCombiner3D/mur_maison" unique_id=720661000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+operation = 2
+size = Vector3(1, 2, 1.5)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="mur_jardin5" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1646519809]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -33.25, -1.25, -11.749999)
+size = Vector3(0.5, 1.5, 15.5)
+material = SubResource("StandardMaterial3D_lquwl")
+
+[node name="mur_jardin4" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=779464441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, -32.25)
+size = Vector3(0.5, 1.5, 42)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur_jardin3" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1000209982]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.25, -1.25, -52.75)
+size = Vector3(0.5, 1.5, 41.5)
+material = SubResource("StandardMaterial3D_272bh")
+
+[node name="mur_jardin2" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=2131517227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41, -1.25, -32.25)
+size = Vector3(0.5, 1.5, 41)
+material = SubResource("StandardMaterial3D_5vw27")
+
+[node name="mur_jardin" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1595652521]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -1.25, -11.750001)
+size = Vector3(0.5, 1.5, 16)
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="box_arche" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1295098150]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.5, -0.5, -11.766886)
+size = Vector3(0.5, 5, 10)
+material = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="trou_arche" type="CSGPolygon3D" parent="floor/CSGCombiner3D/box_arche" unique_id=662981970]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 0.43669796, -1.5, 0)
+operation = 2
+polygon = PackedVector2Array(0, 1, 0, -1, 3.5, 0, 3.5, 1)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 8
+smooth_faces = true
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="toit" type="CSGBox3D" parent="floor/CSGCombiner3D" unique_id=1219244477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.742228, 2.0177126, -29.749928)
+size = Vector3(11.5, 1, 10.5)
+material = SubResource("StandardMaterial3D_4c57u")
+
+[node name="Sketchfab_Scene" parent="." unique_id=38374236 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.039904445, 0, 0.030126978, 0, 0.049999997, 0, -0.030126978, 0, 0.039904445, -4.01043, 2.2500443, -56.828926)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=2036844685]
+transform = Transform3D(6.5779314, 1.3274242, 18.84061, 5.390544, 18.988794, -3.2198966, -18.101734, 6.1370707, 5.887573, 9.95488, 4.999115, 112.954025)
+spot_range = 21.949
+spot_angle = 22.536493
+
+[node name="Sketchfab_Scene2" parent="." unique_id=317047435 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.04363077, 0, -0.024420401, 0, 0.05, 0, 0.024420401, 0, 0.04363077, 2.06852, 2.243488, -16.868008)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_Scene2" unique_id=747208711]
+transform = Transform3D(6.5779314, 1.3274242, 18.84061, 5.390544, 18.988794, -3.2198966, -18.101734, 6.1370707, 5.887573, 9.95488, 4.999115, 112.954025)
+spot_range = 19.309277
+spot_angle = 32.03695
+
+[node name="Sketchfab_Scene3" parent="." unique_id=1757674731 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-0.031871863, 0, -0.038525105, 0, 0.049999993, 0, 0.038525105, 0, -0.031871863, -36.337788, 2.2500443, -8.978199)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_Scene3" unique_id=1838084243]
+transform = Transform3D(6.5779314, 1.3274242, 18.84061, 5.390544, 18.988794, -3.2198966, -18.101734, 6.1370707, 5.887573, 9.95488, 4.999115, 112.954025)
+spot_range = 13.512687
+spot_angle = 22.536493
+
+[node name="Sketchfab_Scene4" parent="." unique_id=40858819 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-0.03188599, 0, 0.038513415, 0, 0.049999997, 0, -0.038513415, 0, -0.03188599, -44.539646, 2.2500443, -48.66608)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_Scene4" unique_id=693242610]
+transform = Transform3D(6.5779314, 1.3274242, 18.84061, 5.390544, 18.988794, -3.2198966, -18.101734, 6.1370707, 5.887573, 9.95488, 4.999115, 112.954025)
+spot_range = 10.284863
+spot_angle = 19.687498
+
+[node name="Node3D" parent="." unique_id=187874069 instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, -24.5)
