@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://7o1mx3fqh3if"]
+
+[ext_resource type="PackedScene" uid="uid://b73qh4yvy7acy" path="res://batminion.glb" id="1_oj3tl"]
+
+[node name="floor" type="Node3D" unique_id=1524792790]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=408032331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(100, 1, 100)
+
+[node name="minion" type="Node3D" parent="." unique_id=989713791]
+
+[node name="Sketchfab_Scene" parent="minion" unique_id=1725874361 instance=ExtResource("1_oj3tl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2013445288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 12.5, 1.75)
+size = Vector3(0.5, 1, 4.5)

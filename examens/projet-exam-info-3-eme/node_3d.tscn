@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://hmruq1ugr0ov"]
+
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://brackeys-proto-controller-main 2/proto_controller/proto_controller.tscn" id="1_noarx"]
+[ext_resource type="Script" uid="uid://d4ig3h14i37ms" path="res://brackeys-proto-controller-main 2/proto_controller/proto_controller.gd" id="2_a0tk4"]
+
+[node name="ProtoController2" type="Node3D" unique_id=76698743]
+transform = Transform3D(1, 0, 0, 0, 0.9999228, -0.012426425, 0, 0.012426425, 0.9999228, 0, 0, 0)
+
+[node name="ProtoController" parent="." unique_id=1244546717 instance=ExtResource("1_noarx")]
+script = ExtResource("2_a0tk4")
+can_sprint = true
+can_freefly = true

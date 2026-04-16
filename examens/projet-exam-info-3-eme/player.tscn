@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://fiu3w1yc75ax"]
+
+[ext_resource type="PackedScene" uid="uid://bbkwccsyd36fg" path="res://pigeon_headed_doctor_in_hallway.glb" id="1_4flbx"]
+
+[node name="player" type="Node3D" unique_id=92548527]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1141955386 instance=ExtResource("1_4flbx")]
