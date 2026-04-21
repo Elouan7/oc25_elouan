@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bpxnb5yvy8nuu" path="res://glass-box.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://particle_sphere.tscn" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://cwqccbfkdu44d" path="res://D4C9A97F-52EB-46A3-B8D4-6C85603EC2CC.png" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://ctnajuqmkg163" path="res://camera_3d.gd" id="7_272bh"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
 panorama = ExtResource("1_0xm2m")
@@ -246,7 +247,56 @@ material = SubResource("StandardMaterial3D_272bh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -22.715)
 
 [node name="rack1" type="CSGBox3D" parent="." unique_id=862025660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 1.5, -14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack2" type="CSGBox3D" parent="." unique_id=2125813045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack3" type="CSGBox3D" parent="." unique_id=1104900458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack4" type="CSGBox3D" parent="." unique_id=603431870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack5" type="CSGBox3D" parent="." unique_id=293899786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack6" type="CSGBox3D" parent="." unique_id=2021740874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack7" type="CSGBox3D" parent="." unique_id=623065730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack8" type="CSGBox3D" parent="." unique_id=1465401756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.5, -7.5)
 material_override = SubResource("StandardMaterial3D_4c57u")
 use_collision = true
 size = Vector3(5, 3, 1)
@@ -265,3 +315,8 @@ process_material = SubResource("ParticleProcessMaterial_ycdy4")
 draw_passes = 2
 draw_pass_1 = SubResource("CylinderMesh_vivmo")
 draw_pass_2 = SubResource("CylinderMesh_yaehf")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1533637691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 41)
+fov = 49.4
+script = ExtResource("7_272bh")

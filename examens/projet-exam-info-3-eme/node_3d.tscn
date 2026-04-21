@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://hmruq1ugr0ov"]
 
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://brackeys-proto-controller-main 2/proto_controller/proto_controller.tscn" id="1_noarx"]
-[ext_resource type="Script" uid="uid://d4ig3h14i37ms" path="res://brackeys-proto-controller-main 2/proto_controller/proto_controller.gd" id="2_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://fiu3w1yc75ax" path="res://player.tscn" id="1_a202f"]
+[ext_resource type="Script" uid="uid://dqkapke4s0dc0" path="res://player.gd" id="2_noarx"]
 
-[node name="ProtoController2" type="Node3D" unique_id=76698743]
-transform = Transform3D(1, 0, 0, 0, 0.9999228, -0.012426425, 0, 0.012426425, 0.9999228, 0, 0, 0)
+[node name="Node3D" type="Node3D" unique_id=1482156367]
 
-[node name="ProtoController" parent="." unique_id=1244546717 instance=ExtResource("1_noarx")]
-script = ExtResource("2_a0tk4")
-can_sprint = true
-can_freefly = true
+[node name="player" parent="." unique_id=92548527 instance=ExtResource("1_a202f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015954256, 0, 0.08733964)
+script = ExtResource("2_noarx")
