@@ -2,7 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bp36pcmxcgcs0" path="res://jettelly_sunshine_UP.png" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://fiu3w1yc75ax" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c2u8vik028wuk" path="res://images.jpeg" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bpxnb5yvy8nuu" path="res://glass-box.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://particle_sphere.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cwqccbfkdu44d" path="res://D4C9A97F-52EB-46A3-B8D4-6C85603EC2CC.png" id="6_7mycd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
 panorama = ExtResource("1_0xm2m")
@@ -17,7 +20,7 @@ sky = SubResource("Sky_lquwl")
 ambient_light_color = Color(0.51125896, 0.5112589, 0.5112589, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
-albedo_color = Color(0, 0.76862746, 0, 0.74509805)
+albedo_color = Color(0.21230483, 0.21230483, 0.21230483, 0.74509805)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 
@@ -41,7 +44,40 @@ albedo_color = Color(0.4627451, 0.2901961, 0.011764706, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_texture = ExtResource("4_1bvp3")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+emission_enabled = true
+emission = Color(0, 0.5137255, 0.93333334, 1)
+detail_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_texture = ExtResource("6_7mycd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg77c"]
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ycdy4"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
+albedo_color = Color(1, 0.6431373, 0.14901961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vivmo"]
+material = SubResource("StandardMaterial3D_w48qg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_color = Color(0.92156863, 0.24705882, 0.2627451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yaehf"]
+material = SubResource("StandardMaterial3D_2cqfq")
 
 [node name="main" type="Node3D" unique_id=488870783]
 
@@ -49,7 +85,7 @@ albedo_color = Color(0.4627451, 0.2901961, 0.011764706, 1)
 environment = SubResource("Environment_7dm0k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1303396198]
-transform = Transform3D(-0.3923883, 0.80378354, 0.44717282, -0.8168889, -0.5279811, 0.23222531, 0.4227577, -0.27416798, 0.8637754, 0, 15.5, 0)
+transform = Transform3D(-0.3923883, 0.80378354, 0.4471728, -0.49606773, -0.59432906, 0.63300073, 0.7745633, 0.026554152, 0.63193876, 0, 15.5, -9)
 shadow_enabled = true
 
 [node name="player" parent="." unique_id=92548527 instance=ExtResource("2_h2yge")]
@@ -141,40 +177,91 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 32.5)
 [node name="Interaction2" parent="." unique_id=1394239190 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1.5)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=921181982]
+[node name="batiment" type="CSGCombiner3D" parent="." unique_id=921181982]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 
-[node name="mur1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=191043787]
+[node name="mur1" type="CSGBox3D" parent="batiment" unique_id=191043787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.707031, 3.5, 25)
 use_collision = true
 size = Vector3(44.914063, 7, 0.5)
 material = SubResource("StandardMaterial3D_7mycd")
 
-[node name="mur2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1716491112]
+[node name="mur-transversal1" type="CSGBox3D" parent="batiment" unique_id=739719007]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.207031, 3.5, 2.5)
+use_collision = true
+size = Vector3(44.914063, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="porte1" type="CSGCylinder3D" parent="batiment/mur-transversal1" unique_id=1903005712]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -12, -2.5, 0.116280556)
+operation = 2
+radius = 2.069
+height = 1.8185
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="porte2" type="CSGCylinder3D" parent="batiment/mur-transversal1" unique_id=515233459]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 11, -2.5, 0.11628246)
+operation = 2
+radius = 2.069
+height = 1.8185
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="mur6" type="CSGBox3D" parent="batiment" unique_id=716222404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.414063, 3.5, 2.2340813)
+use_collision = true
+size = Vector3(35, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur2" type="CSGBox3D" parent="batiment" unique_id=1716491112]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -44.928036, 3.5, 2.5078106)
 use_collision = true
 size = Vector3(45.430145, 7, 0.5)
 material = SubResource("StandardMaterial3D_7mycd")
 
-[node name="mur3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=730369604]
+[node name="mur3" type="CSGBox3D" parent="batiment" unique_id=730369604]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4033966, 3.5, -20)
 use_collision = true
 size = Vector3(95.15042, 7, 0.5)
 material = SubResource("StandardMaterial3D_7mycd")
 
-[node name="mur4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=134088734]
+[node name="mur4" type="CSGBox3D" parent="batiment" unique_id=134088734]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 49.752262, 3.5074978, 2.5014687)
 use_collision = true
 size = Vector3(45.46234, 7, 0.5)
 material = SubResource("StandardMaterial3D_7mycd")
 
-[node name="mur5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1066626301]
+[node name="mur5" type="CSGBox3D" parent="batiment" unique_id=1066626301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.623108, 3.5, 25)
 use_collision = true
 size = Vector3(44.746, 7, 0.5)
 material = SubResource("StandardMaterial3D_7mycd")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=721531994]
+[node name="affiche" type="CSGBox3D" parent="." unique_id=721531994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 4.5, 0.18617153)
+material_override = SubResource("StandardMaterial3D_5vw27")
 size = Vector3(4, 4, 0.5)
 material = SubResource("StandardMaterial3D_272bh")
+
+[node name="glass-box" parent="." unique_id=178979460 instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -22.715)
+
+[node name="rack1" type="CSGBox3D" parent="." unique_id=862025660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="propulseur1" type="CSGCylinder3D" parent="." unique_id=230425578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -0.25, 48)
+radius = 2.5
+height = 4.5
+cone = true
+material = SubResource("StandardMaterial3D_dg77c")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="propulseur1" unique_id=711500531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+process_material = SubResource("ParticleProcessMaterial_ycdy4")
+draw_passes = 2
+draw_pass_1 = SubResource("CylinderMesh_vivmo")
+draw_pass_2 = SubResource("CylinderMesh_yaehf")
