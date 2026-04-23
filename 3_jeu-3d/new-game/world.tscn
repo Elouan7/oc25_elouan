@@ -1,13 +1,30 @@
 [gd_scene format=3 uid="uid://dg5upwxx0wpp7"]
 
 [ext_resource type="Texture2D" uid="uid://fhugpcgqywik" path="res://icon.svg" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://b5pamp0naxju8" path="res://camera_3d.gd" id="2_fj7yv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 albedo_texture = ExtResource("1_f3sb7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwt5"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_fj7yv"]
+
+[sub_resource type="Sky" id="Sky_tlwt5"]
+sky_material = SubResource("PanoramaSkyMaterial_fj7yv")
+
+[sub_resource type="Environment" id="Environment_aqk2v"]
+background_mode = 2
+background_energy_multiplier = 4.63
+sky = SubResource("Sky_tlwt5")
+reflected_light_source = 2
+
 [node name="World" type="Node3D" unique_id=285184487]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=196481560]
+transform = Transform3D(-0.8660254, -0.43301278, 0.24999999, 0.4330128, -0.39951912, 0.80801266, -0.24999999, 0.80801266, 0.53349376, 0, 12, 2)
+light_angular_distance = 60.15
+shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1031401719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -29,3 +46,10 @@ material = SubResource("StandardMaterial3D_tlwt5")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 2, 4, 0)
 size = Vector3(1, 5, 1)
 material = SubResource("StandardMaterial3D_tlwt5")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2085394680]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3.5, 9)
+script = ExtResource("2_fj7yv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2041686237]
+environment = SubResource("Environment_aqk2v")
