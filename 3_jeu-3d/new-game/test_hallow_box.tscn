@@ -1,3 +1,13 @@
 [gd_scene format=3 uid="uid://inh2pb5uxccu"]
 
-[node name="TestHallowBox" type="Node3D" unique_id=255172744]
+[ext_resource type="Script" uid="uid://bncvwmgwh6yax" path="res://hollow_box.gd" id="1_ye80r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye80r"]
+
+[node name="HollowBox" type="Node3D" unique_id=255172744]
+script = ExtResource("1_ye80r")
+
+[node name="HollowBox" type="CSGBox3D" parent="." unique_id=1928205881]
+material = SubResource("StandardMaterial3D_ye80r")
+script = ExtResource("1_ye80r")
+metadata/_custom_type_script = "uid://bncvwmgwh6yax"

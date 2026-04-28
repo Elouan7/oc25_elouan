@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbljmsi6wmrve" path="res://rotate.gd" id="1_f6vxs"]
 [ext_resource type="Script" uid="uid://bddo44ba86s5e" path="res://move.gd" id="2_3gk12"]
+[ext_resource type="Script" uid="uid://bhx04452dou53" path="res://cork.gd" id="3_n5j8b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f6vxs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,20 +21,27 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gk12"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5j8b"]
+
 [node name="Tool" type="Node3D" unique_id=2124551632]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1956177572]
 environment = SubResource("Environment_n5j8b")
 
 [node name="Rotate" type="CSGBox3D" parent="." unique_id=1872855844]
-transform = Transform3D(1, 0, 0, 0, 0.9999872, -0.005047332, 0, 0.005047332, 0.9999872, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.03110556, -0.9995159, 0, 0.9995159, 0.03110556, -0.5, 0, 0)
 material = SubResource("StandardMaterial3D_7cqlo")
 script = ExtResource("1_f6vxs")
 
 [node name="move" type="CSGBox3D" parent="." unique_id=846391478]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, -0.70605886, 2)
 material = SubResource("StandardMaterial3D_3gk12")
 script = ExtResource("2_3gk12")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=73967575]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 1.5)
+
+[node name="cork" type="CSGBox3D" parent="." unique_id=1385655085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5)
+material = SubResource("StandardMaterial3D_n5j8b")
+script = ExtResource("3_n5j8b")
