@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://brlbxr6owpimv"]
+
+[ext_resource type="PackedScene" uid="uid://dnq8mw7lqpfdr" path="res://redbull_tent_lowpoly.glb" id="1_6afm0"]
+
+[node name="Node3D" type="Node3D" unique_id=1363068248]
+
+[node name="Sketchfab_Scene" parent="." unique_id=2100194144 instance=ExtResource("1_6afm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022409022, 0.0860734, 0.03192979)
