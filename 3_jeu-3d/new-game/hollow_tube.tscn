@@ -11,6 +11,9 @@ albedo_color = Color(0, 1, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox1qk"]
 albedo_color = Color(0.69411767, 0, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmytm"]
+albedo_color = Color(0, 0.5803922, 0, 1)
+
 [node name="HollowTube" type="Node3D" unique_id=334297509]
 
 [node name="HollowTube" type="CSGCylinder3D" parent="." unique_id=2129425611]
@@ -31,8 +34,15 @@ thickness = 1.0
 metadata/_custom_type_script = "uid://dl7fvtbs43ynt"
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=1955239644]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9840205, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.224877, 0)
 material = SubResource("StandardMaterial3D_ox1qk")
 
 [node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGSphere3D" unique_id=184064629]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.023330212, -0.5169791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6340978, -0.014615774)
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGSphere3D" unique_id=48848664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4127173, 0)
+radius = 0.079589844
+sides = 14
+material = SubResource("StandardMaterial3D_xmytm")
