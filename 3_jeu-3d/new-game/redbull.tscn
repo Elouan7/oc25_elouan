@@ -6,3 +6,9 @@
 
 [node name="Sketchfab_Scene" parent="." unique_id=2100194144 instance=ExtResource("1_6afm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022409022, 0.0860734, 0.03192979)
+
+[node name="Label3D" type="Label3D" parent="Sketchfab_Scene" unique_id=2108979947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transparency = 0.62
+billboard = 2
+text = "REDBULL TENT"

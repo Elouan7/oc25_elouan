@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://fiu3w1yc75ax"]
 
 [ext_resource type="PackedScene" uid="uid://bbkwccsyd36fg" path="res://pigeon_headed_doctor_in_hallway.glb" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://dt16bkn4eomcm" path="res://pigeon_headed_doctor_in_hallway.gd" id="2_onrkg"]
 
-[node name="player" type="Node3D" unique_id=92548527]
+[node name="player" type="Node3D" unique_id=2123640857]
 
-[node name="Sketchfab_Scene" parent="." unique_id=1141955386 instance=ExtResource("1_4flbx")]
+[node name="Sketchfab_Scene" parent="." unique_id=1355020187 instance=ExtResource("1_4flbx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.088903666, 1.1920929e-07, 0.03504634)
+script = ExtResource("2_onrkg")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=638443987]
-transform = Transform3D(-1, -9.595522e-15, -8.742276e-08, -2.9313178e-08, 0.9421101, 0.33530354, 8.236187e-08, 0.33530354, -0.9421101, 0, 1.25, -0.75)
-fov = 49.36355
+[node name="Camera3D" type="Camera3D" parent="Sketchfab_Scene" unique_id=1385677507]
+transform = Transform3D(-1, 0, -8.742278e-08, -2.2495481e-08, 0.9663267, 0.25731832, 8.447896e-08, 0.25731832, -0.9663267, 0, 1.1943558, -0.73518324)

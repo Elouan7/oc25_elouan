@@ -4,12 +4,18 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qb1fx"]
 albedo_color = Color(0, 1, 0, 1)
+metallic = 0.54
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gol0a"]
 albedo_color = Color(0, 1, 0, 1)
+metallic = 0.75
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ox1qk"]
 albedo_color = Color(0.69411767, 0, 0, 1)
+metallic = 0.63
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmytm"]
 albedo_color = Color(0, 0.5803922, 0, 1)

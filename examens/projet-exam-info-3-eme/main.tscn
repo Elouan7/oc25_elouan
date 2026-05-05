@@ -89,9 +89,6 @@ environment = SubResource("Environment_7dm0k")
 transform = Transform3D(-0.3923883, 0.80378354, 0.4471728, -0.49606773, -0.59432906, 0.63300073, 0.7745633, 0.026554152, 0.63193876, 0, 15.5, -9)
 shadow_enabled = true
 
-[node name="player" parent="." unique_id=92548527 instance=ExtResource("2_h2yge")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 1, 37.5)
-
 [node name="sol" type="CSGBox3D" parent="." unique_id=1187304060]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
@@ -317,6 +314,9 @@ draw_pass_1 = SubResource("CylinderMesh_vivmo")
 draw_pass_2 = SubResource("CylinderMesh_yaehf")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1533637691]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 41)
+transform = Transform3D(1, 2.2017972e-09, -7.1178117e-09, 0, 0.9553365, 0.29552022, 7.450581e-09, -0.29552022, 0.9553365, 2, 3, 41)
 fov = 49.4
 script = ExtResource("7_272bh")
+
+[node name="player" parent="." unique_id=2123640857 instance=ExtResource("2_h2yge")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 1, 38)
