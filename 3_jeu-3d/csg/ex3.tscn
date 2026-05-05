@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2672n3lokcco"]
+[gd_scene format=3 uid="uid://c2672n3lokcco"]
 
 [ext_resource type="PackedScene" uid="uid://b7mik7msnwh0y" path="res://table.tscn" id="1_0hhob"]
 [ext_resource type="PackedScene" uid="uid://dhl4ngpwe3scj" path="res://bed.tscn" id="2_t3bft"]
@@ -7,23 +7,23 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h61uo"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1125283821]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.33063)
 
-[node name="room" type="CSGBox3D" parent="."]
+[node name="room" type="CSGBox3D" parent="." unique_id=1818529928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36893, 1.72946, 0.626396)
 flip_faces = true
 size = Vector3(10, 10, 10)
 material = SubResource("StandardMaterial3D_h61uo")
 
-[node name="table" parent="." instance=ExtResource("1_0hhob")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.319519, -2.73461, -2.65106)
+[node name="table" parent="." unique_id=284059341 instance=ExtResource("1_0hhob")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.319519, -2.0066419, -2.0865383)
 
-[node name="bed" parent="." instance=ExtResource("2_t3bft")]
+[node name="bed" parent="." unique_id=366993189 instance=ExtResource("2_t3bft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03159, -3.32952, -2.04083)
 
-[node name="lamp" parent="." instance=ExtResource("3_wwc7x")]
+[node name="lamp" parent="." unique_id=1096705148 instance=ExtResource("3_wwc7x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.563726, -0.623415, 5.72968)
 
-[node name="bookshelf" parent="." instance=ExtResource("4_ys4du")]
+[node name="bookshelf" parent="." unique_id=1156964676 instance=ExtResource("4_ys4du")]
 transform = Transform3D(0.997821, 0, -0.0659778, 0, 1, 0, 0.0659778, 0, 0.997821, 27.3227, -2.05341, 27.5557)

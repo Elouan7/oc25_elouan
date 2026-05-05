@@ -100,7 +100,8 @@ spot_angle = 46.54
 spot_angle_attenuation = 0.2030631
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1631708996]
-transform = Transform3D(1, 0, 0, 0, 0.80338943, 0.5954539, 0, -0.5954539, 0.80338943, 0, 3.1283817, 3.5958464)
+transform = Transform3D(1, 0, 0, 0, 0.70444846, 0.7097552, 0, -0.7097552, 0.70444846, 0, 10.439228, 3.5958464)
+light_energy = 1.634
 shadow_enabled = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=273712276]
