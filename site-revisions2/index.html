@@ -269,7 +269,7 @@ header p{color:var(--text-soft);font-size:17px}
     <div class="header-actions">
       <button class="btn-icon" onclick="toggleTheme()" id="themeBtn" title="Mode sombre">🌙</button>
     </div>
-    <div class="chip">✦ Session d'examens 2025</div>
+    <div class="chip">✦ Session d'examens 2026</div>
     <h1>Mes Révisions</h1>
     <p>Tous tes documents et plannings au même endroit.</p>
   </header>
@@ -329,7 +329,6 @@ header p{color:var(--text-soft);font-size:17px}
   </div>
 </div>
 
-<!-- MODAL DOCUMENTS -->
 <div class="modal-overlay" id="docModal">
   <div class="modal">
     <div class="modal-header">
@@ -346,7 +345,6 @@ header p{color:var(--text-soft);font-size:17px}
   </div>
 </div>
 
-<!-- MODAL PLANNING -->
 <div class="modal-overlay" id="planModal">
   <div class="modal">
     <div class="modal-header">
@@ -377,7 +375,6 @@ header p{color:var(--text-soft);font-size:17px}
   </div>
 </div>
 
-<!-- VIEWER -->
 <div class="modal-overlay" id="viewerOverlay" style="z-index:200">
   <div class="viewer-modal">
     <div class="viewer-header">
@@ -517,11 +514,15 @@ function fmtSize(b){
 // Upload
 const uz=document.getElementById('uploadZone');
 const fi=document.getElementById('fileInput');
-uz.addEventListener('click',()=>fi.click());
-uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag');});
-uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
-uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');handleFiles(e.dataTransfer.files);});
-fi.addEventListener('change',()=>{handleFiles(fi.files);fi.value='';});
+if(uz){
+  uz.addEventListener('click',()=>fi.click());
+  uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag');});
+  uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
+  uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');handleFiles(e.dataTransfer.files);});
+}
+if(fi){
+  fi.addEventListener('change',()=>{handleFiles(fi.files);fi.value='';});
+}
 
 function handleFiles(files){
   if(!filesDB[currentMat]) filesDB[currentMat]=[];
@@ -554,241 +555,354 @@ function saveFiles(id){
 }
 
 // ═══════════════ VIEWER ═══════════════
-function openViewer(i){
-  const f=(filesDB[currentMat]||[])[i]; if(!f) return;
-  viewerFile=f;
-  document.getElementById('viewerTitle').textContent=f.name;
-  buildViewer(f);
+function openViewer(i) {
+  const f = (filesDB[currentMat] || [])[i];
+  if (!f) return;
+  viewerFile = f;
+  
+  document.getElementById('viewerTitle').textContent = f.name;
+  const body = document.getElementById('viewerBody');
+  body.innerHTML = '';
+  
+  const ext = (f.name.split('.').pop() || '').toLowerCase();
+  
+  if (f.type.startsWith('image/')) {
+    body.innerHTML = `<img src="${f.data}" alt="${f.name}">`;
+  } else if (f.type.startsWith('video/')) {
+    body.innerHTML = `<video src="${f.data}" controls autoplay></video>`;
+  } else if (f.type.startsWith('audio/')) {
+    body.innerHTML = `
+      <div class="audio-wrap">
+        <span style="font-size:70px">🎵</span>
+        <audio src="${f.data}" controls autoplay style="width:100%; max-width:400px;"></audio>
+      </div>`;
+  } else if (f.type === 'text/plain' || ext === 'txt' || ext === 'md' || ext === 'json') {
+    body.innerHTML = `<div class="txt-view" id="txtView">Chargement...</div>`;
+    fetch(f.data)
+      .then(res => res.text())
+      .then(text => {
+        const txtDiv = document.getElementById('txtView');
+        if (txtDiv) txtDiv.textContent = text;
+      });
+  } else if (f.type === 'application/pdf') {
+    body.innerHTML = `<iframe src="${f.data}"></iframe>`;
+  } else {
+    body.innerHTML = `
+      <div class="unsupported">
+        <div class="big-icon">${getIcon(f.name)}</div>
+        <h3>Aperçu indisponible</h3>
+        <p>Le navigateur ne peut pas afficher ce type de fichier directement.</p>
+        <button class="btn-add" onclick="viewerDownload()" style="margin-top:10px">⬇ Télécharger pour ouvrir</button>
+      </div>`;
+  }
+  
   document.getElementById('viewerOverlay').classList.add('open');
 }
 
-function viewerDownload(){if(viewerFile){const a=document.createElement('a');a.href=viewerFile.data;a.download=viewerFile.name;a.click();}}
-
-function buildViewer(f){
-  const body=document.getElementById('viewerBody');
-  body.innerHTML=''; body.style='';
-  const ext=(f.name.split('.').pop()||'').toLowerCase();
-
-  if(ext==='pdf'){
-    const fr=document.createElement('iframe'); fr.src=f.data; body.appendChild(fr); return;
-  }
-
-  if(['png','jpg','jpeg','gif','webp','svg','bmp'].includes(ext)){
-    body.style='background:#000;display:flex;align-items:center;justify-content:center;';
-    const img=document.createElement('img');
-    img.src=f.data; img.style='max-width:100%;max-height:100%;object-fit:contain;';
-    body.appendChild(img); return;
-  }
-
-  if(['mp4','webm','mov','avi'].includes(ext)){
-    body.style='background:#000';
-    const v=document.createElement('video');
-    v.src=f.data; v.controls=true;
-    v.style='width:100%;height:100%;object-fit:contain;';
-    body.appendChild(v); return;
-  }
-
-  if(['mp3','wav','ogg','m4a','flac'].includes(ext)){
-    const w=document.createElement('div'); w.className='audio-wrap';
-    w.innerHTML=`<div style="font-size:64px">🎵</div><div style="font-size:16px;font-weight:600;color:var(--text-soft)">${f.name}</div>`;
-    const a=document.createElement('audio'); a.src=f.data; a.controls=true; a.style='width:100%;max-width:400px';
-    w.appendChild(a); body.appendChild(w); return;
-  }
-
-  if(['txt','md','csv','json','html','css','js','ts','py','java','c','cpp','xml','yaml','yml','sh'].includes(ext)){
-    const pre=document.createElement('div'); pre.className='txt-view';
-    try{
-      const b64=f.data.split(',')[1];
-      pre.textContent=decodeURIComponent(escape(atob(b64)));
-    }catch(e){pre.textContent='Impossible de lire ce fichier texte.';}
-    body.appendChild(pre); return;
-  }
-
-  // Word / PPT / Excel
-  if(['doc','docx','ppt','pptx','xls','xlsx','odt','ods','odp'].includes(ext)){
-    const w=document.createElement('div'); w.className='unsupported';
-    w.innerHTML=`<div class="big-icon">${getIcon(f.name)}</div>
-      <div style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px">${f.name}</div>
-      <div style="font-size:14px;line-height:1.6;max-width:380px">
-        Les fichiers Word / PowerPoint / Excel ne peuvent pas être affichés dans le navigateur sans logiciel externe.<br><br>
-        Télécharge-le pour l'ouvrir avec ton application habituelle.
-      </div>
-      <button class="btn-add" style="margin-top:16px" onclick="viewerDownload()">⬇ Télécharger</button>`;
-    body.appendChild(w); return;
-  }
-
-  const w=document.createElement('div'); w.className='unsupported';
-  w.innerHTML=`<div class="big-icon">📎</div>
-    <div style="font-size:16px;font-weight:700;color:var(--text)">${f.name}</div>
-    <div style="font-size:14px">Ce type de fichier ne peut pas être affiché ici.</div>
-    <button class="btn-add" style="margin-top:16px" onclick="viewerDownload()">⬇ Télécharger</button>`;
-  body.appendChild(w);
+function viewerDownload() {
+  if (!viewerFile) return;
+  const a = document.createElement('a');
+  a.href = viewerFile.data;
+  a.download = viewerFile.name;
+  a.click();
 }
 
 // ═══════════════ NOTES ═══════════════
-function renderNotes(){
-  const g=document.getElementById('notesGrid'); g.innerHTML='';
-  MATIERES.forEach(m=>{
-    const c=document.createElement('div'); c.className='note-card';
-    const txt=notesDB[m.id]||'';
-    c.innerHTML=`<div class="note-card-header">
-        <span style="font-size:22px">${m.emoji}</span>
+function renderNotes() {
+  const grid = document.getElementById('notesGrid');
+  grid.innerHTML = '';
+  
+  MATIERES.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'note-card';
+    const savedText = notesDB[m.id] || '';
+    
+    card.innerHTML = `
+      <div class="note-card-header">
+        <span style="font-size:24px">${m.emoji}</span>
         <div class="note-card-title">${m.label}</div>
       </div>
-      <textarea class="note-textarea" id="note_${m.id}" placeholder="Formules, vocabulaire, points clés à retenir…">${txt}</textarea>
-      <div class="note-saved" id="saved_${m.id}">✓ Sauvegardé</div>`;
-    g.appendChild(c);
-    let t;
-    c.querySelector('#note_'+m.id).addEventListener('input',function(){
-      clearTimeout(t); t=setTimeout(()=>{
-        notesDB[m.id]=this.value;
-        localStorage.setItem('notesDB',JSON.stringify(notesDB));
-        const s=document.getElementById('saved_'+m.id);
-        s.classList.add('show'); setTimeout(()=>s.classList.remove('show'),1500);
-      },800);
-    });
+      <textarea class="note-textarea" placeholder="Prends tes notes ou colle tes objectifs de révision ici..." oninput="saveNote('${m.id}', this)">${savedText}</textarea>
+      <div class="note-saved" id="saved_${m.id}">Sauvegardé automatiquement</div>
+    `;
+    grid.appendChild(card);
   });
+}
+
+let noteTimers = {};
+function saveNote(id, textarea) {
+  notesDB[id] = textarea.value;
+  localStorage.setItem('notesDB', JSON.stringify(notesDB));
+  
+  const label = document.getElementById(`saved_${id}`);
+  label.classList.add('show');
+  
+  clearTimeout(noteTimers[id]);
+  noteTimers[id] = setTimeout(() => {
+    label.classList.remove('show');
+  }, 1500);
 }
 
 // ═══════════════ PLANNING ═══════════════
-function renderExams(){
-  const list=document.getElementById('examsList');
-  const today=new Date(); today.setHours(0,0,0,0);
-  let items=[...examsDB];
-  if(curFilter!=='tous') items=items.filter(e=>e.type===curFilter);
-  items.sort((a,b)=>new Date(a.date)-new Date(b.date));
-  list.innerHTML='';
-  if(!items.length){
-    list.innerHTML=`<div class="empty-state"><div class="es-icon">📅</div><p>Aucun examen.<br>Clique sur <strong>+ Ajouter</strong> !</p></div>`;
-    return;
-  }
-  items.forEach(e=>{
-    const d=new Date(e.date+'T12:00:00');
-    const day=d.toLocaleDateString('fr-FR',{day:'2-digit'});
-    const mon=d.toLocaleDateString('fr-FR',{month:'short'});
-    const diff=Math.round((d-today)/86400000);
-    const ri=examsDB.indexOf(e);
-    let cc,cl;
-    if(diff<0){cc='past';cl='Passé';}
-    else if(diff===0){cc='urgent';cl="Aujourd'hui !";}
-    else if(diff<=3){cc='urgent';cl='J-'+diff;}
-    else if(diff<=7){cc='soon';cl='J-'+diff;}
-    else{cc='ok';cl='J-'+diff;}
-    const el=document.createElement('div');
-    el.className=`exam-item ${e.type}`;
-    el.innerHTML=`<div class="exam-date-block">
-        <div class="exam-day">${day}</div><div class="exam-month">${mon}</div>
-      </div>
-      <div class="exam-info">
-        <div class="exam-subject">${e.subject}</div>
-        <div class="exam-details">${e.time?'🕐 '+e.time:''}${e.duree?' · ⏱ '+e.duree:''}${e.notes?' · '+e.notes:''}</div>
-      </div>
-      <span class="exam-countdown ${cc}">${cl}</span>
-      <span class="exam-badge ${e.type}">${e.type==='oral'?'🎤 Oral':'✏️ Écrit'}</span>
-      <button class="btn-exam-del" onclick="delExam(${ri})">✕</button>`;
-    list.appendChild(el);
-  });
-}
-
-function openPlanningModal(){
-  document.getElementById('p_date').value=new Date().toISOString().split('T')[0];
+function openPlanningModal() {
+  const now = new Date();
+  const day = ("0" + now.getDate()).slice(-2);
+  const month = ("0" + (now.getMonth() + 1)).slice(-2);
+  document.getElementById('p_date').value = `${now.getFullYear()}-${month}-${day}`;
   document.getElementById('planModal').classList.add('open');
 }
 
-function addExam(){
-  const s=document.getElementById('p_mat').value;
-  const d=document.getElementById('p_date').value;
-  const ti=document.getElementById('p_time').value;
-  const ty=document.getElementById('p_type').value;
-  const du=document.getElementById('p_duree').value.trim();
-  const no=document.getElementById('p_notes').value.trim();
-  if(!d){showToast('⚠️ Choisis une date !');return;}
-  examsDB.push({subject:s,date:d,time:ti,type:ty,duree:du,notes:no});
-  localStorage.setItem('examsDB',JSON.stringify(examsDB));
-  renderExams(); renderCountdown(); closeModal('planModal');
-  document.getElementById('p_duree').value='';
-  document.getElementById('p_notes').value='';
-  showToast('✅ Examen ajouté !');
+function addExam() {
+  const subject = document.getElementById('p_mat').value;
+  const date = document.getElementById('p_date').value;
+  const time = document.getElementById('p_time').value;
+  const type = document.getElementById('p_type').value;
+  const duree = document.getElementById('p_duree').value || 'N/A';
+  const notes = document.getElementById('p_notes').value || '';
+  
+  if (!date || !time) {
+    showToast('⚠️ Remplis au moins la date et l\'heure !');
+    return;
+  }
+  
+  examsDB.push({ id: Date.now().toString(), subject, date, time, type, duree, notes });
+  localStorage.setItem('examsDB', JSON.stringify(examsDB));
+  
+  closeModal('planModal');
+  renderExams();
+  renderCountdown();
+  showToast('📅 Examen ajouté au planning !');
+  
+  document.getElementById('p_duree').value = '';
+  document.getElementById('p_notes').value = '';
 }
 
-function delExam(i){
-  if(!confirm('Supprimer ?')) return;
-  examsDB.splice(i,1);
-  localStorage.setItem('examsDB',JSON.stringify(examsDB));
-  renderExams(); renderCountdown(); showToast('🗑 Examen supprimé');
+function deleteExam(id) {
+  if (!confirm('Supprimer cet examen du planning ?')) return;
+  examsDB = examsDB.filter(e => e.id !== id);
+  localStorage.setItem('examsDB', JSON.stringify(examsDB));
+  renderExams();
+  renderCountdown();
+  showToast('🗑 Examen supprimé');
 }
 
-function filterExams(f,btn){
-  curFilter=f;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); renderExams();
+function filterExams(type, btn) {
+  curFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderExams();
+}
+
+function renderExams() {
+  const list = document.getElementById('examsList');
+  list.innerHTML = '';
+  
+  let filtered = [...examsDB];
+  if (curFilter !== 'tous') {
+    filtered = filtered.filter(e => e.type === curFilter);
+  }
+  
+  filtered.sort((a, b) => new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`));
+  
+  if (!filtered.length) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="es-icon">📅</div>
+        <p>Aucun examen de prévu dans cette catégorie.<br>Reste zen et continue de bosser !</p>
+      </div>`;
+    return;
+  }
+  
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  
+  filtered.forEach(e => {
+    const exDate = new Date(e.date + 'T12:00:00');
+    const diff = Math.round((exDate - today) / 86400000);
+    
+    let cdLabel = '';
+    let cdCls = 'ok';
+    
+    if (diff < 0) {
+      cdLabel = 'Passé';
+      cdCls = 'past';
+    } else if (diff === 0) {
+      cdLabel = 'Aujourd\'hui !';
+      cdCls = 'urgent';
+    } else if (diff === 1) {
+      cdLabel = 'Demain !';
+      cdCls = 'urgent';
+    } else {
+      cdLabel = `J-${diff}`;
+      cdCls = diff <= 3 ? 'urgent' : diff <= 7 ? 'soon' : 'ok';
+    }
+    
+    const dObj = new Date(e.date);
+    const dayNum = dObj.getDate();
+    const months = ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'];
+    const monthStr = months[dObj.getMonth()];
+    
+    const div = document.createElement('div');
+    div.className = `exam-item ${e.type}`;
+    div.innerHTML = `
+      <div class="exam-date-block">
+        <div class="exam-day">${dayNum}</div>
+        <div class="exam-month">${monthStr}</div>
+      </div>
+      <div class="exam-info">
+        <div class="exam-subject">${e.subject}</div>
+        <div class="exam-details">⏰ ${e.time} (${e.duree}) ${e.notes ? '• 📝 ' + e.notes : ''}</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="exam-countdown ${cdCls}">${cdLabel}</span>
+        <span class="exam-badge ${e.type}">${e.type === 'ecrit' ? '✏️ Écrit' : '🎤 Oral'}</span>
+        <button class="btn-exam-del" onclick="deleteExam('${e.id}')" title="Supprimer">✕</button>
+      </div>
+    `;
+    list.appendChild(div);
+  });
 }
 
 // ═══════════════ POMODORO ═══════════════
-const WORK=25*60, BREAK=5*60, LONG=15*60, TOTAL=4;
-const CIRC=2*Math.PI*88;
-let pState='stopped',pWork=true,pSecs=WORK,pSess=1,pInt=null;
+let pomoTimeLeft = 25 * 60;
+let pomoTimerId = null;
+let pomoIsBreak = false;
+let pomoSessionCount = 1;
 
-function updatePomo(){
-  const m=String(Math.floor(pSecs/60)).padStart(2,'0');
-  const s=String(pSecs%60).padStart(2,'0');
-  document.getElementById('pomoTime').textContent=`${m}:${s}`;
-  const tot=pWork?WORK:(pSess%TOTAL===0?LONG:BREAK);
-  document.getElementById('ringFill').style.strokeDashoffset=CIRC*(1-pSecs/tot);
-  document.getElementById('pomoLabel').textContent=pWork?'Travail 💪':(pSess%TOTAL===0?'Grande pause 🎉':'Pause ☕');
-  document.getElementById('pomoSubtxt').textContent=pWork?'Concentre-toi !':'Repose-toi bien !';
-  document.getElementById('pomoCount').textContent=`Session ${pSess} / ${TOTAL}`;
-  document.getElementById('pomoStartBtn').textContent=pState==='running'?'⏸ Pause':'▶ Démarrer';
-  document.getElementById('pomoRing').className='pomo-ring'+(pWork?'':' break');
-  const dots=document.getElementById('pomoDots'); dots.innerHTML='';
-  for(let i=1;i<=TOTAL;i++){const d=document.createElement('div');d.className='pomo-dot'+(i<pSess?' done':'');dots.appendChild(d);}
+function updatePomoDisplay() {
+  const mins = Math.floor(pomoTimeLeft / 60);
+  const secs = pomoTimeLeft % 60;
+  document.getElementById('pomoTime').textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  
+  const total = pomoIsBreak ? (pomoSessionCount % 4 === 0 ? 15 * 60 : 5 * 60) : 25 * 60;
+  const pct = pomoTimeLeft / total;
+  const offset = 552.92 * (1 - pct);
+  document.getElementById('ringFill').style.strokeDashoffset = offset;
 }
 
-function togglePomo(){
-  if(pState==='running'){clearInterval(pInt);pState='paused';}
-  else{
-    pState='running';
-    pInt=setInterval(()=>{
-      pSecs--;
-      if(pSecs<=0){
-        clearInterval(pInt); pState='stopped';
-        if(pWork){pWork=false;pSecs=pSess%TOTAL===0?LONG:BREAK;showToast('🎉 Pause méritée !');}
-        else{pSess=pSess<TOTAL?pSess+1:1;pWork=true;pSecs=WORK;showToast("💪 C'est reparti !");}
+function togglePomo() {
+  const btn = document.getElementById('pomoStartBtn');
+  if (pomoTimerId) {
+    clearInterval(pomoTimerId);
+    pomoTimerId = null;
+    btn.textContent = '▶ Démarrer';
+    btn.className = 'pomo-btn start';
+  } else {
+    btn.textContent = '⏸ Pause';
+    btn.className = 'pomo-btn';
+    btn.style.borderColor = 'rgba(255, 214, 10, 0.4)';
+    btn.style.color = 'var(--warning)';
+    
+    pomoTimerId = setInterval(() => {
+      pomoTimeLeft--;
+      if (pomoTimeLeft < 0) {
+        clearInterval(pomoTimerId);
+        pomoTimerId = null;
+        handlePomoEnd();
       }
-      updatePomo();
-    },1000);
+      updatePomoDisplay();
+    }, 1000);
   }
-  updatePomo();
 }
 
-function resetPomo(){clearInterval(pInt);pState='stopped';pWork=true;pSecs=WORK;pSess=1;updatePomo();}
+function handlePomoEnd() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    osc.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + 0.4);
+  } catch(e){}
 
-// ═══════════════ TABS & MODALS ═══════════════
-function showSection(id,btn){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  if (!pomoIsBreak) {
+    pomoIsBreak = true;
+    showToast('💪 Beau travail ! C\'est l\'heure de la pause.');
+    
+    if (pomoSessionCount % 4 === 0) {
+      pomoTimeLeft = 15 * 60;
+      document.getElementById('pomoLabel').textContent = 'Grande Pause ☕';
+      document.getElementById('pomoSubtxt').textContent = 'Relâche la pression, va marcher !';
+    } else {
+      pomoTimeLeft = 5 * 60;
+      document.getElementById('pomoLabel').textContent = 'Pause 🥤';
+      document.getElementById('pomoSubtxt').textContent = 'Prends un verre d\'eau.';
+    }
+    document.getElementById('pomoRing').classList.add('break');
+    
+    const dots = document.querySelectorAll('.pomo-dot');
+    if(dots[pomoSessionCount-1]) dots[pomoSessionCount-1].classList.add('done');
+  } else {
+    pomoIsBreak = false;
+    pomoSessionCount = pomoSessionCount >= 4 ? 1 : pomoSessionCount + 1;
+    pomoTimeLeft = 25 * 60;
+    
+    document.getElementById('pomoLabel').textContent = 'Travail 💪';
+    document.getElementById('pomoSubtxt').textContent = 'Concentre-toi !';
+    document.getElementById('pomoRing').classList.remove('break');
+    
+    showToast('⚡ C\'est reparti ! Session ' + pomoSessionCount);
+    if(pomoSessionCount === 1) renderPomoDots();
+  }
+  
+  document.getElementById('pomoCount').textContent = `Session ${pomoSessionCount} / 4`;
+  document.getElementById('pomoStartBtn').textContent = '▶ Démarrer';
+  document.getElementById('pomoStartBtn').className = 'pomo-btn start';
+  updatePomoDisplay();
+}
+
+function resetPomo() {
+  clearInterval(pomoTimerId);
+  pomoTimerId = null;
+  pomoIsBreak = false;
+  pomoTimeLeft = 25 * 60;
+  
+  document.getElementById('pomoLabel').textContent = 'Travail 💪';
+  document.getElementById('pomoSubtxt').textContent = 'Concentre-toi !';
+  document.getElementById('pomoRing').classList.remove('break');
+  document.getElementById('pomoCount').textContent = `Session ${pomoSessionCount} / 4`;
+  
+  const btn = document.getElementById('pomoStartBtn');
+  btn.textContent = '▶ Démarrer';
+  btn.className = 'pomo-btn start';
+  
+  updatePomoDisplay();
+}
+
+function renderPomoDots() {
+  const wrap = document.getElementById('pomoDots');
+  wrap.innerHTML = '';
+  for(let i=1; i<=4; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'pomo-dot';
+    wrap.appendChild(dot);
+  }
+}
+
+// ═══════════════ GLOBAL ACTIONS ═══════════════
+function showSection(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  
+  btn.classList.add('active');
   document.getElementById(id).classList.add('active');
-  if(btn) btn.classList.add('active');
-  if(id==='planning') renderExams();
-  if(id==='notes') renderNotes();
-  if(id==='pomodoro') updatePomo();
 }
 
-function closeModal(id){
+function closeModal(id) {
   document.getElementById(id).classList.remove('open');
-  if(id==='viewerOverlay'){document.getElementById('viewerBody').innerHTML='';viewerFile=null;}
+  if(id === 'viewerOverlay') {
+    document.getElementById('viewerBody').innerHTML = '';
+    viewerFile = null;
+  }
 }
 
-document.querySelectorAll('.modal-overlay').forEach(o=>{
-  o.addEventListener('click',e=>{if(e.target===o) closeModal(o.id);});
+// Lancement au chargement complet
+document.addEventListener('DOMContentLoaded', () => {
+  renderMatieres();
+  renderNotes();
+  renderExams();
+  renderCountdown();
+  renderPomoDots();
+  updatePomoDisplay();
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(o=>closeModal(o.id));});
-
-// ═══════════════ INIT ═══════════════
-renderMatieres();
-renderCountdown();
-updatePomo();
 </script>
 </body>
 </html>
- 
