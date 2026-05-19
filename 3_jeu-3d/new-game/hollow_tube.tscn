@@ -52,3 +52,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4127173, 0)
 radius = 0.079589844
 sides = 14
 material = SubResource("StandardMaterial3D_xmytm")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D" unique_id=660557421]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://d24fkt0ujaddv"]
+
+[ext_resource type="PackedScene" uid="uid://dnq8mw7lqpfdr" path="res://redbull_tent_lowpoly.glb" id="1_6afm0"]
+
+[node name="Node3D" type="Node3D" unique_id=1363068248]
+
+[node name="Sketchfab_Scene" parent="." unique_id=2100194144 instance=ExtResource("1_6afm0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.022409022, 1.0860734, 0.03192979)
+
+[node name="Label3D" type="Label3D" parent="Sketchfab_Scene" unique_id=2108979947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transparency = 0.62
+billboard = 2
+text = "REDBULL TENT"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=935201431]
+transform = Transform3D(0.17320508, -0.025881916, 0.09659259, -0.07071068, 0.10490382, 0.15490381, -0.07071069, -0.16830127, 0.08169873, -0.0044818046, 0.58278537, 0.39361405)
+light_energy = 1.475
+shadow_enabled = true
+spot_range = 5.21
+spot_attenuation = 0.26
+spot_angle = 74.17
+spot_angle_attenuation = 1.231148
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=1083780551]
+transform = Transform3D(0.17320508, 0.0258819, -0.096592605, 0.100000024, -0.044828773, 0.16730325, -1.271948e-08, -0.19318518, -0.05176381, -0.4044818, 0.58278537, -0.20638596)
+light_energy = 1.475
+shadow_enabled = true
+spot_range = 5.21
+spot_attenuation = 0.26
+spot_angle = 74.17
+spot_angle_attenuation = 1.231148
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=653016076]
+transform = Transform3D(-0.023472497, -0.16926529, 0.10391492, -0.07071068, 0.10490382, 0.15490381, -0.18560456, -0.018559573, -0.07215608, 0.3955182, 0.58278537, -0.20638596)
+light_energy = 1.475
+shadow_enabled = true
+spot_range = 5.21
+spot_attenuation = 0.26
+spot_angle = 74.17
+spot_angle_attenuation = 1.231148
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Sketchfab_Scene" unique_id=2142658647]
+transform = Transform3D(0.17320508, -0.025881905, 0.09659259, -0.08660255, -0.13541542, 0.119006984, 0.049999993, -0.1448889, -0.12848039, -0.0044818046, 0.58278537, -0.606386)
+light_energy = 1.475
+shadow_enabled = true
+spot_range = 5.21
+spot_attenuation = 0.26
+spot_angle = 74.17
+spot_angle_attenuation = 1.231148
