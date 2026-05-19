@@ -267,6 +267,9 @@ header p{color:var(--text-soft);font-size:17px}
 <div class="app">
   <header>
     <div class="header-actions">
+      <button class="btn-icon" onclick="exportBackup()" id="exportBtn" title="Exporter backup">💾</button>
+      <button class="btn-icon" onclick="document.getElementById('importInput').click()" id="importBtn" title="Importer backup">📂</button>
+      <input type="file" id="importInput" accept=".json" style="display:none" onchange="importBackup(this.files[0]); this.value='';">
       <button class="btn-icon" onclick="toggleTheme()" id="themeBtn" title="Mode sombre">🌙</button>
     </div>
     <div class="chip">✦ Session d'examens 2026</div>
@@ -409,6 +412,180 @@ let currentMat= null;
 let curFilter = 'tous';
 let viewerFile= null;
 
+// ═══════════════ LOCAL STORAGE SYSTEM ═══════════════
+// IndexedDB pour une meilleure persistance
+let dbReady = false;
+function initIndexedDB() {
+  const req = indexedDB.open('RevisionDB', 1);
+  req.onupgradeneeded = e => {
+    const db = e.target.result;
+    if (!db.objectStoreNames.contains('files')) {
+      db.createObjectStore('files', { keyPath: 'mat' });
+    }
+    if (!db.objectStoreNames.contains('fileData')) {
+      db.createObjectStore('fileData', { keyPath: 'id' });
+    }
+    if (!db.objectStoreNames.contains('exams')) {
+      db.createObjectStore('exams', { keyPath: 'id' });
+    }
+    if (!db.objectStoreNames.contains('notes')) {
+      db.createObjectStore('notes', { keyPath: 'id' });
+    }
+    if (!db.objectStoreNames.contains('backup')) {
+      db.createObjectStore('backup', { keyPath: 'timestamp' });
+    }
+  };
+  req.onsuccess = () => { dbReady = true; normalizeFilesDB(); };
+}
+initIndexedDB();
+
+function openIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('RevisionDB', 1);
+    req.onsuccess = e => resolve(e.target.result);
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+function saveToIndexedDB(storeName, data) {
+  if (!dbReady) return;
+  const req = indexedDB.open('RevisionDB', 1);
+  req.onsuccess = e => {
+    const db = e.target.result;
+    const tx = db.transaction([storeName], 'readwrite');
+    const store = tx.objectStore(storeName);
+    if (storeName === 'files') {
+      store.clear();
+      Object.entries(data).forEach(([mat, files]) => {
+        const metaFiles = files.map(f => ({
+          name: f.name,
+          size: f.size,
+          type: f.type,
+          fileId: f.fileId
+        }));
+        store.put({ mat, files: metaFiles, timestamp: Date.now() });
+      });
+    } else {
+      store.add({ data, timestamp: Date.now() });
+    }
+  };
+}
+
+function saveFileDataToIndexedDB(file) {
+  if (!dbReady || !file.fileId || !file.data) return;
+  const req = indexedDB.open('RevisionDB', 1);
+  req.onsuccess = e => {
+    const db = e.target.result;
+    const tx = db.transaction(['fileData'], 'readwrite');
+    const store = tx.objectStore('fileData');
+    store.put({ id: file.fileId, mat: file.mat || currentMat, data: file.data, timestamp: Date.now() });
+  };
+}
+
+function loadFileDataFromIndexedDB(file) {
+  return new Promise((resolve, reject) => {
+    if (file.data) return resolve(file.data);
+    if (!dbReady || !file.fileId) return reject('Missing file data');
+    const req = indexedDB.open('RevisionDB', 1);
+    req.onsuccess = e => {
+      const db = e.target.result;
+      const tx = db.transaction(['fileData'], 'readonly');
+      const store = tx.objectStore('fileData');
+      const getReq = store.get(file.fileId);
+      getReq.onsuccess = () => {
+        if (getReq.result && getReq.result.data) {
+          file.data = getReq.result.data;
+          resolve(file.data);
+        } else {
+          reject('File data absent');
+        }
+      };
+      getReq.onerror = () => reject(getReq.error);
+    };
+    req.onerror = e => reject(e.target.error);
+  });
+}
+
+function createFileId(mat) {
+  return `${mat}_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+}
+
+function normalizeFilesDB() {
+  MATIERES.forEach(m => {
+    filesDB[m.id] = (filesDB[m.id] || []).map(f => {
+      if (!f.fileId) f.fileId = createFileId(m.id);
+      if (f.data) {
+        saveFileDataToIndexedDB({ ...f, mat: m.id });
+      }
+      return f;
+    });
+    const meta = filesDB[m.id].map(({ name, size, type, fileId }) => ({ name, size, type, fileId }));
+    localStorage.setItem('files_' + m.id, JSON.stringify(meta));
+  });
+  saveToIndexedDB('files', filesDB);
+}
+
+// Export JSON des données
+function exportBackup() {
+  const backup = {
+    timestamp: new Date().toISOString(),
+    version: '1.0',
+    files: filesDB,
+    exams: examsDB,
+    notes: notesDB
+  };
+  
+  // Créer un blob et télécharger
+  const json = JSON.stringify(backup, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `revision-backup-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Import d'un backup
+function importBackup(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const backup = JSON.parse(e.target.result);
+      filesDB = backup.files || filesDB;
+      examsDB = backup.exams || examsDB;
+      notesDB = backup.notes || notesDB;
+      
+      // Sauvegarder dans localStorage en ne conservant que les métadonnées
+      MATIERES.forEach(m => {
+        if (filesDB[m.id]) {
+          filesDB[m.id] = filesDB[m.id].map(f => {
+            if (!f.fileId) f.fileId = createFileId(m.id);
+            if (f.data) saveFileDataToIndexedDB({ ...f, mat: m.id });
+            return f;
+          });
+          const meta = filesDB[m.id].map(({ name, size, type, fileId }) => ({ name, size, type, fileId }));
+          localStorage.setItem('files_' + m.id, JSON.stringify(meta));
+        }
+      });
+      localStorage.setItem('examsDB', JSON.stringify(examsDB));
+      localStorage.setItem('notesDB', JSON.stringify(notesDB));
+      
+      // Sauvegarder les métadonnées dans IndexedDB
+      saveToIndexedDB('files', filesDB);
+      
+      renderMatieres();
+      renderNotes();
+      renderExams();
+      renderCountdown();
+      showToast('✅ Backup importé avec succès !');
+    } catch(err) {
+      showToast('❌ Erreur lors de l\'importation');
+    }
+  };
+  reader.readAsText(file);
+}
+
 // ═══════════════ THEME ═══════════════
 const st = localStorage.getItem('theme')||'light';
 document.documentElement.setAttribute('data-theme',st);
@@ -530,9 +707,19 @@ function handleFiles(files){
   Array.from(files).forEach(f=>{
     const r=new FileReader();
     r.onload=e=>{
-      filesDB[currentMat].push({name:f.name,size:f.size,type:f.type,data:e.target.result});
-      saveFiles(currentMat); done++;
-      if(done===files.length){renderFileList();renderMatieres();showToast(`✅ ${files.length} fichier${files.length>1?'s':''} ajouté${files.length>1?'s':''} !`);}
+      const fileId = createFileId(currentMat);
+      const newFile = {name:f.name,size:f.size,type:f.type,fileId,data:e.target.result};
+      filesDB[currentMat].push(newFile);
+      saveFileDataToIndexedDB({...newFile, mat: currentMat});
+      saveFiles(currentMat);
+      done++;
+      if(done===files.length){
+        renderFileList();
+        renderMatieres();
+        // Export automatique du backup
+        exportBackup();
+        showToast(`✅ ${files.length} fichier${files.length>1?'s':''} ajouté${files.length>1?'s':''} et backup créé !`);
+      }
     };
     r.readAsDataURL(f);
   });
@@ -544,20 +731,32 @@ function delFile(i){
   saveFiles(currentMat); renderFileList(); renderMatieres(); showToast('🗑 Supprimé');
 }
 
-function dlFile(i){
+async function dlFile(i){
   const f=(filesDB[currentMat]||[])[i]; if(!f) return;
+  if (!f.data) {
+    try { await loadFileDataFromIndexedDB(f); }
+    catch(_) { showToast('⚠️ Donnée de fichier introuvable.'); return; }
+  }
   const a=document.createElement('a'); a.href=f.data; a.download=f.name; a.click();
 }
 
 function saveFiles(id){
-  try{localStorage.setItem('files_'+id,JSON.stringify(filesDB[id]));}
+  try{
+    const meta = filesDB[id].map(({name,size,type,fileId}) => ({name,size,type,fileId}));
+    localStorage.setItem('files_'+id,JSON.stringify(meta));
+    saveToIndexedDB('files', filesDB);
+  }
   catch(e){showToast('⚠️ Stockage plein ! Supprime des fichiers.');}
 }
 
 // ═══════════════ VIEWER ═══════════════
-function openViewer(i) {
+async function openViewer(i) {
   const f = (filesDB[currentMat] || [])[i];
   if (!f) return;
+  if (!f.data) {
+    try { await loadFileDataFromIndexedDB(f); }
+    catch(_) { showToast('⚠️ Donnée de fichier introuvable.'); return; }
+  }
   viewerFile = f;
   
   document.getElementById('viewerTitle').textContent = f.name;
