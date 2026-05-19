@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://blpdqqxnlkcb5"]
+
+[ext_resource type="Texture2D" uid="uid://fhugpcgqywik" path="res://icon.svg" id="1_0fbet"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uchyk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0fbet"]
+sky_material = SubResource("ProceduralSkyMaterial_uchyk")
+
+[sub_resource type="Environment" id="Environment_62e2m"]
+background_mode = 2
+sky = SubResource("Sky_0fbet")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Control" type="Control" unique_id=1439262977]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -797.0
+offset_bottom = -616.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=725065271]
+environment = SubResource("Environment_62e2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1246160253]
+transform = Transform3D(-0.8660254, -0.43301275, 0.25, -0.1294095, 0.6770772, 0.7244444, -0.48296294, 0.5950349, -0.642402, 0, 1, 0)
+shadow_enabled = true
+
+[node name="Container" type="HBoxContainer" parent="." unique_id=662084228]
+clip_contents = true
+layout_mode = 0
+offset_right = 403.0
+offset_bottom = 50.0
+accessibility_live = 1
+
+[node name="Button" type="Button" parent="Container" unique_id=1382348605]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="Container" unique_id=1715649329]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button3" type="Button" parent="Container" unique_id=826301698]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Button5" type="Button" parent="Container" unique_id=820924448]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Button"
+
+[node name="Container2" type="VBoxContainer" parent="." unique_id=746933268]
+clip_contents = true
+layout_mode = 0
+offset_left = 17.0
+offset_top = 58.0
+offset_right = 97.0
+offset_bottom = 251.0
+accessibility_live = 1
+
+[node name="Button" type="Button" parent="Container2" unique_id=550731633]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="Container2" unique_id=95119407]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button3" type="Button" parent="Container2" unique_id=661758922]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button5" type="Button" parent="Container2" unique_id=2038524763]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button" type="Button" parent="." unique_id=1866374600]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 107.0
+offset_right = 371.0
+offset_bottom = 138.0
+text = "Button"
+
+[node name="MenuButton" type="MenuButton" parent="Button" unique_id=48731410]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 121.0
+offset_right = 192.0
+offset_bottom = 257.0
+text = "MENU"
+icon = ExtResource("1_0fbet")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=907735762]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=130017081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+size = Vector3(1000, 1, 1000)
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1095090437]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 85.0
+offset_right = 183.0
+offset_bottom = 125.0
+
+[node name="Button" type="Button" parent="GridContainer" unique_id=889290849]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button2" type="Button" parent="GridContainer" unique_id=1551549612]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button3" type="Button" parent="GridContainer" unique_id=1560842309]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"
+
+[node name="Button5" type="Button" parent="GridContainer" unique_id=39673262]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Button"

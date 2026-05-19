@@ -1,0 +1,379 @@
+[gd_scene format=3 uid="uid://bbgcrpyb8i8ho"]
+
+[ext_resource type="Texture2D" uid="uid://bp36pcmxcgcs0" path="res://jettelly_sunshine_UP.png" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://fiu3w1yc75ax" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://c2u8vik028wuk" path="res://images.jpeg" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bpxnb5yvy8nuu" path="res://glass-box.tscn" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://particle_sphere.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cwqccbfkdu44d" path="res://D4C9A97F-52EB-46A3-B8D4-6C85603EC2CC.png" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d24fkt0ujaddv" path="res://redbull.tscn" id="8_5vw27"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1bvp3"]
+panorama = ExtResource("1_0xm2m")
+
+[sub_resource type="Sky" id="Sky_lquwl"]
+sky_material = SubResource("PanoramaSkyMaterial_1bvp3")
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+background_mode = 2
+background_energy_multiplier = 0.26
+sky = SubResource("Sky_lquwl")
+ambient_light_color = Color(0.51125896, 0.5112589, 0.5112589, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.21230483, 0.21230483, 0.21230483, 0.74509805)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.22130162, 0.22130162, 0.22130159, 1)
+metallic = 1.0
+roughness = 0.16
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+material = SubResource("StandardMaterial3D_0xm2m")
+size = Vector3(5.75, 0.25, 5.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.3328807, 0.33288068, 0.33288068, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+albedo_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+albedo_color = Color(0.4627451, 0.2901961, 0.011764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_texture = ExtResource("4_1bvp3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+emission_enabled = true
+emission = Color(0, 0.5137255, 0.93333334, 1)
+detail_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+albedo_texture = ExtResource("6_7mycd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg77c"]
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ycdy4"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
+albedo_color = Color(1, 0.6431373, 0.14901961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vivmo"]
+material = SubResource("StandardMaterial3D_w48qg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
+albedo_color = Color(0.92156863, 0.24705882, 0.2627451, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yaehf"]
+material = SubResource("StandardMaterial3D_2cqfq")
+
+[sub_resource type="GDScript" id="GDScript_272bh"]
+script/source = "@tool
+extends Camera3D
+
+
+var tilt = Vector2.ZERO
+
+
+# Called when the node enters the scene tree for the first time.
+
+func _ready() -> void:
+
+	pass
+
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+func _process(delta: float) -> void:
+
+	var input = Vector3.ZERO
+
+	input.x = Input.get_axis('move_left', 'move_right')
+
+	input.y = Input.get_axis('move_down', 'move_up')
+
+	input.z = Input.get_axis('move_forward', 'move_backward')
+
+	position += basis * input * 0.1
+
+	
+
+	var dir = Vector2.ZERO
+
+	dir.x = Input.get_axis(\"ui_left\", \"ui_right\")
+
+	dir.y = Input.get_axis(\"ui_down\", \"ui_up\")
+
+	
+
+	if dir:
+
+		tilt += dir * 0.05
+
+		tilt.y = clamp(-PI/2, tilt.y, PI/2)
+
+		basis = Basis()
+
+		rotation.y = tilt.x
+
+		rotation.x = tilt.y
+"
+
+[node name="main" type="Node3D" unique_id=488870783]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=644898133]
+environment = SubResource("Environment_7dm0k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1303396198]
+transform = Transform3D(-0.3923883, 0.80378354, 0.4471728, -0.49606773, -0.59432906, 0.63300073, 0.7745633, 0.026554152, 0.63193876, 0, 15.5, -9)
+shadow_enabled = true
+
+[node name="sol" type="CSGBox3D" parent="." unique_id=1187304060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="entree" type="CSGCombiner3D" parent="." unique_id=1846506401]
+
+[node name="pilier2" type="CSGCylinder3D" parent="entree" unique_id=1261127814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 5)
+radius = 0.25
+height = 2.75
+sides = 64
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="pilier3" type="CSGCylinder3D" parent="entree" unique_id=734459255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.375, 5)
+radius = 0.25
+height = 2.75
+sides = 64
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="pilier4" type="CSGCylinder3D" parent="entree" unique_id=1303024410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.375, 0)
+radius = 0.25
+height = 2.75
+sides = 64
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="pilier5" type="CSGCylinder3D" parent="entree" unique_id=392019308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
+radius = 0.25
+height = 2.75
+sides = 64
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="toit" type="MeshInstance3D" parent="entree" unique_id=609311136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, 2.5)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="lampe" type="CSGCombiner3D" parent="." unique_id=1492360903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8435116, 0, 0.5)
+
+[node name="tige" type="CSGCylinder3D" parent="lampe" unique_id=611848270]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3, 2.5, 2.5)
+radius = 0.05
+height = 0.875
+sides = 64
+material = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="cone" type="CSGPolygon3D" parent="lampe/tige" unique_id=975280940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0011894703, -1.2799869, -2.5004148e-05)
+polygon = PackedVector2Array(0.0032997131, 0.68752, 0, 1, 0.5, 0.5, 1, 0)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+material = SubResource("StandardMaterial3D_lquwl")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="lampe/tige" unique_id=10911417]
+transform = Transform3D(2, 0, 0, 0, 5.9604645e-08, 2, 0, -2, 5.9604645e-08, 0, -0.57593346, 0)
+light_energy = 1.396
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 7.5
+spot_attenuation = 0.01
+spot_angle = 40.068085
+spot_angle_attenuation = 0.2679433
+
+[node name="allee" type="CSGCombiner3D" parent="." unique_id=2069574554]
+
+[node name="mur-g" type="CSGBox3D" parent="allee" unique_id=301758780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00049999356, 0.5, 22)
+size = Vector3(0.001, 1, 30)
+material = SubResource("StandardMaterial3D_7dm0k")
+
+[node name="mur-d" type="CSGBox3D" parent="allee" unique_id=239658454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.5, 21.5)
+size = Vector3(0.001, 1, 30)
+material = SubResource("StandardMaterial3D_7dm0k")
+
+[node name="Interaction1" parent="." unique_id=377088552 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 32.5)
+
+[node name="Interaction2" parent="." unique_id=1394239190 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -1.5)
+
+[node name="batiment" type="CSGCombiner3D" parent="." unique_id=921181982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="mur1" type="CSGBox3D" parent="batiment" unique_id=191043787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.707031, 3.5, 25)
+use_collision = true
+size = Vector3(44.914063, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur-transversal1" type="CSGBox3D" parent="batiment" unique_id=739719007]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.207031, 3.5, 2.5)
+use_collision = true
+size = Vector3(44.914063, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="porte1" type="CSGCylinder3D" parent="batiment/mur-transversal1" unique_id=1903005712]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, -12, -2.5, 0.116280556)
+operation = 2
+radius = 2.069
+height = 1.8185
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="porte2" type="CSGCylinder3D" parent="batiment/mur-transversal1" unique_id=515233459]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 11, -2.5, 0.11628246)
+operation = 2
+radius = 2.069
+height = 1.8185
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="mur6" type="CSGBox3D" parent="batiment" unique_id=716222404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.414063, 3.5, 2.2340813)
+use_collision = true
+size = Vector3(35, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur2" type="CSGBox3D" parent="batiment" unique_id=1716491112]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -44.928036, 3.5, 2.5078106)
+use_collision = true
+size = Vector3(45.430145, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur3" type="CSGBox3D" parent="batiment" unique_id=730369604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4033966, 3.5, -20)
+use_collision = true
+size = Vector3(95.15042, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur4" type="CSGBox3D" parent="batiment" unique_id=134088734]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 49.752262, 3.5074978, 2.5014687)
+use_collision = true
+size = Vector3(45.46234, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="mur5" type="CSGBox3D" parent="batiment" unique_id=1066626301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.623108, 3.5, 25)
+use_collision = true
+size = Vector3(44.746, 7, 0.5)
+material = SubResource("StandardMaterial3D_7mycd")
+
+[node name="affiche" type="CSGBox3D" parent="." unique_id=721531994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 4.5, 0.18617153)
+material_override = SubResource("StandardMaterial3D_5vw27")
+size = Vector3(4, 4, 0.5)
+material = SubResource("StandardMaterial3D_272bh")
+
+[node name="glass-box" parent="." unique_id=178979460 instance=ExtResource("5_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -22.715)
+
+[node name="rack1" type="CSGBox3D" parent="." unique_id=862025660]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack2" type="CSGBox3D" parent="." unique_id=2125813045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack3" type="CSGBox3D" parent="." unique_id=1104900458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack4" type="CSGBox3D" parent="." unique_id=603431870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, -14.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack5" type="CSGBox3D" parent="." unique_id=293899786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack6" type="CSGBox3D" parent="." unique_id=2021740874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack7" type="CSGBox3D" parent="." unique_id=623065730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="rack8" type="CSGBox3D" parent="." unique_id=1465401756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.5, -7.5)
+material_override = SubResource("StandardMaterial3D_4c57u")
+use_collision = true
+size = Vector3(5, 3, 1)
+material = SubResource("StandardMaterial3D_efxa6")
+
+[node name="propulseur1" type="CSGCylinder3D" parent="." unique_id=230425578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, -0.25, 48)
+radius = 2.5
+height = 4.5
+cone = true
+material = SubResource("StandardMaterial3D_dg77c")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="propulseur1" unique_id=711500531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+process_material = SubResource("ParticleProcessMaterial_ycdy4")
+draw_passes = 2
+draw_pass_1 = SubResource("CylinderMesh_vivmo")
+draw_pass_2 = SubResource("CylinderMesh_yaehf")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1533637691]
+transform = Transform3D(1, 2.2017976e-09, -7.1178117e-09, 1.9283517e-09, 0.846298, 0.5327099, 7.196708e-09, -0.5327099, 0.846298, 2.2528725, 2.913866, 39)
+fov = 49.4
+script = SubResource("GDScript_272bh")
+
+[node name="player" parent="." unique_id=2123640857 instance=ExtResource("2_h2yge")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 1, 38)
+
+[node name="tent" parent="." unique_id=1363068248 instance=ExtResource("8_5vw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.2810822, 39)

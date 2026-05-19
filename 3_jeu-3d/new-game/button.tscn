@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cuh71detdl8ro"]
+
+[ext_resource type="Texture2D" uid="uid://fhugpcgqywik" path="res://icon.svg" id="1_r04n3"]
+
+[sub_resource type="Theme" id="Theme_n4tde"]
+default_base_scale = 0.77
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vxja4"]
+
+[node name="Button" type="Control" unique_id=1653114950]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 18.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="." unique_id=570763417]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "El Button"
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=177740661]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 148.0
+offset_bottom = 79.0
+text = "CheckButton
+"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="." unique_id=374826427]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 96.0
+offset_right = 313.0
+offset_bottom = 127.0
+text = "Redsdjfdjsfejw,fvjw,efvacjwefavcj,eawsv"
+color = Color(0.7254902, 0, 0, 1)
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=546443652]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 152.0
+offset_right = 45.0
+offset_bottom = 172.0
+
+[node name="MenuButton" type="MenuButton" parent="." unique_id=917000761]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 214.0
+offset_right = 108.0
+offset_bottom = 222.0
+text = "Hello
+"
+
+[node name="LinkButton" type="LinkButton" parent="." unique_id=618156132]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 31.0
+offset_right = 480.0
+offset_bottom = 71.0
+text = "Website"
+underline = 1
+uri = "https://claude.ai/new"
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1213181954]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 102.0
+offset_right = 623.0
+offset_bottom = 202.0
+theme = SubResource("Theme_n4tde")
+button_group = SubResource("ButtonGroup_vxja4")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1560802660]
+position = Vector2(357, 245)
+texture = ExtResource("1_r04n3")
