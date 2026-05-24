@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://beyjpsqqh461i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntuwb"]
+albedo_color = Color(1.45, 2.306, 6.17, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pc7iy"]
+material = SubResource("StandardMaterial3D_ntuwb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1r4h"]
+albedo_color = Color(0.512, 0.999, 2.62, 0.71)
+emission_enabled = true
+emission = Color(0, 0, 0.79607844, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ob3tl"]
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onh61"]
+albedo_color = Color(0.659, 1.508, 2.947, 0.659)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6q8oh"]
+lightmap_size_hint = Vector2i(17, 14)
+material = SubResource("StandardMaterial3D_onh61")
+radius = 0.25
+height = 0.5
+radial_segments = 20
+rings = 5
+
+[node name="ParticleSphere" type="Node3D" unique_id=377088552]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=836047545]
+mesh = SubResource("SphereMesh_pc7iy")
+material = SubResource("StandardMaterial3D_a1r4h")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=872936389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+process_material = SubResource("ParticleProcessMaterial_ob3tl")
+draw_pass_1 = SubResource("CapsuleMesh_6q8oh")

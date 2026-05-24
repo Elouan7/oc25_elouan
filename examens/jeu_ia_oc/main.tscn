@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://wee1qbby6p5l"]
+
+[ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://player.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dmolx3fwm25n1" path="res://addons/HollowBox.gd" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bnbt1vumgekpx" path="res://exit_sign.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://bfh3ub8w6ikkk" path="res://addons/portal.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://drpks8sk656ti" path="res://labyrinthe.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://fe0enwgr2omo" path="res://datacenter_rack.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://particle_sphere.tscn" id="7_272bh"]
+[ext_resource type="Script" uid="uid://idd2m0d0cnj4" path="res://particle_sphere.gd" id="8_5vw27"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.3459457, 0.34594572, 0.3459457, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.6645101, 0.66451, 0.66451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
+
+[node name="main1" type="Node3D" unique_id=992688338]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1452446169]
+environment = SubResource("Environment_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=646539265]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 42, 0)
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=1727232195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.25, -1, 0)
+use_collision = true
+size = Vector3(79.5, 1, 100)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="mur" type="CSGBox3D" parent="." unique_id=1078564240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.190857, -11, 49.49438)
+use_collision = true
+size = Vector3(79.618286, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur2" type="CSGBox3D" parent="." unique_id=685915052]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, -11, 0)
+use_collision = true
+size = Vector3(100, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur3" type="CSGBox3D" parent="." unique_id=1395530944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.330933, -11, -50.50562)
+use_collision = true
+size = Vector3(79.338135, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur_entre" type="CSGBox3D" parent="." unique_id=1542814291]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.38089, -11, -0.50561905)
+size = Vector3(100, 75, 0.19641113)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mur_entre" unique_id=1948696467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4042709, 11.975342, -0.18481445)
+operation = 2
+size = Vector3(3.3670654, 2.9506836, 1.8237305)
+material = SubResource("StandardMaterial3D_kek77")
+
+[node name="Player" parent="." unique_id=394504344 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-0.0401318, 0, -0.9991944, 0, 1, 0, 0.9991944, 0, -0.0401318, 38.35363, -0.5, 0)
+disable_mode = 2
+axis_lock_linear_y = true
+axis_lock_angular_y = true
+physics_material_override = SubResource("PhysicsMaterial_0xm2m")
+freeze_mode = 1
+
+[node name="HollowBox" type="CSGBox3D" parent="." unique_id=2008307983]
+transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, -44.533894, 1.5, 40.242554)
+size = Vector3(15, 6, 18)
+material = SubResource("StandardMaterial3D_1bvp3")
+script = ExtResource("3_h2yge")
+thickness = 1.0
+metadata/_custom_type_script = "uid://dmolx3fwm25n1"
+
+[node name="Exit_sign" parent="HollowBox" unique_id=1350100702 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(0.046897173, 0, -0.99890006, 0, 1, 0, 0.99890006, 0, 0.046897173, -0.08837128, 1.8976126, 8.994362)
+
+[node name="BluePortalBox" type="CSGBox3D" parent="HollowBox" unique_id=1065428962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02646637, 0, 0.14775085)
+size = Vector3(13.5, 5, 17.5)
+material = SubResource("StandardMaterial3D_lquwl")
+script = ExtResource("4_lquwl")
+metadata/_custom_type_script = "uid://bfh3ub8w6ikkk"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1092990542]
+transform = Transform3D(-0.25881898, 0, -0.9659259, 0, 1, 0, 0.9659259, 0, -0.25881898, -65.34569, 0, 38.68777)
+light_energy = 0.683
+light_indirect_energy = 1.634
+shadow_enabled = true
+spot_range = 36.5
+spot_attenuation = 0.0
+spot_angle = 36.75643
+
+[node name="Spawn" type="CSGBox3D" parent="." unique_id=675798715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, -0.83277035, 0)
+size = Vector3(10, 1, 5)
+material = SubResource("StandardMaterial3D_4c57u")
+
+[node name="Labyrinthe" type="Node3D" parent="." unique_id=1103552262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+script = ExtResource("5_lquwl")
+rack_scene = ExtResource("6_7mycd")
+spacing = 0.75
+steps = 54
+
+[node name="ParticleSphere" parent="." unique_id=377088552 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.62366563, 2.055338)
+script = ExtResource("8_5vw27")
+amplitude = 0.1
+vitesse = 1.5
+
+[node name="ParticleSphere2" parent="." unique_id=786829835 instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.52773255, -2.444662)
+script = ExtResource("8_5vw27")
+amplitude = 0.1
+vitesse = 1.5

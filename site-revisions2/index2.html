@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Nexus du Polymath — Life RPG Dashboard</title>
+
+  <!-- ================================================================
+       POLICES : Orbitron (HUD/Tech) · Cinzel (Lore/Fantasy) · Share Tech Mono (Data)
+  ================================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ================================================================
+       1. VARIABLES GLOBALES — THÈME DARK FANTASY CYBERPUNK
+    ================================================================ */
+    :root {
+      /* Fonds */
+      --bg-void:   #04060d;
+      --bg-deep:   #070a14;
+      --bg-panel:  #0b0f1e;
+      --bg-card:   #0f1525;
+      --bg-alt:    #131929;
+
+      /* Bordures */
+      --border:    rgba(0, 212, 255, 0.14);
+      --border-hi: rgba(0, 212, 255, 0.48);
+
+      /* Accents */
+      --cyan:      #00d4ff;
+      --cyan-d:    rgba(0, 212, 255, 0.55);
+      --amber:     #f59e0b;
+      --amber-d:   rgba(245, 158, 11, 0.55);
+      --crimson:   #ef4444;
+      --crimson-d: rgba(239, 68, 68, 0.55);
+      --purple:    #a855f7;
+      --purple-d:  rgba(168, 85, 247, 0.55);
+      --green:     #22c55e;
+      --green-d:   rgba(34, 197, 94, 0.55);
+      --orange:    #f97316;
+
+      /* Texte */
+      --text:      #c8d4e8;
+      --text-dim:  #5a6a88;
+      --text-hi:   #eef2ff;
+
+      /* Glows subtils */
+      --glow-c: 0 0 14px rgba(0,212,255,0.35), 0 0 28px rgba(0,212,255,0.12);
+      --glow-a: 0 0 14px rgba(245,158,11,0.35), 0 0 28px rgba(245,158,11,0.12);
+      --glow-r: 0 0 14px rgba(239,68,68,0.35),  0 0 28px rgba(239,68,68,0.12);
+      --glow-p: 0 0 14px rgba(168,85,247,0.35), 0 0 28px rgba(168,85,247,0.12);
+      --glow-g: 0 0 14px rgba(34,197,94,0.35),  0 0 28px rgba(34,197,94,0.12);
+
+      /* Typographies */
+      --font-hud:  'Orbitron',       sans-serif;
+      --font-lore: 'Cinzel',         serif;
+      --font-data: 'Share Tech Mono',monospace;
+
+      --header-h: 62px;
+    }
+
+    /* ================================================================
+       2. RESET & BASE
+    ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-void);
+      color: var(--text);
+      font-family: var(--font-data);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grille de points en arrière-plan */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0,212,255,0.03) 0%, transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(168,85,247,0.03) 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Ccircle cx='22' cy='22' r='0.7' fill='%23ffffff' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Effet scanlines discret */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(0,0,0,0.08) 3px, rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ================================================================
+       3. LAYOUT PRINCIPAL
+    ================================================================ */
+    #app {
+      position: relative;
+      z-index: 2;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 18px 60px;
+    }
+
+    /* ================================================================
+       4. HEADER COLLANT
+    ================================================================ */
+    header {
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 22px;
+      position: sticky; top: 0;
+      z-index: 200;
+      background: rgba(4,6,13,0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    /* Logo */
+    .logo { display: flex; align-items: center; gap: 13px; }
+
+    .logo-gem {
+      width: 40px; height: 40px;
+      border: 2px solid var(--cyan);
+      box-shadow: var(--glow-c);
+      display: flex; align-items: center; justify-content: center;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .logo-gem span {
+      transform: rotate(-45deg);
+      font-family: var(--font-hud);
+      font-size: 15px; font-weight: 900;
+      color: var(--cyan);
+    }
+
+    .logo-copy {}
+    .logo-title {
+      font-family: var(--font-lore);
+      font-size: 17px; letter-spacing: .14em;
+      color: var(--text-hi); line-height: 1.1;
+    }
+    .logo-sub {
+      font-family: var(--font-data);
+      font-size: 9px; letter-spacing: .32em;
+      color: var(--cyan); text-transform: uppercase;
+    }
+
+    /* Zone joueur (droite) */
+    .hdr-player {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hdr-names { text-align: right; }
+    .hdr-name  { font-family: var(--font-lore); font-size: 14px; color: var(--text-hi); letter-spacing: .08em; }
+    .hdr-class { font-size: 9px; color: var(--amber); letter-spacing: .22em; text-transform: uppercase; }
+
+    .hdr-xpbar { width: 155px; }
+    .hdr-xpbar .lbl {
+      display: flex; justify-content: space-between;
+      font-size: 9px; color: var(--text-dim); margin-bottom: 3px;
+    }
+
+    .lvl-badge {
+      font-family: var(--font-hud);
+      font-size: 11px; font-weight: 700;
+      padding: 4px 10px;
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      box-shadow: var(--glow-a);
+      text-shadow: 0 0 7px rgba(245,158,11,.5);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lvl-badge:hover { background: rgba(245,158,11,.08); }
+
+    /* ================================================================
+       5. MINI BARRE DE PROGRESSION (réutilisable)
+    ================================================================ */
+    .pbar { height: 4px; background: rgba(255,255,255,0.05); overflow: hidden; }
+    .pbar-fill {
+      height: 100%;
+      transition: width .85s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .pbar-fill::after {         /* shimmer */
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,.3), transparent);
+      animation: shimmer 2.4s infinite;
+    }
+    @keyframes shimmer { to { left: 200%; } }
+
+    /* Couleurs des barres */
+    .pbar-cyan   { background: linear-gradient(to right, var(--cyan-d), var(--cyan)); }
+    .pbar-amber  { background: linear-gradient(to right, #92400e, var(--amber)); }
+    .pbar-crimson{ background: linear-gradient(to right, #7f1d1d, var(--crimson)); }
+    .pbar-purple { background: linear-gradient(to right, #4c1d95, var(--purple)); }
+    .pbar-green  { background: linear-gradient(to right, #14532d, var(--green)); }
+    .pbar-orange { background: linear-gradient(to right, #7c2d12, var(--orange)); }
+
+    /* ================================================================
+       6. PANEL — COMPOSANT DE BASE
+    ================================================================ */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Coins HUD style */
+    .panel::before, .panel::after {
+      content: ''; position: absolute;
+      width: 11px; height: 11px;
+      border-color: var(--cyan); border-style: solid; opacity: .5;
+    }
+    .panel::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .panel::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .p-title {
+      font-family: var(--font-hud);
+      font-size: 9px; font-weight: 600;
+      letter-spacing: .26em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .p-title::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border-hi), transparent);
+    }
+
+    /* ================================================================
+       7. GRILLE TABLEAU DE BORD
+    ================================================================ */
+    .db-grid {
+      display: grid;
+      grid-template-columns: 230px 1fr 190px;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    /* === COLONNE AVATAR === */
+    .avatar-card {}
+
+    .av-wrap {
+      width: 84px; height: 84px;
+      margin: 0 auto 13px;
+    }
+    .av-hex {
+      width: 84px; height: 84px;
+      border: 2px solid var(--cyan);
+      box-shadow: var(--glow-c);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 38px;
+      clip-path: polygon(50% 0%,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);
+      animation: av-pulse 3.5s ease-in-out infinite;
+    }
+    @keyframes av-pulse {
+      0%,100% { box-shadow: var(--glow-c); }
+      50%      { box-shadow: 0 0 22px rgba(0,212,255,.65), 0 0 44px rgba(0,212,255,.22); }
+    }
+
+    .av-name  { font-family: var(--font-lore); font-size: 15px; color: var(--text-hi); text-align: center; letter-spacing: .09em; }
+    .av-class { font-size: 9px; color: var(--amber); text-align: center; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+
+    /* Barres de statistiques RPG */
+    .stat-row {
+      display: flex; align-items: center; gap: 7px;
+      margin-bottom: 7px;
+    }
+    .sk { font-family: var(--font-hud); font-size: 8px; font-weight: 700; width: 26px; letter-spacing: .08em; }
+    .sb { flex: 1; height: 5px; background: rgba(255,255,255,.05); overflow: hidden; position: relative; }
+    .sb-fill { height: 100%; transition: width .9s cubic-bezier(.4,0,.2,1); }
+    .sb-fill::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 2px; background: #fff; opacity: .7; }
+    .sv { font-size: 9px; width: 18px; text-align: right; color: var(--text); }
+
+    /* Couleurs spécifiques */
+    .r-str .sk { color: var(--orange); }    .r-str .sb-fill { background: linear-gradient(to right, #c2410c, var(--orange)); }
+    .r-int .sk { color: #60a5fa; }          .r-int .sb-fill { background: linear-gradient(to right, #1d4ed8, #60a5fa); }
+    .r-dex .sk { color: #4ade80; }          .r-dex .sb-fill { background: linear-gradient(to right, #15803d, #4ade80); }
+    .r-wis .sk { color: #c084fc; }          .r-wis .sb-fill { background: linear-gradient(to right, #6d28d9, #c084fc); }
+    .r-vit .sk { color: #f9a8d4; }          .r-vit .sb-fill { background: linear-gradient(to right, #9d174d, #f9a8d4); }
+    .r-lck .sk { color: #fcd34d; }          .r-lck .sb-fill { background: linear-gradient(to right, #92400e, #fcd34d); }
+
+    /* === COLONNE CENTRALE (vitals + quêtes) === */
+    center-panel {}
+
+    .vitals-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .vital {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 11px 12px;
+    }
+
+    .v-label {
+      font-family: var(--font-hud);
+      font-size: 8px; letter-spacing: .2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 5px;
+      margin-bottom: 6px;
+    }
+    .v-nums {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .v-cur {
+      font-family: var(--font-hud);
+      font-size: 20px; font-weight: 700; line-height: 1;
+    }
+    .v-max { font-size: 10px; color: var(--text-dim); }
+
+    /* Couleurs vitals */
+    .v-hp  .v-label { color: var(--crimson); }  .v-hp  .v-cur { color: var(--crimson); text-shadow: 0 0 7px rgba(239,68,68,.45); }
+    .v-xp  .v-label { color: var(--amber); }    .v-xp  .v-cur { color: var(--amber);   text-shadow: 0 0 7px rgba(245,158,11,.45); }
+    .v-nrg .v-label { color: var(--purple); }   .v-nrg .v-cur { color: var(--purple);  text-shadow: 0 0 7px rgba(168,85,247,.45); }
+
+    /* Quêtes */
+    .quest-list { list-style: none; }
+    .quest-item {
+      display: flex; gap: 10px;
+      padding: 9px 0; border-bottom: 1px solid var(--border);
+    }
+    .quest-item:last-child { border-bottom: none; }
+
+    .q-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      margin-top: 4px; flex-shrink: 0;
+    }
+    .q-dot.active   { background: var(--amber);  box-shadow: 0 0 5px var(--amber);  animation: blink 2s ease-in-out infinite; }
+    .q-dot.complete { background: var(--green);  box-shadow: 0 0 5px var(--green); }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+    .q-name   { font-size: 12px; color: var(--text); line-height: 1.3; }
+    .q-reward { font-size: 9px;  color: var(--amber); margin-top: 2px; }
+
+    .q-empty  { color: var(--text-dim); font-size: 11px; font-style: italic; padding: 10px 0; text-align: center; }
+
+    /* === COLONNE MODULES === */
+    .mod-btn {
+      display: flex; align-items: center; gap: 9px;
+      padding: 10px 11px; margin-bottom: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer; color: var(--text);
+      transition: all .18s; width: 100%; text-align: left;
+    }
+    .mod-btn:hover:not(:disabled) {
+      border-color: var(--border-hi);
+      background: var(--bg-alt);
+      transform: translateX(3px);
+    }
+    .mod-btn.active { border-color: var(--cyan); box-shadow: var(--glow-c); }
+    .mod-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    .mod-icon { font-size: 17px; flex-shrink: 0; }
+    .mod-name { font-family: var(--font-hud); font-size: 9px; font-weight: 600; letter-spacing: .14em; color: var(--text-hi); }
+    .mod-sub  { font-size: 9px; color: var(--text-dim); }
+    .mod-badge {
+      margin-left: auto; font-size: 8px; padding: 2px 5px;
+      border: 1px solid; font-family: var(--font-hud); letter-spacing: .08em;
+    }
+    .badge-on   { color: var(--green);    border-color: var(--green-d); }
+    .badge-lock { color: var(--text-dim); border-color: var(--text-dim); }
+
+    .metrics-box {
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .met-row { font-size: 9px; color: var(--text-dim); margin-bottom: 5px; }
+    .met-row span { color: var(--text); }
+    .met-row .xp  { color: var(--amber); }
+    .met-row .km  { color: var(--green); }
+
+    /* ================================================================
+       8. SÉPARATEUR DE SECTION
+    ================================================================ */
+    .sec-sep {
+      display: flex; align-items: center; gap: 14px;
+      margin: 28px 0 18px;
+    }
+    .sec-sep-icon { font-size: 20px; flex-shrink: 0; }
+    .sec-sep-title {
+      font-family: var(--font-lore);
+      font-size: 18px; color: var(--text-hi);
+      letter-spacing: .09em; flex-shrink: 0;
+    }
+    .sec-sep-title em { color: var(--cyan); font-style: normal; }
+    .sec-sep-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border-hi), transparent); }
+    .sec-sep-badge { font-size: 9px; color: var(--text-dim); letter-spacing: .3em; text-transform: uppercase; flex-shrink: 0; }
+
+    /* ================================================================
+       9. MODULE SPORT
+    ================================================================ */
+    .sport-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Formulaire */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+    .form-field { display: flex; flex-direction: column; gap: 5px; }
+    .form-field.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: var(--font-hud);
+      font-size: 8px; letter-spacing: .22em;
+      color: var(--text-dim); text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-data);
+      font-size: 13px;
+      padding: 8px 10px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+    input:focus, select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 1px rgba(0,212,255,.18);
+    }
+    input::placeholder { color: var(--text-dim); opacity: .7; }
+    select option { background: var(--bg-deep); }
+
+    /* Aperçu XP */
+    .xp-preview {
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      padding: 13px 14px;
+      margin-top: 13px;
+    }
+    .xp-prev-lbl {
+      font-family: var(--font-hud);
+      font-size: 8px; letter-spacing: .2em;
+      color: var(--text-dim); text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .xp-prev-val {
+      font-family: var(--font-hud);
+      font-size: 30px; font-weight: 900;
+      color: var(--amber);
+      text-shadow: var(--glow-a);
+      line-height: 1;
+    }
+    .xp-prev-val sub { font-size: 13px; font-weight: 400; color: var(--amber-d); margin-left: 3px; }
+    .xp-breakdown { font-size: 9px; color: var(--text-dim); margin-top: 5px; line-height: 1.5; }
+
+    /* Bouton de soumission */
+    .submit-btn {
+      width: 100%; padding: 12px;
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-family: var(--font-hud);
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .submit-btn:hover {
+      background: rgba(0,212,255,.08);
+      box-shadow: var(--glow-c);
+      transform: translateY(-1px);
+    }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn.error  { border-color: var(--crimson); color: var(--crimson); }
+
+    /* Journal des sessions */
+    .s-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .s-table thead tr { border-bottom: 1px solid var(--border-hi); }
+    .s-table th {
+      font-family: var(--font-hud);
+      font-size: 8px; letter-spacing: .15em;
+      color: var(--text-dim); text-transform: uppercase;
+      padding: 6px 8px; text-align: left;
+    }
+    .s-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .s-table tbody tr:hover { background: rgba(255,255,255,.02); }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 3px;
+      padding: 2px 7px; font-size: 9px;
+      font-family: var(--font-hud); letter-spacing: .08em; border: 1px solid;
+    }
+    .tag-run { color: var(--green);  border-color: var(--green-d);  background: rgba(34,197,94,.07); }
+    .tag-ski { color: var(--cyan);   border-color: var(--cyan-d);   background: rgba(0,212,255,.07); }
+
+    .xp-badge {
+      color: var(--amber);
+      font-family: var(--font-hud);
+      font-size: 11px; font-weight: 700;
+    }
+
+    .s-empty {
+      text-align: center; color: var(--text-dim);
+      font-size: 11px; padding: 24px; font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* ================================================================
+       10. NOTIFICATIONS XP FLOTTANTES
+    ================================================================ */
+    #xp-toast {
+      position: fixed;
+      top: 72px; right: 18px;
+      z-index: 500; pointer-events: none;
+    }
+
+    .toast {
+      background: var(--bg-panel);
+      border: 1px solid var(--amber);
+      box-shadow: var(--glow-a);
+      padding: 10px 18px;
+      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--font-hud);
+      animation: t-in .3s ease-out both, t-out .3s ease-in 3s both;
+    }
+    @keyframes t-in  { from { opacity:0; transform: translateX(28px); } to { opacity:1; transform: translateX(0); } }
+    @keyframes t-out { from { opacity:1; transform: translateX(0); }    to { opacity:0; transform: translateX(28px); } }
+
+    .toast-ico   { font-size: 18px; }
+    .toast-label { font-size: 8px; letter-spacing: .2em; color: var(--amber); text-transform: uppercase; }
+    .toast-xp    { font-size: 17px; font-weight: 900; color: var(--text-hi); }
+
+    /* ================================================================
+       11. OVERLAY LEVEL UP
+    ================================================================ */
+    #lvlup {
+      position: fixed; inset: 0;
+      background: rgba(4,6,13,.93);
+      z-index: 400;
+      display: none;
+      align-items: center; justify-content: center; flex-direction: column;
+    }
+    #lvlup.show { display: flex; animation: lvl-in .4s ease-out; }
+    @keyframes lvl-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .lvl-glow {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at center, rgba(245,158,11,.14) 0%, transparent 65%);
+      animation: g-pulse 1.1s ease-in-out infinite alternate;
+    }
+    @keyframes g-pulse { from { opacity: .5; } to { opacity: 1; } }
+
+    .lvl-content { position: relative; text-align: center; }
+    .lvl-sub  { font-family: var(--font-hud); font-size: 9px; letter-spacing: .45em; color: var(--amber); text-transform: uppercase; margin-bottom: 8px; }
+    .lvl-big  {
+      font-family: var(--font-lore);
+      font-size: 58px; color: var(--amber);
+      text-shadow: var(--glow-a), 0 0 55px rgba(245,158,11,.28);
+      animation: lvl-bounce .7s cubic-bezier(.36,.07,.19,.97);
+      line-height: 1;
+    }
+    @keyframes lvl-bounce { 0%,100%{transform:scale(1)} 25%{transform:scale(1.28)} 65%{transform:scale(.94)} }
+    .lvl-num  { font-family: var(--font-hud); font-size: 18px; color: var(--text-hi); margin-top: 8px; }
+    .lvl-close {
+      margin-top: 26px; padding: 9px 30px;
+      background: transparent; border: 1px solid var(--amber);
+      color: var(--amber); font-family: var(--font-hud);
+      font-size: 9px; letter-spacing: .3em; cursor: pointer;
+      transition: all .2s;
+    }
+    .lvl-close:hover { background: rgba(245,158,11,.12); box-shadow: var(--glow-a); }
+
+    /* ================================================================
+       12. BARRE DE STATUT (footer)
+    ================================================================ */
+    .status-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 26px; background: rgba(4,6,13,.95);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 14px; gap: 22px;
+      z-index: 100; font-size: 9px; color: var(--text-dim);
+    }
+    .sb-item { display: flex; align-items: center; gap: 6px; }
+    .sb-dot  { width: 5px; height: 5px; border-radius: 50%; background: var(--green); box-shadow: 0 0 4px var(--green); animation: blink 3s infinite; }
+    .sb-right { margin-left: auto; font-family: var(--font-hud); font-size: 8px; color: var(--cyan); letter-spacing: .2em; }
+
+    /* ================================================================
+       13. BOUTON RESET (discret)
+    ================================================================ */
+    .reset-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-dim); font-family: var(--font-data);
+      font-size: 9px; padding: 3px 8px; cursor: pointer;
+      transition: all .2s; letter-spacing: .1em;
+    }
+    .reset-btn:hover { border-color: var(--crimson); color: var(--crimson); }
+
+    /* ================================================================
+       14. SCROLLBAR
+    ================================================================ */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-void); }
+    ::-webkit-scrollbar-thumb { background: var(--border-hi); }
+
+    /* ================================================================
+       15. RESPONSIVE
+    ================================================================ */
+    @media (max-width: 960px) {
+      .db-grid { grid-template-columns: 220px 1fr; }
+      .modules-col { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; }
+      .modules-col .mod-btn { flex: 1 1 140px; }
+      .sport-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .db-grid { grid-template-columns: 1fr; }
+      .vitals-row { grid-template-columns: 1fr 1fr; }
+      .hdr-xpbar  { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================
+     OVERLAY LEVEL UP
+================================================================ -->
+<div id="lvlup">
+  <div class="lvl-glow"></div>
+  <div class="lvl-content">
+    <div class="lvl-sub">⚡ Montée en Niveau ⚡</div>
+    <div class="lvl-big">LEVEL UP!</div>
+    <div class="lvl-num" id="lvl-txt">Niveau 2 atteint</div>
+    <button class="lvl-close" onclick="closeLvlUp()">Continuer l'Aventure</button>
+  </div>
+</div>
+
+<!-- Conteneur de toasts XP -->
+<div id="xp-toast"></div>
+
+<!-- ================================================================
+     APPLICATION PRINCIPALE
+================================================================ -->
+<div id="app">
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header>
+    <div class="logo">
+      <div class="logo-gem"><span>N</span></div>
+      <div class="logo-copy">
+        <div class="logo-title">Le Nexus du Polymath</div>
+        <div class="logo-sub">Life RPG Dashboard — Phase I Alpha</div>
+      </div>
+    </div>
+
+    <div class="hdr-player">
+      <div class="hdr-names">
+        <div class="hdr-name"  id="hdr-name">Polymath</div>
+        <div class="hdr-class" id="hdr-class">Architecte du Savoir</div>
+      </div>
+      <div class="hdr-xpbar">
+        <div class="lbl">
+          <span id="hdr-xp">0</span>
+          <span id="hdr-xp-next">/ 150 XP</span>
+        </div>
+        <div class="pbar"><div class="pbar-fill pbar-amber" id="hdr-xp-bar" style="width:0%"></div></div>
+      </div>
+      <div class="lvl-badge" id="hdr-lvl" title="Cliquer pour voir les infos de niveau" onclick="showLvlInfo()">NIV. 1</div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       TABLEAU DE BORD PRINCIPAL
+  ============================================================ -->
+  <div class="db-grid">
+
+    <!-- ── AVATAR & STATS ── -->
+    <div class="panel avatar-card">
+      <div class="p-title">⚔ Avatar</div>
+
+      <div class="av-wrap">
+        <div class="av-hex" id="av-emoji">🧙</div>
+      </div>
+      <div class="av-name"  id="av-name">Polymath</div>
+      <div class="av-class" id="av-class">Architecte du Savoir</div>
+
+      <div class="stat-row r-str">
+        <span class="sk">STR</span>
+        <div class="sb"><div class="sb-fill" id="st-str" style="width:25%"></div></div>
+        <span class="sv" id="sv-str">5</span>
+      </div>
+      <div class="stat-row r-int">
+        <span class="sk">INT</span>
+        <div class="sb"><div class="sb-fill" id="st-int" style="width:25%"></div></div>
+        <span class="sv" id="sv-int">5</span>
+      </div>
+      <div class="stat-row r-dex">
+        <span class="sk">DEX</span>
+        <div class="sb"><div class="sb-fill" id="st-dex" style="width:25%"></div></div>
+        <span class="sv" id="sv-dex">5</span>
+      </div>
+      <div class="stat-row r-wis">
+        <span class="sk">WIS</span>
+        <div class="sb"><div class="sb-fill" id="st-wis" style="width:25%"></div></div>
+        <span class="sv" id="sv-wis">5</span>
+      </div>
+      <div class="stat-row r-vit">
+        <span class="sk">VIT</span>
+        <div class="sb"><div class="sb-fill" id="st-vit" style="width:25%"></div></div>
+        <span class="sv" id="sv-vit">5</span>
+      </div>
+      <div class="stat-row r-lck">
+        <span class="sk">LCK</span>
+        <div class="sb"><div class="sb-fill" id="st-lck" style="width:15%"></div></div>
+        <span class="sv" id="sv-lck">3</span>
+      </div>
+    </div>
+
+    <!-- ── VITALS & QUÊTES ── -->
+    <div class="panel center-panel">
+      <div class="p-title">◈ Statistiques Vitales</div>
+
+      <div class="vitals-row">
+        <!-- HP -->
+        <div class="vital v-hp">
+          <div class="v-label"><span>♥</span> Points de Vie</div>
+          <div class="v-nums">
+            <span class="v-cur" id="v-hp">100</span>
+            <span class="v-max">/ <span id="v-hp-max">100</span></span>
+          </div>
+          <div class="pbar"><div class="pbar-fill pbar-crimson" id="bar-hp" style="width:100%"></div></div>
+        </div>
+        <!-- XP -->
+        <div class="vital v-xp">
+          <div class="v-label"><span>⭐</span> Expérience</div>
+          <div class="v-nums">
+            <span class="v-cur" id="v-xp">0</span>
+            <span class="v-max">/ <span id="v-xp-next">150</span></span>
+          </div>
+          <div class="pbar"><div class="pbar-fill pbar-amber" id="bar-xp" style="width:0%"></div></div>
+        </div>
+        <!-- Énergie -->
+        <div class="vital v-nrg">
+          <div class="v-label"><span>⚡</span> Énergie</div>
+          <div class="v-nums">
+            <span class="v-cur" id="v-nrg">80</span>
+            <span class="v-max">/ <span id="v-nrg-max">100</span></span>
+          </div>
+          <div class="pbar"><div class="pbar-fill pbar-purple" id="bar-nrg" style="width:80%"></div></div>
+        </div>
+      </div>
+
+      <div class="p-title">◎ Journal de Quêtes</div>
+      <ul class="quest-list" id="q-list"></ul>
+    </div>
+
+    <!-- ── MODULES ── -->
+    <div class="panel modules-col">
+      <div class="p-title">⬡ Modules</div>
+
+      <button class="mod-btn active" onclick="scrollTo('sport-sec')">
+        <span class="mod-icon">🏃</span>
+        <div>
+          <div class="mod-name">Sport</div>
+          <div class="mod-sub">Running &amp; Ski</div>
+        </div>
+        <span class="mod-badge badge-on">ACTIF</span>
+      </button>
+
+      <button class="mod-btn" disabled>
+        <span class="mod-icon">🎻</span>
+        <div>
+          <div class="mod-name">Musique</div>
+          <div class="mod-sub">Violon · Pitch</div>
+        </div>
+        <span class="mod-badge badge-lock">PH.2</span>
+      </button>
+
+      <button class="mod-btn" disabled>
+        <span class="mod-icon">⚗️</span>
+        <div>
+          <div class="mod-name">Sciences</div>
+          <div class="mod-sub">Alchimie · Craft</div>
+        </div>
+        <span class="mod-badge badge-lock">PH.3</span>
+      </button>
+
+      <button class="mod-btn" disabled>
+        <span class="mod-icon">📜</span>
+        <div>
+          <div class="mod-name">DevLog</div>
+          <div class="mod-sub">Le Grimoire</div>
+        </div>
+        <span class="mod-badge badge-lock">PH.4</span>
+      </button>
+
+      <div class="metrics-box">
+        <div class="p-title">◈ Cumuls</div>
+        <div class="met-row">Sessions : <span id="m-sess">0</span></div>
+        <div class="met-row">XP total  : <span class="xp" id="m-xp">0 XP</span></div>
+        <div class="met-row">Distance  : <span class="km" id="m-km">0.0 km</span></div>
+        <div class="met-row">Dénivelé  : <span id="m-elev">0 m</span></div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <button class="reset-btn" onclick="confirmReset()">↺ Réinitialiser</button>
+      </div>
+    </div>
+
+  </div><!-- /db-grid -->
+
+  <!-- ============================================================
+       MODULE SPORT
+  ============================================================ -->
+  <div id="sport-sec">
+    <div class="sec-sep">
+      <span class="sec-sep-icon">🏃</span>
+      <div class="sec-sep-title"><em>Module Sport</em> — L'Exploration</div>
+      <div class="sec-sep-line"></div>
+      <div class="sec-sep-badge">Phase I · Actif</div>
+    </div>
+
+    <div class="sport-grid">
+
+      <!-- Formulaire de session -->
+      <div class="panel">
+        <div class="p-title">✦ Nouvelle Session</div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="s-type">Type d'activité</label>
+            <select id="s-type" onchange="calcXP()">
+              <option value="running">🏃 Running</option>
+              <option value="ski">⛷️ Ski</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="s-date">Date</label>
+            <input type="date" id="s-date">
+          </div>
+
+          <div class="form-field">
+            <label for="s-dist">Distance (km)</label>
+            <input type="number" id="s-dist" placeholder="5.0" min="0" step="0.1" oninput="calcXP()">
+          </div>
+
+          <div class="form-field">
+            <label for="s-speed">Vitesse moy. (km/h)</label>
+            <input type="number" id="s-speed" placeholder="10.0" min="0" step="0.1" oninput="calcXP()">
+          </div>
+
+          <div class="form-field">
+            <label for="s-dur">Durée (min)</label>
+            <input type="number" id="s-dur" placeholder="30" min="0" oninput="calcXP()">
+          </div>
+
+          <div class="form-field">
+            <label for="s-elev">Dénivelé (m) <span style="color:var(--text-dim);font-size:.85em">[opt.]</span></label>
+            <input type="number" id="s-elev" placeholder="0" min="0" oninput="calcXP()">
+          </div>
+
+          <div class="form-field full">
+            <label for="s-notes">Notes <span style="color:var(--text-dim);font-size:.85em">[opt.]</span></label>
+            <input type="text" id="s-notes" placeholder="Météo, terrain, sensations…">
+          </div>
+        </div>
+
+        <!-- Aperçu XP -->
+        <div class="xp-preview">
+          <div class="xp-prev-lbl">⚡ Aperçu de la récompense</div>
+          <div class="xp-prev-val" id="xp-prev">0 <sub>XP</sub></div>
+          <div class="xp-breakdown" id="xp-bd">Entrez distance + vitesse pour calculer votre XP.</div>
+        </div>
+
+        <button class="submit-btn" id="submit-btn" onclick="submitSession()">
+          ⚔ Enregistrer la Session &amp; Gagner de l'XP
+        </button>
+      </div>
+
+      <!-- Journal des sessions -->
+      <div class="panel">
+        <div class="p-title">◎ Journal des Explorations</div>
+        <div class="s-empty" id="s-empty">
+          Aucune exploration enregistrée.<br>Lance ta première session, aventurier.
+        </div>
+        <table class="s-table" id="s-table" style="display:none">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Dist.</th>
+              <th>Vit.</th>
+              <th>Durée</th>
+              <th>Elev.</th>
+              <th>XP</th>
+            </tr>
+          </thead>
+          <tbody id="s-tbody"></tbody>
+        </table>
+      </div>
+
+    </div><!-- /sport-grid -->
+  </div><!-- /sport-sec -->
+
+</div><!-- /app -->
+
+<!-- Barre de statut -->
+<div class="status-bar">
+  <div class="sb-item"><div class="sb-dot"></div><span>Système en ligne</span></div>
+  <div class="sb-item">💾 LocalStorage</div>
+  <span id="sb-save">Jamais sauvegardé</span>
+  <span class="sb-right">NEXUS v1.0 — PHASE I</span>
+</div>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+/* ================================================================
+   LE NEXUS DU POLYMATH — Phase 1
+   Architecture : Vanilla JS ES6+ · Module Pattern · LocalStorage
+   Modules : StateManager · XPEngine · UIRenderer · SportModule
+================================================================ */
+
+'use strict';
+
+/* ================================================================
+   ① STATE MANAGER
+   Source de vérité unique, persistée dans localStorage.
+================================================================ */
+const SM = (() => {
+  const KEY = 'nexus-polymath-v1';
+
+  /* État par défaut (nouveau joueur) */
+  const DEFAULTS = {
+    player: {
+      name:     'Polymath',
+      class:    'Architecte du Savoir',
+      level:    1,
+      xp:       0,
+      xpToNext: 150,   // XP pour passer au niveau 2
+      hp:       100,
+      maxHp:    100,
+      energy:   80,
+      maxEnergy:100,
+      stats: {
+        str: 5,   // Force     → Sport (running/ski)
+        int: 5,   // Intellect → Sciences & DevLog
+        dex: 5,   // Dextérité → Musique (violon)
+        wis: 5,   // Sagesse   → Sciences & lectures
+        vit: 5,   // Vitalité  → Sport global
+        lck: 3,   // Chance    → Événements aléatoires
+      }
+    },
+    sport: {
+      sessions:       [],
+      totalXP:        0,
+      totalDistanceKm:0,
+      totalElevationM:0,
+    },
+    quests: [
+      { id:'q1', name:'Première Exploration',    desc:'Enregistre ta 1ère session sport',          status:'active',   reward:'+10 XP bonus' },
+      { id:'q2', name:'Coureur des Bois',        desc:'Cumule 10 km en running',                   status:'active',   reward:'STR +1, VIT +1' },
+      { id:'q3', name:'L\'Endurant',             desc:'Effectue une session de + de 60 minutes',   status:'active',   reward:'+50 XP bonus' },
+      { id:'q4', name:'Polymath Niveau 5',       desc:'Atteins le niveau 5',                       status:'active',   reward:'Module Musique débloqué' },
+    ],
+    meta: { created: new Date().toISOString(), saved: null }
+  };
+
+  let _s = null;
+
+  const load = () => {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) { _s = JSON.parse(raw); return; }
+    } catch(e) { console.warn('[SM] Erreur lecture, réinit.', e); }
+    _s = structuredClone(DEFAULTS);
+  };
+
+  const save = () => {
+    _s.meta.saved = new Date().toISOString();
+    localStorage.setItem(KEY, JSON.stringify(_s));
+  };
+
+  const get    = ()        => _s;
+  const reset  = ()        => { _s = structuredClone(DEFAULTS); save(); };
+
+  load();
+  return { get, save, reset };
+})();
+
+
+/* ================================================================
+   ② XP ENGINE
+   Calculs d'XP, niveaux, progression des statistiques.
+================================================================ */
+const XPE = (() => {
+
+  /**
+   * XP requis pour atteindre un niveau.
+   * Courbe RPG : 150 × level^1.65
+   * Niveau 1→2 :  150 XP    Niveau 5→6 : ~1 300 XP
+   * Niveau 10→11: ~3 900 XP  Niveau 20→21: ~15 000 XP
+   */
+  const xpFor = (lvl) => Math.round(150 * Math.pow(lvl, 1.65));
+
+  /**
+   * Calcule l'XP d'une session sportive.
+   *
+   * FORMULE DE BASE : XP = distance (km) × vitesse (km/h)
+   * Modificateurs :
+   *   Ski          → ×1.35   (technique + altitude + équipement)
+   *   Dénivelé     → +5% par tranche de 100 m de D+
+   *   Endurance    → ×1.12   si durée ≥ 60 min
+   *   Vitesse faible→ pas de pénalité (récup / endurance de base)
+   */
+  const calcSportXP = (type, km, kmh, min, elev) => {
+    if (!km || !kmh || km <= 0 || kmh <= 0) return 0;
+    let xp = km * kmh;
+    if (type === 'ski') xp *= 1.35;
+    if (elev > 0)       xp *= 1 + (elev / 100) * 0.05;
+    if (min >= 60)      xp *= 1.12;
+    return Math.round(xp);
+  };
+
+  /**
+   * Ajoute de l'XP au joueur, gère la montée de niveau en cascade.
+   * Retourne la liste des événements générés (levelup, etc.).
+   */
+  const addXP = (amount) => {
+    const p = SM.get().player;
+    const events = [];
+    p.xp += amount;
+
+    while (p.xp >= p.xpToNext) {
+      p.xp      -= p.xpToNext;
+      p.level   += 1;
+      p.xpToNext = xpFor(p.level);
+
+      // Récompenses de montée de niveau
+      p.maxHp      += 10;
+      p.hp          = p.maxHp;         // restauration complète
+      p.maxEnergy  += 5;
+      p.energy      = p.maxEnergy;
+
+      events.push({ type: 'levelup', lvl: p.level });
+    }
+
+    SM.save();
+    return events;
+  };
+
+  /** Augmente une stat RPG (cap à 99). */
+  const incStat = (key, n = 1) => {
+    const s = SM.get().player.stats;
+    if (s[key] !== undefined) {
+      s[key] = Math.min(99, s[key] + n);
+      SM.save();
+    }
+  };
+
+  return { calcSportXP, addXP, incStat, xpFor };
+})();
+
+
+/* ================================================================
+   ③ UI RENDERER
+   Met à jour le DOM en fonction de l'état courant.
+   Toujours appeler render() après une mutation d'état.
+================================================================ */
+const UI = (() => {
+  const $  = id => document.getElementById(id);
+
+  /** Rendu complet de l'interface. */
+  const render = () => {
+    const s = SM.get();
+    renderHeader(s);
+    renderAvatar(s);
+    renderVitals(s);
+    renderStats(s);
+    renderQuests(s);
+    renderSportLog(s);
+    renderMetrics(s);
+    renderStatusBar(s);
+  };
+
+  const renderHeader = ({ player: p }) => {
+    const pct = Math.min(100, (p.xp / p.xpToNext) * 100);
+    $('hdr-name').textContent    = p.name;
+    $('hdr-class').textContent   = p.class;
+    $('hdr-lvl').textContent     = `NIV. ${p.level}`;
+    $('hdr-xp').textContent      = p.xp;
+    $('hdr-xp-next').textContent = `/ ${p.xpToNext} XP`;
+    $('hdr-xp-bar').style.width  = pct + '%';
+  };
+
+  const renderAvatar = ({ player: p }) => {
+    $('av-emoji').textContent = avatarEmoji(p.level);
+    $('av-name').textContent  = p.name;
+    $('av-class').textContent = p.class;
+  };
+
+  const renderVitals = ({ player: p }) => {
+    $('v-hp').textContent  = p.hp;  $('v-hp-max').textContent  = p.maxHp;
+    $('v-xp').textContent  = p.xp;  $('v-xp-next').textContent = p.xpToNext;
+    $('v-nrg').textContent = p.energy; $('v-nrg-max').textContent = p.maxEnergy;
+
+    $('bar-hp').style.width  = pct(p.hp, p.maxHp);
+    $('bar-xp').style.width  = pct(p.xp, p.xpToNext);
+    $('bar-nrg').style.width = pct(p.energy, p.maxEnergy);
+  };
+
+  const renderStats = ({ player: p }) => {
+    const MAX = 20; // Valeur max affichée sur les barres (au-delà = 100%)
+    for (const [k, v] of Object.entries(p.stats)) {
+      const bar = $(`st-${k}`); const val = $(`sv-${k}`);
+      if (bar) bar.style.width = Math.min(100, (v / MAX) * 100) + '%';
+      if (val) val.textContent  = v;
+    }
+  };
+
+  const renderQuests = ({ quests }) => {
+    const list = $('q-list');
+    list.innerHTML = '';
+    const visible = quests.filter(q => q.status !== 'failed');
+    if (!visible.length) { list.innerHTML = '<div class="q-empty">Aucune quête active.</div>'; return; }
+    visible.forEach(q => {
+      const li = document.createElement('li');
+      li.className = 'quest-item';
+      li.innerHTML = `
+        <div class="q-dot ${q.status}"></div>
+        <div>
+          <div class="q-name">${q.status === 'complete' ? '✓ ' : ''}${q.name}</div>
+          <div class="q-reward">⭐ ${q.reward}</div>
+        </div>`;
+      list.appendChild(li);
+    });
+  };
+
+  const renderSportLog = ({ sport: { sessions } }) => {
+    const empty = $('s-empty'), table = $('s-table'), tbody = $('s-tbody');
+    if (!sessions.length) { empty.style.display = 'block'; table.style.display = 'none'; return; }
+    empty.style.display  = 'none';
+    table.style.display  = 'table';
+    tbody.innerHTML = '';
+    [...sessions].reverse().forEach(s => {
+      const tr = document.createElement('tr');
+      const tag = s.type === 'running'
+        ? '<span class="tag tag-run">🏃 Run</span>'
+        : '<span class="tag tag-ski">⛷️ Ski</span>';
+      const d = new Date(s.date).toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit' });
+      tr.innerHTML = `
+        <td>${d}</td><td>${tag}</td>
+        <td>${s.km} km</td><td>${s.kmh} km/h</td>
+        <td>${s.min} min</td><td>${s.elev || 0} m</td>
+        <td><span class="xp-badge">+${s.xp} XP</span></td>`;
+      tbody.appendChild(tr);
+    });
+  };
+
+  const renderMetrics = ({ sport: sp }) => {
+    $('m-sess').textContent = sp.sessions.length;
+    $('m-xp').textContent   = sp.totalXP + ' XP';
+    $('m-km').textContent   = sp.totalDistanceKm.toFixed(1) + ' km';
+    $('m-elev').textContent = sp.totalElevationM + ' m';
+  };
+
+  const renderStatusBar = ({ meta }) => {
+    if (meta.saved) {
+      const t = new Date(meta.saved).toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+      $('sb-save').textContent = `Sync : ${t}`;
+    }
+  };
+
+  /* Helpers */
+  const pct = (cur, max) => Math.min(100, (cur / max) * 100) + '%';
+
+  const avatarEmoji = (lvl) => {
+    if (lvl >= 20) return '🐉';
+    if (lvl >= 15) return '👑';
+    if (lvl >= 10) return '🧝';
+    if (lvl >= 7)  return '⚔️';
+    if (lvl >= 4)  return '🛡️';
+    return '🧙';
+  };
+
+  /** Affiche une notification de gain d'XP. */
+  const toast = (amount, label = 'XP Gagné') => {
+    const c = document.getElementById('xp-toast');
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.innerHTML = `
+      <div class="toast-ico">⚡</div>
+      <div>
+        <div class="toast-label">${label}</div>
+        <div class="toast-xp">+${amount} XP</div>
+      </div>`;
+    c.appendChild(el);
+    setTimeout(() => el.remove(), 3400);
+  };
+
+  /** Déclenche l'animation de level up. */
+  const showLevelUp = (lvl) => {
+    const overlay = document.getElementById('lvlup');
+    document.getElementById('lvl-txt').textContent = `Niveau ${lvl} atteint !`;
+    overlay.classList.add('show');
+  };
+
+  return { render, toast, showLevelUp };
+})();
+
+
+/* ================================================================
+   ④ SPORT MODULE — Formulaire & Logique
+================================================================ */
+
+/** Initialise le champ date avec aujourd'hui. */
+const initForm = () => {
+  document.getElementById('s-date').value = new Date().toISOString().split('T')[0];
+};
+
+/** Calcule et affiche l'aperçu XP en temps réel. */
+const calcXP = () => {
+  const type = document.getElementById('s-type').value;
+  const km   = parseFloat(document.getElementById('s-dist').value)  || 0;
+  const kmh  = parseFloat(document.getElementById('s-speed').value) || 0;
+  const min  = parseFloat(document.getElementById('s-dur').value)   || 0;
+  const elev = parseFloat(document.getElementById('s-elev').value)  || 0;
+
+  const xp = XPE.calcSportXP(type, km, kmh, min, elev);
+
+  document.getElementById('xp-prev').innerHTML = `${xp} <sub>XP</sub>`;
+
+  if (km > 0 && kmh > 0) {
+    const base  = Math.round(km * kmh);
+    const tmult = type === 'ski' ? ' × 1.35 (ski)' : '';
+    let bd = `${km} km × ${kmh} km/h = ${base} XP${tmult}`;
+    if (elev > 0) bd += `, +${Math.round(elev / 100 * 5)}% dénivelé`;
+    if (min >= 60) bd += `, +12% bonus endurance (≥ 60 min)`;
+    document.getElementById('xp-bd').textContent = bd;
+  } else {
+    document.getElementById('xp-bd').textContent = 'Entrez distance + vitesse pour calculer votre XP.';
+  }
+};
+
+/** Valide et enregistre une session sportive. */
+const submitSession = () => {
+  const type = document.getElementById('s-type').value;
+  const date = document.getElementById('s-date').value;
+  const km   = parseFloat(document.getElementById('s-dist').value);
+  const kmh  = parseFloat(document.getElementById('s-speed').value);
+  const min  = parseFloat(document.getElementById('s-dur').value)  || 0;
+  const elev = parseFloat(document.getElementById('s-elev').value) || 0;
+  const notes= document.getElementById('s-notes').value.trim();
+
+  if (!date || !km || !kmh || km <= 0 || kmh <= 0) {
+    flashError('⚠ Remplis au moins : Date, Distance et Vitesse !');
+    return;
+  }
+
+  const xp = XPE.calcSportXP(type, km, kmh, min, elev);
+
+  /* Sauvegarde de la session */
+  const s = SM.get().sport;
+  s.sessions.push({ id: Date.now(), type, date, km, kmh, min, elev, notes, xp, at: new Date().toISOString() });
+  s.totalXP         += xp;
+  s.totalDistanceKm  = +(s.totalDistanceKm + km).toFixed(2);
+  s.totalElevationM += elev;
+  SM.save();
+
+  /* Progression STR/VIT : toutes les 200 XP sport */
+  const prevMiles = Math.floor((s.totalXP - xp) / 200);
+  const currMiles = Math.floor(s.totalXP          / 200);
+  if (currMiles > prevMiles) { XPE.incStat('str'); XPE.incStat('vit'); }
+
+  /* Ajout de l'XP global et récupération des événements */
+  const events = XPE.addXP(xp);
+
+  /* Vérification des quêtes */
+  checkQuests();
+
+  /* Rendu + notifications */
+  UI.render();
+  UI.toast(xp, type === 'ski' ? 'Session Ski' : 'Session Running');
+
+  events.forEach(ev => {
+    if (ev.type === 'levelup') setTimeout(() => UI.showLevelUp(ev.lvl), 850);
+  });
+
+  resetForm();
+};
+
+/** Vérifie et complète les quêtes selon l'état actuel. */
+const checkQuests = () => {
+  const { sport: sp, quests: qs, player: p } = SM.get();
+
+  const q = (id) => qs.find(q => q.id === id);
+
+  /* Q1 : Première session */
+  if (q('q1')?.status === 'active' && sp.sessions.length >= 1) {
+    q('q1').status = 'complete';
+    XPE.addXP(10);
+    UI.toast(10, '🏆 Quête accomplie !');
+  }
+
+  /* Q2 : 10 km cumulés en running */
+  if (q('q2')?.status === 'active') {
+    const total = sp.sessions.filter(s => s.type === 'running').reduce((a, s) => a + s.km, 0);
+    if (total >= 10) {
+      q('q2').status = 'complete';
+      XPE.incStat('str'); XPE.incStat('vit');
+      UI.toast(0, '🏆 STR+1 VIT+1 — Quête !');
+    }
+  }
+
+  /* Q3 : Session > 60 min */
+  if (q('q3')?.status === 'active') {
+    if (sp.sessions.some(s => s.min >= 60)) {
+      q('q3').status = 'complete';
+      XPE.addXP(50);
+      UI.toast(50, '🏆 Bonus endurance !');
+    }
+  }
+
+  /* Q4 : Niveau 5 */
+  if (q('q4')?.status === 'active' && p.level >= 5) {
+    q('q4').status = 'complete';
+  }
+
+  SM.save();
+};
+
+/** Affiche une erreur sur le bouton. */
+const flashError = (msg) => {
+  const btn = document.getElementById('submit-btn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = msg;
+  btn.classList.add('error');
+  setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('error'); }, 2600);
+};
+
+/** Remet le formulaire à zéro. */
+const resetForm = () => {
+  ['s-dist','s-speed','s-dur','s-elev','s-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('s-date').value = new Date().toISOString().split('T')[0];
+  document.getElementById('xp-prev').innerHTML = '0 <sub>XP</sub>';
+  document.getElementById('xp-bd').textContent = 'Entrez distance + vitesse pour calculer votre XP.';
+};
+
+/* ================================================================
+   ⑤ UTILITAIRES
+================================================================ */
+
+/** Scroll vers une section par ID. */
+const scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+/** Ferme l'overlay de level up. */
+const closeLvlUp = () => {
+  document.getElementById('lvlup').classList.remove('show');
+};
+
+/** Affiche les infos du niveau actuel. */
+const showLvlInfo = () => {
+  const p = SM.get().player;
+  const needed = XPE.xpFor(p.level);
+  alert(`Niveau ${p.level} — ${p.class}\nXP actuel : ${p.xp} / ${p.xpToNext}\nProchain niveau : ${p.xpToNext - p.xp} XP restants`);
+};
+
+/** Réinitialise la progression (avec confirmation). */
+const confirmReset = () => {
+  if (confirm('⚠ Réinitialiser TOUTE la progression ? Cette action est irréversible.')) {
+    SM.reset();
+    UI.render();
+    resetForm();
+    console.log('%c[Nexus] Progression réinitialisée.', 'color:#ef4444');
+  }
+};
+
+/* ================================================================
+   ⑥ BOOTSTRAP — Point d'entrée
+================================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  initForm();
+  UI.render();
+
+  console.log(
+    '%c⚡ LE NEXUS DU POLYMATH — Phase I chargé',
+    'color:#00d4ff; font-size:14px; font-family:monospace; font-weight:bold;'
+  );
+  console.log('%cÉtat actuel :', 'color:#f59e0b', SM.get());
+});
+</script>
+
+</body>
+</html>

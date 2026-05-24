@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://csqpg4sjrckqi"]
+
+[ext_resource type="Script" uid="uid://flpns8k7s1to" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://bvlpnwppd4uk1" path="res://cipher_character.glb" id="2_onrkg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+radius = 0.39111328
+height = 1.7543945
+
+[node name="Player" type="RigidBody3D" unique_id=394504344]
+script = ExtResource("1_4flbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=273206130]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7893039, 0)
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="TwistPivot" type="Node3D" parent="." unique_id=1445693464]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot" unique_id=1936319090]
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot" unique_id=582806215]
+transform = Transform3D(-1, 0, -8.742278e-08, -4.7892478e-08, 0.83659226, 0.5478261, 7.3137215e-08, 0.5478261, -0.83659226, 0, 1.9495026, -0.62453103)
+
+[node name="CipherMesh" type="Node3D" parent="." unique_id=2118768026]
+
+[node name="cipher_character" parent="CipherMesh" unique_id=795192023 instance=ExtResource("2_onrkg")]

@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bpxnb5yvy8nuu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jymga"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bm6y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66v8g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xb80g"]
+transparency = 1
+depth_draw_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_geyqj"]
+emission_shape = 3
+emission_box_extents = Vector3(0.9, 0.5, 0.9)
+gravity = Vector3(0, -5, 0)
+collision_mode = 1
+collision_friction = 0.43
+collision_bounce = 0.13
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ir2yl"]
+albedo_color = Color(0, 3.8664896, 4.612531, 0.5921569)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qxvp2"]
+material = SubResource("StandardMaterial3D_ir2yl")
+radius = 0.05
+height = 0.25
+
+[node name="Node3D" type="Node3D" unique_id=178979460]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=1955710619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_jymga")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=48221729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = SubResource("StandardMaterial3D_0bm6y")
+material_overlay = SubResource("StandardMaterial3D_66v8g")
+transparency = 1.0
+use_collision = true
+size = Vector3(2, 1, 0.5)
+material = SubResource("StandardMaterial3D_xb80g")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=726555954]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 0)
+material_override = SubResource("StandardMaterial3D_0bm6y")
+material_overlay = SubResource("StandardMaterial3D_66v8g")
+transparency = 1.0
+use_collision = true
+size = Vector3(2, 1, 0.5)
+material = SubResource("StandardMaterial3D_xb80g")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=31875718]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
+material_override = SubResource("StandardMaterial3D_0bm6y")
+material_overlay = SubResource("StandardMaterial3D_66v8g")
+transparency = 1.0
+use_collision = true
+size = Vector3(2, 1, 0.5)
+material = SubResource("StandardMaterial3D_xb80g")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2086990545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+material_override = SubResource("StandardMaterial3D_0bm6y")
+material_overlay = SubResource("StandardMaterial3D_66v8g")
+transparency = 1.0
+use_collision = true
+size = Vector3(2, 1, 0.5)
+material = SubResource("StandardMaterial3D_xb80g")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=682140238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+collision_mask = 3
+size = Vector3(2, 0.25, 2)
+material = SubResource("StandardMaterial3D_jymga")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="CSGBox3D5" unique_id=42206117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09273368, 0)
+size = Vector3(2, 0.41744384, 2)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="CSGBox3D5" unique_id=1605636589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+amount = 75
+amount_ratio = 0.486
+interp_to_end = 0.15
+process_material = SubResource("ParticleProcessMaterial_geyqj")
+draw_pass_1 = SubResource("CapsuleMesh_qxvp2")

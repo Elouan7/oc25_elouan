@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://fe0enwgr2omo"]
+
+[ext_resource type="PackedScene" uid="uid://bfnmj1uwddmhb" path="res://data_center_rack.glb" id="1_giogs"]
+
+[node name="Datacenter_rack" type="Node3D" unique_id=1042747142]
+
+[node name="datacenter" parent="." unique_id=1589823964 instance=ExtResource("1_giogs")]
