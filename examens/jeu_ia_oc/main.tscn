@@ -30,12 +30,13 @@ albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0xm2m"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
 albedo_color = Color(0.6645101, 0.66451, 0.66451, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
+size = Vector3(13, 5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 
@@ -84,12 +85,10 @@ size = Vector3(3.3670654, 2.9506836, 1.8237305)
 material = SubResource("StandardMaterial3D_kek77")
 
 [node name="Player" parent="." unique_id=394504344 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(-0.0401318, 0, -0.9991944, 0, 1, 0, 0.9991944, 0, -0.0401318, 38.35363, -0.5, 0)
+transform = Transform3D(-0.0401318, 0, -0.9991944, 0, 1, 0, 0.9991944, 0, -0.0401318, 26.35363, -0.5, 0)
 disable_mode = 2
 axis_lock_linear_y = true
 axis_lock_angular_y = true
-physics_material_override = SubResource("PhysicsMaterial_0xm2m")
-freeze_mode = 1
 
 [node name="HollowBox" type="CSGBox3D" parent="." unique_id=2008307983]
 transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, -44.533894, 1.5, 40.242554)
@@ -108,6 +107,12 @@ size = Vector3(13.5, 5, 17.5)
 material = SubResource("StandardMaterial3D_lquwl")
 script = ExtResource("4_lquwl")
 metadata/_custom_type_script = "uid://bfh3ub8w6ikkk"
+
+[node name="Area3D" type="Area3D" parent="HollowBox/BluePortalBox" unique_id=1418064246]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HollowBox/BluePortalBox/Area3D" unique_id=52961986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.775856, 0, -1.0953331)
+shape = SubResource("BoxShape3D_5vw27")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1092990542]
 transform = Transform3D(-0.25881898, 0, -0.9659259, 0, 1, 0, 0.9659259, 0, -0.25881898, -65.34569, 0, 38.68777)
@@ -131,13 +136,13 @@ spacing = 0.75
 steps = 54
 
 [node name="ParticleSphere" parent="." unique_id=377088552 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.62366563, 2.055338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.73527366, 2.055338)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5
 
 [node name="ParticleSphere2" parent="." unique_id=786829835 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.52773255, -2.444662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.6393406, -2.444662)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5

@@ -1,4 +1,4 @@
-@tool
+
 extends Node3D
 class_name RackGenerator
 
@@ -11,7 +11,7 @@ class_name RackGenerator
 
 @export var spacing: float = 1.5 # L'écartement entre chaque rack
 
-@export_tool_button("Générer les Racks") var generate_btn = generate_racks
+
 
 
 func generate_racks():

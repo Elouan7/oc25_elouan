@@ -1,4 +1,4 @@
-@tool
+
 extends CSGBox3D
 class_name HollowBox
 ## Creates a hollow box.
@@ -9,7 +9,7 @@ class_name HollowBox
 		create()
 
 ## Button action to rebuild the node.
-@export_tool_button("Rebuild") var action = create
+
 
 # On garde en mémoire la dernière taille connue de la boîte
 var _last_size := Vector3.ZERO

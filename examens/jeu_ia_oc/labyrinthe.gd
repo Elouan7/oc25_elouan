@@ -1,4 +1,4 @@
-@tool
+
 extends Node3D
 class_name SimpleMazeGenerator
 
@@ -12,7 +12,7 @@ class_name SimpleMazeGenerator
 # Le nombre de pas que va faire notre "creuseur"
 @export var steps: int = 60 
 
-@export_tool_button("Générer Labyrinthe") var generate_btn = generate_maze
+
 
 func generate_maze():
 	# 1. On nettoie la scène (on supprime l'ancien labyrinthe)

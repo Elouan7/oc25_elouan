@@ -1,4 +1,4 @@
-@tool
+
 extends CSGBox3D
 class_name BluePortalBox
 ## Crée un portail creux qui émet des particules et de la lumière.
