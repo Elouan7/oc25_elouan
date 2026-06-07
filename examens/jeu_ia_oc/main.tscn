@@ -4,8 +4,6 @@
 [ext_resource type="Script" uid="uid://dmolx3fwm25n1" path="res://addons/HollowBox.gd" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bnbt1vumgekpx" path="res://exit_sign.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bfh3ub8w6ikkk" path="res://addons/portal.gd" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://drpks8sk656ti" path="res://labyrinthe.gd" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://fe0enwgr2omo" path="res://datacenter_rack.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://particle_sphere.tscn" id="7_272bh"]
 [ext_resource type="Script" uid="uid://idd2m0d0cnj4" path="res://particle_sphere.gd" id="8_5vw27"]
 
@@ -28,8 +26,6 @@ albedo_color = Color(0.3459457, 0.34594572, 0.3459457, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
 albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
 albedo_color = Color(0.6645101, 0.66451, 0.66451, 1)
 
@@ -37,8 +33,6 @@ albedo_color = Color(0.6645101, 0.66451, 0.66451, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
 size = Vector3(13, 5, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c57u"]
 
 [node name="main1" type="Node3D" unique_id=992688338]
 
@@ -77,12 +71,6 @@ material = SubResource("StandardMaterial3D_ig7tw")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 29.38089, -11, -0.50561905)
 size = Vector3(100, 75, 0.19641113)
 material = SubResource("StandardMaterial3D_ig7tw")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="mur_entre" unique_id=1948696467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4042709, 11.975342, -0.18481445)
-operation = 2
-size = Vector3(3.3670654, 2.9506836, 1.8237305)
-material = SubResource("StandardMaterial3D_kek77")
 
 [node name="Player" parent="." unique_id=394504344 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(-0.0401318, 0, -0.9991944, 0, 1, 0, 0.9991944, 0, -0.0401318, 26.35363, -0.5, 0)
@@ -123,26 +111,14 @@ spot_range = 36.5
 spot_attenuation = 0.0
 spot_angle = 36.75643
 
-[node name="Spawn" type="CSGBox3D" parent="." unique_id=675798715]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5, -0.83277035, 0)
-size = Vector3(10, 1, 5)
-material = SubResource("StandardMaterial3D_4c57u")
-
-[node name="Labyrinthe" type="Node3D" parent="." unique_id=1103552262]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
-script = ExtResource("5_lquwl")
-rack_scene = ExtResource("6_7mycd")
-spacing = 0.75
-steps = 54
-
 [node name="ParticleSphere" parent="." unique_id=377088552 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.71756953, 2.055338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.68241, 0.71756953, 2.055338)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5
 
 [node name="ParticleSphere2" parent="." unique_id=786829835 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.62163645, -2.444662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.68241, 0.62163645, -2.444662)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5

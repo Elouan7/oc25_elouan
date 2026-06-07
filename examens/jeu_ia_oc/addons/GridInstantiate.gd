@@ -1,4 +1,4 @@
-#@tool
+@tool
 extends CSGCombiner3D
 class_name GridInstantiate
 ## Instantiates a 3D grid of CSC boxes

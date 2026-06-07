@@ -1,5 +1,5 @@
 ## TorusPortal.gd
-#@tool
+@tool
 extends CSGTorus3D
 class_name TorusPortal
 ## Crée un portail circulaire basé sur un Torus qui émet des particules et de la lumière.

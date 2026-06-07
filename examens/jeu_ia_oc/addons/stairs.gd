@@ -1,4 +1,4 @@
-#@tool
+@tool
 extends Node3D
 ## This class creates a staircase.
 class_name Stairs

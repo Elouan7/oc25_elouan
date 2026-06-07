@@ -1,0 +1,12 @@
+res://main_3.tscn
+res://addons/AnimatedDataCenterDoor.gd
+res://csg_box_3d.gd
+res://addons/GridInstantiate.gd
+res://addons/HollowBox.gd
+res://addons/hollowtube.gd
+res://labyrinthe.gd
+res://particle_sphere.gd
+res://portal_2.gd
+res://rack_generator.gd
+res://addons/stairs.gd
+res://main.tscn

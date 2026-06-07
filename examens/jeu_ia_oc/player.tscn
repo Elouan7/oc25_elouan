@@ -8,6 +8,7 @@ radius = 0.39111328
 height = 1.7543945
 
 [node name="Player" type="CharacterBody3D" unique_id=2081938344]
+motion_mode = 1
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=273206130]

@@ -4,35 +4,26 @@ extends CharacterBody3D
 # --- Paramètres ---
 @export var speed := 5.0
 @export var sprint_speed := 9.0
-@export var jump_velocity := 5.0
+@export var jump_velocity := 8.0  # Une très grosse valeur pour être sûr de le voir décoller
 @export var mouse_sensitivity := 0.002
-@export var pitch_limit := 80.0  # degrés max vers le haut/bas
+@export var pitch_limit := 80.0
+
 # --- Références ---
-@onready var twist_pivot = $TwistPivot          # rotation gauche/droite
-@onready var pitch_pivot = $TwistPivot/PitchPivot  # rotation haut/bas
+@onready var twist_pivot = $TwistPivot
+@onready var pitch_pivot = $TwistPivot/PitchPivot
 
 var GRAVITY = ProjectSettings.get_setting("physics/3d/default_gravity")
-var _fire_timer : float = 0.0
-var _can_shoot  : bool  = true
 
 func _ready():
-	# Capture la souris au démarrage
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	print("!!! DIAGNOSTIC : Le script du joueur est bien actif et s'exécute !!!")
 
 func _input(event):
-	# Mouvement caméra via souris
 	if event is InputEventMouseMotion:
-		# Gauche / Droite → rotation du TwistPivot
 		twist_pivot.rotate_y(-event.relative.x * mouse_sensitivity)
-		# Haut / Bas → rotation du PitchPivot (limité)
 		pitch_pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-		pitch_pivot.rotation.x = clamp(
-			pitch_pivot.rotation.x,
-			deg_to_rad(-pitch_limit),
-			deg_to_rad(pitch_limit)
-		)
+		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, deg_to_rad(-pitch_limit), deg_to_rad(pitch_limit))
 	
-	# Echap pour libérer/recapturer la souris
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -40,30 +31,27 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
-	# --- Gravité ---
+	# --- Gravité basique ---
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
+	else:
+		if velocity.y < 0:
+			velocity.y = 0
 
-	# --- Saut ---
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	# --- SAUT FORCE BRUTE (Sans aucune condition de sol + détection physique de la touche) ---
+	if Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("ui_accept") or Input.is_key_pressed(KEY_SPACE):
+		print("-> TOUCHE ESPACE DETECTEE ! Force appliquée : ", jump_velocity)
 		velocity.y = jump_velocity
 
-	# --- Déplacement WASD ---
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	
-	# Direction relative à l'orientation de la caméra (TwistPivot)
-	var direction = (
-		twist_pivot.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)
-	).normalized()
-
-	# Sprint avec Shift
+	# --- Déplacement WASD (Inversé pour ton niveau) ---
+	var input_dir := Input.get_vector("move_right", "move_left", "move_backward", "move_forward")
+	var direction = (twist_pivot.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var current_speed = sprint_speed if Input.is_action_pressed("sprint") else speed
 
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
 	else:
-		# Décélération progressive
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
