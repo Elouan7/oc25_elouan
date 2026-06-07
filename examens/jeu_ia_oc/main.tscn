@@ -136,13 +136,13 @@ spacing = 0.75
 steps = 54
 
 [node name="ParticleSphere" parent="." unique_id=377088552 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.73527366, 2.055338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.65423787, 2.055338)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5
 
 [node name="ParticleSphere2" parent="." unique_id=786829835 instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.6393406, -2.444662)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.68241, 0.5583048, -2.444662)
 script = ExtResource("8_5vw27")
 amplitude = 0.1
 vitesse = 1.5

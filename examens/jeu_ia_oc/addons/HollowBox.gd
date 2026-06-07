@@ -1,4 +1,4 @@
-
+@tool
 extends CSGBox3D
 class_name HollowBox
 ## Creates a hollow box.
