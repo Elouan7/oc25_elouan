@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends CSGCylinder3D
 class_name HollowTube
 

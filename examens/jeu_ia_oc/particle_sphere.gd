@@ -1,5 +1,5 @@
 ## floating_sphere.gd
-@tool
+#@tool
 
 extends Node3D
 

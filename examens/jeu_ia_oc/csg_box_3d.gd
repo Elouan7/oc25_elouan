@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends CSGBox3D
 
 var speed = 0.5
