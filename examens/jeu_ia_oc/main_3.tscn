@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbu7gtblndep" path="res://addons/hollowtube.gd" id="1_fw7dj"]
 [ext_resource type="Script" uid="uid://btbshjs6jv26x" path="res://portal.gd" id="2_818tw"]
+[ext_resource type="Script" uid="uid://bfcx3sr8xx8pm" path="res://spot_light_3d.gd" id="2_vok63"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_818tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -30,28 +31,49 @@ albedo_color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vok63"]
 albedo_color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mknxj"]
+
 [sub_resource type="TextMesh" id="TextMesh_fw7dj"]
+material = SubResource("StandardMaterial3D_mknxj")
 text = "Hello World!"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj0cy"]
+
 [sub_resource type="TextMesh" id="TextMesh_818tw"]
+material = SubResource("StandardMaterial3D_tj0cy")
 text = "Hello"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uahrv"]
+
 [sub_resource type="TextMesh" id="TextMesh_vok63"]
+material = SubResource("StandardMaterial3D_uahrv")
 text = " World"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5m8h"]
+
 [sub_resource type="TextMesh" id="TextMesh_6o4am"]
+material = SubResource("StandardMaterial3D_f5m8h")
 text = "!"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp7ci"]
+
 [sub_resource type="TextMesh" id="TextMesh_0glbh"]
+material = SubResource("StandardMaterial3D_qp7ci")
 text = "[0.12, -0.85, 0.44]"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0glbh"]
 albedo_color = Color(0.42395222, 0.42395222, 0.42395222, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6whg"]
+
 [sub_resource type="TextMesh" id="TextMesh_y6v6r"]
+material = SubResource("StandardMaterial3D_a6whg")
 text = "[0.55, 0.21, -0.10]"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ml6m"]
+
 [sub_resource type="TextMesh" id="TextMesh_mknxj"]
+material = SubResource("StandardMaterial3D_0ml6m")
 text = "[0.01, 0.00, -0.99]"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6v6r"]
@@ -133,7 +155,7 @@ mesh = SubResource("TextMesh_mknxj")
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1227436710]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5, 1.5, -8.5)
 light_color = Color(0, 0.9332403, 2.3507652, 1)
-light_energy = 3.535
+light_energy = 5.0
 light_indirect_energy = 2.173
 light_volumetric_fog_energy = 7.257
 light_size = 0.05
@@ -141,6 +163,8 @@ shadow_enabled = true
 spot_range = 10.0
 spot_attenuation = 0.41
 spot_angle = 23.568357
+script = ExtResource("2_vok63")
+vitesse_calcul = 0.25
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1869204079]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.0000002, -3.4347343)

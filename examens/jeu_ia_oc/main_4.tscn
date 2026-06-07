@@ -1,3 +1,54 @@
 [gd_scene format=3 uid="uid://b84r30r5g0g8a"]
 
+[ext_resource type="Script" uid="uid://duljkhj7jq4nc" path="res://server_flicker.gd.gd" id="1_y0ttm"]
+[ext_resource type="Script" uid="uid://df1ygggb00y4l" path="res://texte_anime.gd" id="2_s81xx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npt30"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s81xx"]
+albedo_color = Color(0.49803922, 0.49803922, 0.49803922, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjwjs"]
+albedo_color = Color(0.49943948, 0.49943954, 0.49943948, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0ttm"]
+
 [node name="Main_4" type="Node3D" unique_id=69030073]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=708459926]
+use_collision = true
+size = Vector3(5, 0.1, 5)
+material = SubResource("StandardMaterial3D_npt30")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=104984684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1539998, 0.7371231, -2)
+radius = 0.15
+height = 1.474246
+material = SubResource("StandardMaterial3D_s81xx")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1810938055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1438868, 0.75, -2)
+radius = 0.15
+height = 1.5
+material = SubResource("StandardMaterial3D_mjwjs")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=298627700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01171875, 0.73189545, -1.9837341)
+use_collision = true
+size = Vector3(4.258789, 1.345, 0.39105225)
+material = SubResource("StandardMaterial3D_y0ttm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CSGBox3D2" unique_id=1288666675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.079957)
+light_color = Color(0.8207369, 1.5773969, 2.8979108, 1)
+light_energy = 3.0
+shadow_enabled = true
+omni_range = 3.597
+omni_attenuation = 3.871
+script = ExtResource("1_y0ttm")
+vitesse_calcul = 1.0
+
+[node name="TexteAnime" type="Label3D" parent="." unique_id=1735178555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01485157, 0.762046, -1.7849095)
+text = "Merci d'avoir joué !"
+script = ExtResource("2_s81xx")
