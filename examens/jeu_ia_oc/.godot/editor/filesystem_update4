@@ -11,3 +11,6 @@ res://button.gd
 res://scenes/menu_pause.tscn
 res://scenes/main_4.tscn
 res://scenes/restart.gd
+res://scenes/PauseMenu.tscn
+res://UI/HUDButtons.tscn
+res://UI/HUDButtons.gd

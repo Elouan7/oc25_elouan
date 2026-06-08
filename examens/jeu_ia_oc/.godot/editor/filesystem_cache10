@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1780953513
+::res://::1780954727
 ::res://addons/::1780867197
 AnimatedDataCenterDoor.gd::GDScript::8810145070638438338::1780867160::0::1::::AnimatedDataCenterDoor<>Node3D<><>0<>1<><>::
 GridInstantiate.gd::GDScript::7388787792790451209::1780867166::0::1::::GridInstantiate<>CSGCombiner3D<><>0<>1<><>::
@@ -23,27 +23,32 @@ particle_sphere.tscn::PackedScene::2717295335060807760::1778926501::0::1::::<><>
 ::res://player/::1780948135
 cipher_character.glb::PackedScene::3884029704971172342::1779544390::1780930026::1::::<><><>0<>0<>7ee400514a845a4e4dad65bb12ec08eb<>res://.godot/imported/cipher_character.glb-7d365f7cbefe6db8d802c511271c81a2.scn::
 player.gd::GDScript::374587340593783564::1780948135::0::1::::<>CharacterBody3D<><>0<>0<><>::
-::res://scenes/::1780953513
-main.tscn::PackedScene::1552702211662695707::1780952833::0::1::::<><><>0<>0<><>::uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://dmolx3fwm25n1::::res://addons/HollowBox.gd<>uid://bnbt1vumgekpx::::res://objects/exit_sign.tscn<>uid://bfh3ub8w6ikkk::::res://addons/portal.gd<>uid://u448ftfwbddr::::res://scripts/portal_trigger.gd<>uid://beyjpsqqh461i::::res://objects/particle_sphere.tscn<>uid://idd2m0d0cnj4::::res://scripts/particle_sphere.gd<>uid://jlgbdc5gaj7k::::res://scripts/rack_generator (2).gd
-main_2.tscn::PackedScene::6476532383500716736::1780952285::0::1::::<><><>0<>0<><>::uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://bmwoayecsw1ow::::res://scripts/portal_2.gd<>uid://csgv5s5c1326r::::res://scripts/csg_box_3d.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://b4mw4cf1jwymb::::res://scenes/portal_trigger2.gd
-main_3.tscn::PackedScene::2353098682954835574::1780952346::0::1::::<><><>0<>0<><>::uid://dbu7gtblndep::::res://addons/hollowtube.gd<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://btbshjs6jv26x::::res://scripts/portal.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://bvibpasqqsyj0::::res://scenes/portal_trigger3.gd
-main_4.tscn::PackedScene::4763603010439770274::1780946139::0::1::::<><><>0<>0<><>::uid://2104cjv6e8fh::::res://scripts/texte_anime.gd<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn
-menu_pause.tscn::PackedScene::3348532990107274639::1780953519::0::1::::<><><>0<>0<><>::uid://bk13bbldicid0::::res://button.gd
+::res://scenes/::1780954972
+main.tscn::PackedScene::1552702211662695707::1780954634::0::1::::<><><>0<>0<><>::uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://dmolx3fwm25n1::::res://addons/HollowBox.gd<>uid://bnbt1vumgekpx::::res://objects/exit_sign.tscn<>uid://bfh3ub8w6ikkk::::res://addons/portal.gd<>uid://u448ftfwbddr::::res://scripts/portal_trigger.gd<>uid://beyjpsqqh461i::::res://objects/particle_sphere.tscn<>uid://idd2m0d0cnj4::::res://scripts/particle_sphere.gd<>uid://jlgbdc5gaj7k::::res://scripts/rack_generator (2).gd
+main_2.tscn::PackedScene::6476532383500716736::1780954637::0::1::::<><><>0<>0<><>::uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://bmwoayecsw1ow::::res://scripts/portal_2.gd<>uid://csgv5s5c1326r::::res://scripts/csg_box_3d.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://b4mw4cf1jwymb::::res://scenes/portal_trigger2.gd
+main_3.tscn::PackedScene::2353098682954835574::1780954640::0::1::::<><><>0<>0<><>::uid://dbu7gtblndep::::res://addons/hollowtube.gd<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://btbshjs6jv26x::::res://scripts/portal.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn<>uid://bvibpasqqsyj0::::res://scenes/portal_trigger3.gd
+main_4.tscn::PackedScene::4763603010439770274::1780954958::0::1::::<><><>0<>0<><>::uid://2104cjv6e8fh::::res://scripts/texte_anime.gd<>uid://8t5tog7he6xy::::res://scripts/spawn.gd<>uid://csqpg4sjrckqi::::res://scenes/player.tscn
 player.tscn::PackedScene::6070193618006028688::1780932312::0::1::::<><><>0<>0<><>::uid://flpns8k7s1to::::res://player/player.gd<>uid://bvlpnwppd4uk1::::res://player/cipher_character.glb
 portal_trigger2.gd::GDScript::4448057358073824953::1780952285::0::1::::<>Area3D<><>0<>0<><>::
 portal_trigger3.gd::GDScript::3876988954581162427::1780952346::0::1::::<>Area3D<><>0<>0<><>::
-::res://scripts/::1780952204
+restart.gd::GDScript::2991829419551564661::1780953654::0::1::::<>Button<><>0<>0<><>::
+::res://scripts/::1780954699
+button.gd::GDScript::3143684872933628623::1780953493::0::1::::<>Button<><>0<>0<><>::
 csg_box_3d.gd::GDScript::6049956441951569755::1780867164::0::1::::<>CSGBox3D<><>0<>1<><>::
+integration_snippet.gd::GDScript::3683261107277077019::1780954699::0::1::::<>RefCounted<><>0<>0<><>::
 labyrinthe.gd::GDScript::8384079135028733610::1780867173::0::1::::SimpleMazeGenerator<>Node3D<><>0<>1<><>::
 particle_sphere.gd::GDScript::567934918850290755::1780867175::0::1::::<>Node3D<><>0<>1<><>::
+PauseMenu.gd::GDScript::6324032693480586099::1780954699::0::1::::<>CanvasLayer<><>0<>0<><>::
 portal.gd::GDScript::3723178998934920377::1780940512::0::1::::<>Node3D<><>0<>1<><>::
 portal_2.gd::GDScript::3274954422692976490::1780867183::0::1::::TorusPortal<>CSGTorus3D<><>0<>1<><>::
 portal_trigger.gd::GDScript::1465463843842124235::1780952204::0::1::::<>Area3D<><>0<>0<><>::
 porte.gd::GDScript::9194664051583619714::1779554028::0::1::::<>Node3D<><>0<>0<><>::
 rack_generator (2).gd::GDScript::654773997818204174::1780952091::0::1::::<>Node3D<><>0<>1<><>::
 rack_generator.gd::GDScript::927975537791606075::1780867189::0::1::::RackGenerator<>Node3D<><>0<>1<><>::
-button.gd::GDScript::3143684872933628623::1780953493::0::1::::<>Button<><>0<>0<><>::
 server_flicker.gd.gd::GDScript::8513793340144273775::1780842207::0::1::::<>OmniLight3D<><>0<>1<><>::
 spawn.gd::GDScript::2357311203308601650::1780930508::0::1::::<>Node3D<><>0<>0<><>::
 spot_light_3d.gd::GDScript::8111271129947035082::1780842204::0::1::::<>SpotLight3D<><>0<>1<><>::
 texte_anime.gd::GDScript::1950342432620538021::1780842175::0::1::::<>Label3D<><>0<>1<><>::
+::res://UI/::0
+HUDButtons.gd::GDScript::8879728982064099775::1780954972::0::1::::<>CanvasLayer<><>0<>0<><>::
+HUDButtons.tscn::PackedScene::-1::1780954972::0::1::::<><><>0<>0<><>::res://UI/HUDButtons.gd

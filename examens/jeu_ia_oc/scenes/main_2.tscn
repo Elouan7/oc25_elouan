@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://csgv5s5c1326r" path="res://scripts/csg_box_3d.gd" id="2_owpos"]
 [ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="4_f241j"]
 [ext_resource type="Script" uid="uid://b4mw4cf1jwymb" path="res://scenes/portal_trigger2.gd" id="5_43ty5"]
-[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="6_rkluo"]
+[ext_resource type="PackedScene" uid="uid://b24syvsr2wihm" path="res://UI/HUDButtons.tscn" id="6_rkluo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f241j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -70,31 +70,31 @@ material = SubResource("StandardMaterial3D_pmt41")
 use_collision = true
 
 [node name="1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1980052935]
-transform = Transform3D(1, 0, 0, 0, -0.861366, 0.50798446, 0, -0.50798446, -0.861366, 0, 0, -2.444888)
+transform = Transform3D(1, 0, 0, 0, -0.7194795, 0.6945134, 0, -0.6945134, -0.7194795, 0, 0, -2.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=31669021]
-transform = Transform3D(1, 0, 0, 0, -0.715414, -0.6987007, 0, 0.6987007, -0.715414, 0, 0, -3.944888)
+transform = Transform3D(1, 0, 0, 0, -0.8583867, -0.513003, 0, 0.513003, -0.8583867, 0, 0, -3.944888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1996657324]
-transform = Transform3D(1, 0, 0, 0, -0.70328254, -0.7109102, 0, 0.7109102, -0.70328254, 0, 0, -5.444888)
+transform = Transform3D(1, 0, 0, 0, -0.84943014, -0.5277007, 0, 0.5277007, -0.84943014, 0, 0, -5.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1732264460]
-transform = Transform3D(1, 0, 0, 0, -0.72051466, -0.69343925, 0, 0.69343925, -0.72051466, 0, 0, -6.944888)
+transform = Transform3D(1, 0, 0, 0, -0.8621227, -0.5066989, 0, 0.5066989, -0.8621227, 0, 0, -6.944888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1938902584]
-transform = Transform3D(1, 0, 0, 0, -0.50586873, 0.86261, 0, -0.86261, -0.50586873, 0, 0, -8.444888)
+transform = Transform3D(1, 0, 0, 0, -0.29161072, 0.95653665, 0, -0.95653665, -0.29161072, 0, 0, -8.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
@@ -104,31 +104,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.5)
 use_collision = true
 
 [node name="1" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=898362921]
-transform = Transform3D(1, 0, 0, 0, -0.861366, 0.50798446, 0, -0.50798446, -0.861366, 0, 0, -2.444888)
+transform = Transform3D(1, 0, 0, 0, -0.7194795, 0.6945134, 0, -0.6945134, -0.7194795, 0, 0, -2.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="2" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=863812881]
-transform = Transform3D(1, 0, 0, 0, -0.715414, -0.6987007, 0, 0.6987007, -0.715414, 0, 0, -3.944888)
+transform = Transform3D(1, 0, 0, 0, -0.8583867, -0.513003, 0, 0.513003, -0.8583867, 0, 0, -3.944888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="3" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=1801251241]
-transform = Transform3D(1, 0, 0, 0, -0.70328254, -0.7109102, 0, 0.7109102, -0.70328254, 0, 0, -5.444888)
+transform = Transform3D(1, 0, 0, 0, -0.84943014, -0.5277007, 0, 0.5277007, -0.84943014, 0, 0, -5.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="4" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=986835095]
-transform = Transform3D(1, 0, 0, 0, -0.72051466, -0.69343925, 0, 0.69343925, -0.72051466, 0, 0, -6.944888)
+transform = Transform3D(1, 0, 0, 0, -0.8621227, -0.5066989, 0, 0.5066989, -0.8621227, 0, 0, -6.944888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
 
 [node name="5" type="CSGBox3D" parent="CSGCombiner3D2" unique_id=967413695]
-transform = Transform3D(1, 0, 0, 0, -0.50586873, 0.86261, 0, -0.86261, -0.50586873, 0, 0, -8.444888)
+transform = Transform3D(1, 0, 0, 0, -0.29161072, 0.95653665, 0, -0.95653665, -0.29161072, 0, 0, -8.444888)
 use_collision = true
 material = SubResource("StandardMaterial3D_acxvi")
 script = ExtResource("2_owpos")
@@ -166,4 +166,4 @@ script = ExtResource("5_43ty5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.028808594, 0)
 shape = SubResource("CylinderShape3D_43ty5")
 
-[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("6_rkluo")]
+[node name="HUDButtons" parent="." unique_id=570612210 instance=ExtResource("6_rkluo")]

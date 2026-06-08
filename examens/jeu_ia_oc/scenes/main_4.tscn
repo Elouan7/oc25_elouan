@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://2104cjv6e8fh" path="res://scripts/texte_anime.gd" id="1_f07w0"]
 [ext_resource type="Script" uid="uid://8t5tog7he6xy" path="res://scripts/spawn.gd" id="1_stdri"]
 [ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="3_8adms"]
-[ext_resource type="Script" uid="uid://bivi81nx7px86" path="res://scenes/restart.gd" id="4_d5m0t"]
-[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="5_2bdnh"]
+[ext_resource type="PackedScene" uid="uid://b24syvsr2wihm" path="res://UI/HUDButtons.tscn" id="4_d5m0t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8adms"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -69,13 +68,4 @@ transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=743303193]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.76, 0, 0)
 
-[node name="Button" type="Button" parent="." unique_id=1929705449]
-offset_left = 1078.0
-offset_right = 1153.0
-offset_bottom = 31.0
-toggle_mode = true
-button_pressed = true
-text = "RESTART"
-script = ExtResource("4_d5m0t")
-
-[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("5_2bdnh")]
+[node name="HUDButtons" parent="." unique_id=570612210 instance=ExtResource("4_d5m0t")]

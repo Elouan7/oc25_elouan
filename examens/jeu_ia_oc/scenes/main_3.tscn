@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://btbshjs6jv26x" path="res://scripts/portal.gd" id="2_yh0tb"]
 [ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="4_7tmd8"]
 [ext_resource type="Script" uid="uid://bvibpasqqsyj0" path="res://scenes/portal_trigger3.gd" id="4_144u1"]
-[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="6_ve0ab"]
+[ext_resource type="PackedScene" uid="uid://b24syvsr2wihm" path="res://UI/HUDButtons.tscn" id="6_ve0ab"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_818tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -230,4 +230,4 @@ motion_mode = 0
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=690126403]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.257, 1.5)
 
-[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("6_ve0ab")]
+[node name="HUDButtons" parent="." unique_id=570612210 instance=ExtResource("6_ve0ab")]

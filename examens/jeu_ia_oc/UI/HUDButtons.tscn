@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b24syvsr2wihm"]
+
+[ext_resource type="Script" uid="uid://dyrn3r4wqlyw2" path="res://UI/HUDButtons.gd" id="1_hud"]
+
+[node name="HUDButtons" type="CanvasLayer" unique_id=570612210]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=644734500]
+offset_right = 220.0
+offset_bottom = 110.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=68253359]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BtnRecommencer" type="Button" parent="MarginContainer/VBoxContainer" unique_id=827069100]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "⟳  Recommencer"
+
+[node name="BtnQuitter" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1586959575]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "✕  Quitter"
