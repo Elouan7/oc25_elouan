@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://wee1qbby6p5l"]
+
+[ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="1_o6xl0"]
+[ext_resource type="Script" uid="uid://8t5tog7he6xy" path="res://scripts/spawn.gd" id="1_tipki"]
+[ext_resource type="Script" uid="uid://dmolx3fwm25n1" path="res://addons/HollowBox.gd" id="2_tipki"]
+[ext_resource type="PackedScene" uid="uid://bnbt1vumgekpx" path="res://objects/exit_sign.tscn" id="3_85g3d"]
+[ext_resource type="Script" uid="uid://bfh3ub8w6ikkk" path="res://addons/portal.gd" id="4_choun"]
+[ext_resource type="Script" uid="uid://u448ftfwbddr" path="res://scripts/portal_trigger.gd" id="5_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://beyjpsqqh461i" path="res://objects/particle_sphere.tscn" id="6_eb6dy"]
+[ext_resource type="Script" uid="uid://idd2m0d0cnj4" path="res://scripts/particle_sphere.gd" id="7_trceg"]
+[ext_resource type="Script" uid="uid://jlgbdc5gaj7k" path="res://scripts/rack_generator (2).gd" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="10_choun"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xm2m"]
+albedo_color = Color(0.3459457, 0.34594572, 0.3459457, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
+albedo_color = Color(0.6645101, 0.66451, 0.66451, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
+size = Vector3(13, 5, 1)
+
+[node name="main1" type="Node3D" unique_id=992688338]
+script = ExtResource("1_tipki")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1452446169]
+environment = SubResource("Environment_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=646539265]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 42, 0)
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=1727232195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.158447, -1, 24.770264)
+use_collision = true
+size = Vector3(49.683105, 1, 50.459473)
+material = SubResource("StandardMaterial3D_0xm2m")
+
+[node name="mur" type="CSGBox3D" parent="." unique_id=1078564240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.284393, -11, 49.49438)
+use_collision = true
+size = Vector3(49.431213, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur2" type="CSGBox3D" parent="." unique_id=685915052]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, -11, 24.775879)
+use_collision = true
+size = Vector3(50.448242, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur3" type="CSGBox3D" parent="." unique_id=1395530944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.895996, -11, 0.023693085)
+use_collision = true
+size = Vector3(50.208008, 75, 1)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="mur_entre" type="CSGBox3D" parent="." unique_id=1542814291]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.08681297, -11, 24.500546)
+size = Vector3(49.98767, 75, 0.19641113)
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="HollowBox" type="CSGBox3D" parent="." unique_id=2008307983]
+transform = Transform3D(-0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881907, -44.533894, 1.5, 40.242554)
+size = Vector3(15, 6, 18)
+material = SubResource("StandardMaterial3D_1bvp3")
+script = ExtResource("2_tipki")
+thickness = 1.0
+metadata/_custom_type_script = "uid://dmolx3fwm25n1"
+
+[node name="Exit_sign" parent="HollowBox" unique_id=1350100702 instance=ExtResource("3_85g3d")]
+transform = Transform3D(0.046897173, 0, -0.99890006, 0, 1, 0, 0.99890006, 0, 0.046897173, -0.08837128, 1.8976126, 8.994362)
+
+[node name="BluePortalBox" type="CSGBox3D" parent="HollowBox" unique_id=1065428962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02646637, 0, 0.14775085)
+size = Vector3(13.5, 5, 17.5)
+material = SubResource("StandardMaterial3D_lquwl")
+script = ExtResource("4_choun")
+metadata/_custom_type_script = "uid://bfh3ub8w6ikkk"
+
+[node name="Area3D" type="Area3D" parent="HollowBox/BluePortalBox" unique_id=1418064246]
+script = ExtResource("5_ya4ey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HollowBox/BluePortalBox/Area3D" unique_id=52961986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.775856, 0, -1.0953331)
+shape = SubResource("BoxShape3D_5vw27")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1092990542]
+transform = Transform3D(-0.25881898, 0, -0.9659259, 0, 1, 0, 0.9659259, 0, -0.25881898, -65.34569, 0, 38.68777)
+light_energy = 0.683
+light_indirect_energy = 1.634
+shadow_enabled = true
+spot_range = 36.5
+spot_attenuation = 0.0
+spot_angle = 36.75643
+
+[node name="ParticleSphere" parent="." unique_id=377088552 instance=ExtResource("6_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3175907, 0.6167407, 8.68016)
+script = ExtResource("7_trceg")
+amplitude = 0.1
+vitesse = 1.5
+
+[node name="ParticleSphere2" parent="." unique_id=786829835 instance=ExtResource("6_eb6dy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3175907, 0.5208078, 4.1042843)
+script = ExtResource("7_trceg")
+amplitude = 0.1
+vitesse = 1.5
+
+[node name="PlayerN" parent="." unique_id=394504344 instance=ExtResource("1_o6xl0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, -0.5, 6.5)
+disable_mode = 2
+axis_lock_linear_y = true
+axis_lock_angular_y = true
+jump_force = 0.05
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=2007999658]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, -0.5, 6.5)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1086206025]
+script = ExtResource("9_85g3d")
+
+[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("10_choun")]

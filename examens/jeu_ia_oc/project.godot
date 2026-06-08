@@ -13,7 +13,10 @@ config_version=5
 config/name="jeu_ia_oc"
 run/main_scene="uid://wee1qbby6p5l"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+
+[autoload]
+
+SceneTransition="*uid://dcdklnjv36gm6"
 
 [input]
 

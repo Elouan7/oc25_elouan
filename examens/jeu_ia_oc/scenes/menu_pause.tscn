@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnyb34t28xosl"]
+
+[ext_resource type="Script" uid="uid://bk13bbldicid0" path="res://scripts/button.gd" id="1_0o444"]
+
+[node name="Control" type="Control" unique_id=2030882735]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.99952215, 1.0105432)
+
+[node name="Button" type="Button" parent="." unique_id=1739139813]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(1.9179497, 1.903756)
+toggle_mode = true
+button_pressed = true
+text = "QUIT"
+script = ExtResource("1_0o444")

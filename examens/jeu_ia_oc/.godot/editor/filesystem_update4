@@ -1,12 +1,13 @@
-res://main_3.tscn
-res://addons/AnimatedDataCenterDoor.gd
-res://csg_box_3d.gd
-res://addons/GridInstantiate.gd
-res://addons/HollowBox.gd
-res://addons/hollowtube.gd
-res://labyrinthe.gd
-res://particle_sphere.gd
-res://portal_2.gd
-res://rack_generator.gd
-res://addons/stairs.gd
-res://main.tscn
+res://scenes/main.tscn
+res://scenes/rack_generator.gd
+res://scripts/rack_generator (2).gd
+res://scripts/portal_trigger.gd
+res://scenes/main_2.tscn
+res://scenes/portal_trigger2.gd
+res://scenes/main_3.tscn
+res://scenes/portal_trigger3.gd
+res://menu_pause.tscn
+res://button.gd
+res://scenes/menu_pause.tscn
+res://scenes/main_4.tscn
+res://scenes/restart.gd

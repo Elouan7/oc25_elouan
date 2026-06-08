@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://8r4grnmb3tdu"]
+
+[ext_resource type="Script" uid="uid://dbu7gtblndep" path="res://addons/hollowtube.gd" id="1_lcxxc"]
+[ext_resource type="Script" uid="uid://8t5tog7he6xy" path="res://scripts/spawn.gd" id="1_yh0tb"]
+[ext_resource type="Script" uid="uid://btbshjs6jv26x" path="res://scripts/portal.gd" id="2_yh0tb"]
+[ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="4_7tmd8"]
+[ext_resource type="Script" uid="uid://bvibpasqqsyj0" path="res://scenes/portal_trigger3.gd" id="4_144u1"]
+[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="6_ve0ab"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_818tw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vok63"]
+sky_material = SubResource("ProceduralSkyMaterial_818tw")
+
+[sub_resource type="Environment" id="Environment_0glbh"]
+background_mode = 2
+sky = SubResource("Sky_vok63")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o4am"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw7dj"]
+albedo_color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_818tw"]
+albedo_color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vok63"]
+albedo_color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tmd8"]
+albedo_color = Color(0.40339583, 2.0702899, 0.2769963, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_fw7dj"]
+material = SubResource("StandardMaterial3D_7tmd8")
+text = "Hello World!"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_144u1"]
+albedo_color = Color(0.25587106, 1.3382875, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_818tw"]
+material = SubResource("StandardMaterial3D_144u1")
+text = "Hello"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve0ab"]
+albedo_color = Color(0.40955478, 1.6333059, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_vok63"]
+material = SubResource("StandardMaterial3D_ve0ab")
+text = " World"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxms2"]
+albedo_color = Color(0.65152776, 2.6211514, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_6o4am"]
+material = SubResource("StandardMaterial3D_kxms2")
+text = "!"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn1j2"]
+albedo_color = Color(0.7102063, 2.7259471, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_0glbh"]
+material = SubResource("StandardMaterial3D_dn1j2")
+text = "[0.12, -0.85, 0.44]"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0glbh"]
+albedo_color = Color(0.42395222, 0.42395222, 0.42395222, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn7vl"]
+albedo_color = Color(0.61787754, 3.064705, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_y6v6r"]
+material = SubResource("StandardMaterial3D_pn7vl")
+text = "[0.55, 0.21, -0.10]"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ngkwn"]
+albedo_color = Color(0.70386004, 2.7794645, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_mknxj"]
+material = SubResource("StandardMaterial3D_ngkwn")
+text = "[0.01, 0.00, -0.99]"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6v6r"]
+albedo_color = Color(0, 1.5136971, 2.1241765, 0.5137255)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7tmd8"]
+height = 0.75
+radius = 2.5
+
+[node name="Main_3" type="Node3D" unique_id=1835629068]
+script = ExtResource("1_yh0tb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=972057280]
+environment = SubResource("Environment_0glbh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=881856136]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 4.266781, 0)
+light_energy = 0.1
+light_indirect_energy = 0.0
+light_specular = 0.287
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1338216687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6415405)
+use_collision = true
+size = Vector3(3, 0.5, 2.283081)
+material = SubResource("StandardMaterial3D_6o4am")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=847378853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+use_collision = true
+size = Vector3(3, 0.5, 2)
+material = SubResource("StandardMaterial3D_fw7dj")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1210293059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
+use_collision = true
+size = Vector3(3, 0.5, 2)
+material = SubResource("StandardMaterial3D_818tw")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=1456587239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
+use_collision = true
+size = Vector3(3, 0.5, 2)
+material = SubResource("StandardMaterial3D_vok63")
+
+[node name="Hello World!" type="MeshInstance3D" parent="." unique_id=2042131499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("TextMesh_fw7dj")
+
+[node name="Hello" type="MeshInstance3D" parent="." unique_id=499455497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87429595, 0.5, -2)
+mesh = SubResource("TextMesh_818tw")
+
+[node name="World" type="MeshInstance3D" parent="Hello" unique_id=992663631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99078417, 0, 0)
+mesh = SubResource("TextMesh_vok63")
+
+[node name="!" type="MeshInstance3D" parent="Hello/World" unique_id=1755069282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83938694, 0, 0)
+mesh = SubResource("TextMesh_6o4am")
+
+[node name="[0_12, -0_85, 0_44]" type="MeshInstance3D" parent="." unique_id=1586161446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2653005, 0.6412536, -4.483503)
+mesh = SubResource("TextMesh_0glbh")
+
+[node name="HollowTube" type="CSGCylinder3D" parent="." unique_id=134100410]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.0000001, -3.4793692)
+use_collision = true
+radius = 2.7636719
+height = 9.0
+material = SubResource("StandardMaterial3D_0glbh")
+script = ExtResource("1_lcxxc")
+rayon_du_trou = 2.1
+metadata/_custom_type_script = "uid://dbu7gtblndep"
+
+[node name="[0_12, -0_85, 0_44]2" type="MeshInstance3D" parent="." unique_id=1177778342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04412484, 0.5, -4.5)
+mesh = SubResource("TextMesh_y6v6r")
+
+[node name="[0_12, -0_85, 0_44]3" type="MeshInstance3D" parent="." unique_id=1260723306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1805959, 0.6693047, -4.5)
+mesh = SubResource("TextMesh_mknxj")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1227436710]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.5, 1.5, -8.5)
+light_color = Color(0, 0.9332403, 2.3507652, 1)
+light_energy = 3.535
+light_indirect_energy = 2.173
+light_volumetric_fog_energy = 7.257
+light_size = 0.05
+shadow_enabled = true
+spot_range = 10.0
+spot_attenuation = 0.41
+spot_angle = 23.568357
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=1869204079]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 3.0000002, -3.4347343)
+radius = 0.08886719
+height = 8.91806
+material = SubResource("StandardMaterial3D_y6v6r")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1219547177]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.5, 2.5000002, -3.4347343)
+radius = 0.08886719
+height = 8.91806
+material = SubResource("StandardMaterial3D_y6v6r")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=1401380812]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.5, 2.5000002, -3.4347343)
+radius = 0.08886719
+height = 8.91806
+material = SubResource("StandardMaterial3D_y6v6r")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="." unique_id=2029507310]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 2, 1.0000002, -3.4347343)
+radius = 0.08886719
+height = 8.91806
+material = SubResource("StandardMaterial3D_y6v6r")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="." unique_id=1974502590]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -2, 1.0000002, -3.4347343)
+radius = 0.08886719
+height = 8.91806
+material = SubResource("StandardMaterial3D_y6v6r")
+
+[node name="Node3D" type="Node3D" parent="." unique_id=2098290017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.424171, -7.2858114)
+script = ExtResource("2_yh0tb")
+rain_speed = 1.0
+pillar_height = 3.8
+
+[node name="Area3D" type="Area3D" parent="Node3D" unique_id=2110175190]
+script = ExtResource("4_144u1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D" unique_id=1238154720]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.4935188, 0.125)
+shape = SubResource("CylinderShape3D_7tmd8")
+
+[node name="PlayerN" parent="." unique_id=2081938344 instance=ExtResource("4_7tmd8")]
+transform = Transform3D(-0.25, 0, -3.774895e-08, 0, 0.25, 0, 3.774895e-08, 0, -0.25, 0, 0.25737453, 1.5)
+motion_mode = 0
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=690126403]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.257, 1.5)
+
+[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("6_ve0ab")]

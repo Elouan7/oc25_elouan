@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://b84r30r5g0g8a"]
+
+[ext_resource type="Script" uid="uid://2104cjv6e8fh" path="res://scripts/texte_anime.gd" id="1_f07w0"]
+[ext_resource type="Script" uid="uid://8t5tog7he6xy" path="res://scripts/spawn.gd" id="1_stdri"]
+[ext_resource type="PackedScene" uid="uid://csqpg4sjrckqi" path="res://scenes/player.tscn" id="3_8adms"]
+[ext_resource type="Script" uid="uid://bivi81nx7px86" path="res://scenes/restart.gd" id="4_d5m0t"]
+[ext_resource type="PackedScene" uid="uid://bnyb34t28xosl" path="res://scenes/menu_pause.tscn" id="5_2bdnh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8adms"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_d5m0t"]
+sky_material = SubResource("ProceduralSkyMaterial_8adms")
+
+[sub_resource type="Environment" id="Environment_2bdnh"]
+background_mode = 2
+sky = SubResource("Sky_d5m0t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s81xx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjwjs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3xodv"]
+albedo_color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+
+[node name="Main_4" type="Node3D" unique_id=69030073]
+script = ExtResource("1_stdri")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=418910357]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1102295565]
+environment = SubResource("Environment_2bdnh")
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=54262819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(5, 1, 5)
+material = SubResource("StandardMaterial3D_s81xx")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=188485001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7515097, 0.5000001, -0.030707836)
+use_collision = true
+size = Vector3(0.5, 1, 4.4018555)
+material = SubResource("StandardMaterial3D_mjwjs")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=1706993414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.2487874)
+radius = 0.15
+material = SubResource("StandardMaterial3D_3xodv")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=411987657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.218185)
+radius = 0.15
+material = SubResource("StandardMaterial3D_3xodv")
+
+[node name="Label3D" type="Label3D" parent="CSGBox3D2" unique_id=495021028]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.27236032, 0, 0)
+text = "Merci d'avoir joué !"
+script = ExtResource("1_f07w0")
+
+[node name="PlayerN" parent="." unique_id=2081938344 instance=ExtResource("3_8adms")]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, -1.7647406, 0, 0)
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=743303193]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.76, 0, 0)
+
+[node name="Button" type="Button" parent="." unique_id=1929705449]
+offset_left = 1078.0
+offset_right = 1153.0
+offset_bottom = 31.0
+toggle_mode = true
+button_pressed = true
+text = "RESTART"
+script = ExtResource("4_d5m0t")
+
+[node name="Control" parent="." unique_id=2030882735 instance=ExtResource("5_2bdnh")]
